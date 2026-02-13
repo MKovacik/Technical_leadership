@@ -27,4 +27,4 @@ The design embodies technical precision and clarity:
 ## Author
 
 **Michal Kováčik**
-- GitHub: [@MKovacik](https://github.com/MKovacik/Technical_leadership)
+- GitHub: [@MKovacik](https://github.com/MKovacik)
