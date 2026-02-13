@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Becoming a Technical Leader</title>
+<link rel="icon" type="image/png" href="icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -53,6 +54,19 @@ body {
   padding: 2rem;
   position: relative;
   overflow: hidden;
+}
+
+.hero-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.1s;
+  border: 2px solid var(--accent-dim);
+  box-shadow: 0 0 30px var(--accent-glow);
 }
 
 .hero::before {
@@ -599,6 +613,7 @@ mark {
 
 <!-- HERO -->
 <div class="hero">
+  <img src="icon.png" alt="Technical Leader Icon" class="hero-icon">
   <div class="hero-label">Coaching Session · 2025 · by <a href="https://github.com/MKovacik/Technical_leadership" target="_blank" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Michal Kováčik</a></div>
   <h1>Becoming a<br><em>Technical Leader</em></h1>
   <p class="hero-sub">You don't need 15 years of coding experience.<br>You need the right abstraction layer.</p>
