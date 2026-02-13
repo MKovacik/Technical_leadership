@@ -16,14 +16,6 @@ This project is a single-page web application that presents a comprehensive guid
 6. **Problem-First Mind Mapping** - A practical framework for evaluating technical solutions
 
 
-## Design Philosophy
-
-The design embodies technical precision and clarity:
-- **Typography**: Three-font system (monospace for labels, serif for headings, sans-serif for body)
-- **Color Palette**: Deep dark background with strategic orange accents for emphasis
-- **Information Architecture**: Progressive disclosure with scroll-triggered animations
-- **Responsive**: Adapts to mobile and desktop viewports
-
 ## Author
 
 **Michal Kováčik**
