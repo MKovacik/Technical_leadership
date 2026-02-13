@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Becoming a Technical Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #0a0a0f;
+  --bg-card: #12121a;
+  --bg-card-hover: #1a1a25;
+  --accent: #f97316;
+  --accent-dim: #f9731633;
+  --accent-glow: #f9731620;
+  --text-primary: #e8e6e1;
+  --text-secondary: #8a8880;
+  --text-muted: #5a5850;
+  --border: #ffffff0a;
+  --border-accent: #f9731640;
+  --green: #22c55e;
+  --green-dim: #22c55e20;
+  --red: #ef4444;
+  --red-dim: #ef444420;
+  --blue: #3b82f6;
+  --blue-dim: #3b82f620;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent-dim); border-radius: 2px; }
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, var(--accent-glow) 0%, transparent 50%);
+  animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+.hero-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.3s;
+}
+
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  margin-top: 1.5rem;
+  max-width: 500px;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.7s;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 1.2s;
+}
+
+.scroll-hint::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  margin: 0.8rem auto 0;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; height: 30px; }
+  50% { opacity: 1; height: 45px; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section Base */
+section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.section-number {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.section-lead {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 650px;
+  margin-bottom: 3rem;
+}
+
+/* Divider */
+.divider {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-accent), transparent);
+}
+
+/* Big Quote / Statement */
+.big-statement {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.big-statement p {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.big-statement p em {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.big-statement .attribution {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  margin-top: 1.5rem;
+}
+
+/* Insight Cards */
+.insight-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.insight-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-accent);
+}
+
+.insight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.insight-card:hover::before {
+  opacity: 1;
+}
+
+.card-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.card-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* Example Box */
+.example-box {
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.25rem;
+  position: relative;
+}
+
+.example-box::before {
+  content: '💡';
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  font-size: 0.85rem;
+  background: var(--bg-card);
+  padding: 0 6px;
+}
+
+.example-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.example-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* Comparison: Instead of / Try */
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .comparison { grid-template-columns: 1fr; }
+}
+
+.comp-bad, .comp-good {
+  border-radius: 8px;
+  padding: 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.comp-bad {
+  background: var(--red-dim);
+  border: 1px solid #ef444430;
+  color: #fca5a5;
+}
+
+.comp-good {
+  background: var(--green-dim);
+  border: 1px solid #22c55e30;
+  color: #86efac;
+}
+
+.comp-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.comp-bad .comp-label { color: var(--red); }
+.comp-good .comp-label { color: var(--green); }
+
+/* Level Spectrum */
+.spectrum {
+  display: flex;
+  gap: 0;
+  margin-top: 1.25rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.spectrum-item {
+  flex: 1;
+  padding: 1.25rem;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.spectrum-item:nth-child(1) { 
+  background: var(--red-dim); 
+  border: 1px solid #ef444430;
+  color: #fca5a5;
+}
+.spectrum-item:nth-child(2) { 
+  background: var(--bg-card); 
+  color: var(--text-secondary);
+}
+.spectrum-item:nth-child(3) { 
+  background: var(--green-dim); 
+  border: 1px solid #22c55e30;
+  color: #86efac;
+}
+
+.spectrum-level {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.spectrum-item:nth-child(1) .spectrum-level { color: var(--red); }
+.spectrum-item:nth-child(2) .spectrum-level { color: var(--text-muted); }
+.spectrum-item:nth-child(3) .spectrum-level { color: var(--green); }
+
+/* Pillar Grid */
+.pillar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 700px) {
+  .pillar-grid { grid-template-columns: 1fr; }
+}
+
+.pillar {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.pillar:hover {
+  border-color: var(--border-accent);
+}
+
+.pillar-icon {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.pillar h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.pillar p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Key Takeaway */
+.takeaway {
+  background: linear-gradient(135deg, var(--accent-dim) 0%, var(--bg-card) 100%);
+  border: 1px solid var(--border-accent);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.takeaway-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.takeaway p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* Number Highlight */
+.num-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
+  border-radius: 6px;
+  padding: 0.3rem 0.8rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin: 0.25rem 0;
+}
+
+/* Footer */
+.footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+  text-align: center;
+}
+
+.footer p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.footer .accent-text {
+  color: var(--accent);
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* Scroll animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Marker / Highlight text */
+mark {
+  background: var(--accent-dim);
+  color: var(--accent);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-weight: 400;
+}
+
+/* Questions grid */
+.questions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.question-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.question-item:hover {
+  border-color: var(--border-accent);
+  background: var(--bg-card-hover);
+}
+
+.q-number {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent);
+  background: var(--accent-dim);
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.q-content p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  line-height: 1.7;
+}
+
+.q-content strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Action steps */
+.action-list {
+  margin-top: 1.5rem;
+}
+
+.action-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.action-item:last-child { border-bottom: none; }
+
+.action-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2rem;
+  color: var(--accent);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 2.5rem;
+}
+
+.action-content h4 {
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.action-content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Coaching Session · 2025 · by Michal Kováčik</div>
+  <h1>Becoming a<br><em>Technical Leader</em></h1>
+  <p class="hero-sub">You don't need 15 years of coding experience.<br>You need the right abstraction layer.</p>
+  <div class="scroll-hint">Scroll to begin</div>
+</div>
+
+<!-- THE UNCOMFORTABLE TRUTH -->
+<div class="divider"></div>
+
+<section>
+  <div class="reveal">
+    <div class="section-number">01 · The Reality Check</div>
+    <div class="section-title">You Will Never Catch Up.<br>And That's Okay.</div>
+    <p class="section-lead">
+      If your senior developers have 15 years of hands-on coding experience, you cannot close that gap while also leading a team. This is not a failure. It's a constraint you need to design around.
+    </p>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">The Trap</div>
+    <div class="card-title">Trying to out-code your developers</div>
+    <div class="card-text">
+      Many team leads fall into the trap of trying to prove themselves by diving deep into code. They stay late debugging, submit pull requests to "stay sharp," and slowly burn out while neglecting the leadership work that only they can do. The result? A mediocre developer who also happens to be a mediocre leader.
+    </div>
+    <div class="example-box">
+      <div class="example-label">What this looks like</div>
+      <div class="example-text">
+        You spend 4 hours debugging a memory leak in a Java microservice. You eventually fix it. Your senior dev could have done it in 40 minutes. Meanwhile, nobody prepared for tomorrow's architecture review, and two team members are blocked waiting for your decision on the API contract.
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">The Reframe</div>
+    <div class="card-title">Choose your abstraction layer</div>
+    <div class="card-text">
+      Software is built in layers: infrastructure → platform → data → services → API → business logic → user interface. You don't need to master every layer. You need to choose the right layer for your role and go deep enough there to make credible decisions.
+    </div>
+
+    <div class="example-box" style="margin-bottom: 1rem;">
+      <div class="example-label">Performance issue: management asks what's going on</div>
+    </div>
+    <div class="spectrum">
+      <div class="spectrum-item">
+        <span class="spectrum-level">Too Low</span>
+        "We have an N+1 query problem in Hibernate ORM, we need to rewrite the fetch strategy to JOIN FETCH"
+      </div>
+      <div class="spectrum-item">
+        <span class="spectrum-level">Sweet Spot</span>
+        "The issue is in the database layer. One endpoint generates 200 queries instead of one. The team has a fix ready, deploying tomorrow morning."
+      </div>
+      <div class="spectrum-item">
+        <span class="spectrum-level">Too High</span>
+        "It's slow, the team is looking into it"
+      </div>
+    </div>
+
+    <div class="example-box" style="margin-bottom: 1rem; margin-top: 1.5rem;">
+      <div class="example-label">Cloud migration: VP asks for a status update</div>
+    </div>
+    <div class="spectrum">
+      <div class="spectrum-item">
+        <span class="spectrum-level">Too Low</span>
+        "We need to reconfigure the Kubernetes ingress controller and set up a horizontal pod autoscaler with custom metrics"
+      </div>
+      <div class="spectrum-item">
+        <span class="spectrum-level">Sweet Spot</span>
+        "3 of 7 services migrated. The remaining have database dependencies that need a connection strategy change. Payment service is the riskiest. It's stateful and needs a different approach."
+      </div>
+      <div class="spectrum-item">
+        <span class="spectrum-level">Too High</span>
+        "Migration is on track, the team is handling it"
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway reveal">
+    <div class="takeaway-label">Key Insight</div>
+    <p>Your job is not to have the deepest technical knowledge in the room. It's to have the <mark>broadest relevant knowledge</mark>: enough to connect dots that specialists can't see, and enough to ask the question nobody else is asking.</p>
+  </div>
+</section>
+
+<!-- BIG STATEMENT -->
+<div class="divider"></div>
+
+<div class="big-statement reveal">
+  <p>The best technical leaders don't have<br>all the <em>answers</em>.<br>They ask the right <em>questions</em>.</p>
+</div>
+
+<!-- ASKING THE RIGHT QUESTIONS -->
+<div class="divider"></div>
+
+<section>
+  <div class="reveal">
+    <div class="section-number">02 · The Skill</div>
+    <div class="section-title">The Power of<br><em>Perception</em></div>
+    <p class="section-lead">
+      Technical credibility isn't built in your team's standup. It's built in the rooms where decisions are made: leadership meetings, stakeholder reviews, cross-team discussions. One well-placed question there is worth more than a month of code reviews.
+    </p>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Scenario 1 · Executive Demo</div>
+    <div class="card-title">Presenting what your team delivered</div>
+    <div class="card-text">
+      Quarterly stakeholder update. Most team leads present a feature list: "we did X, Y, Z." That's reporting. A technical leader turns the same deliverables into a story that shows they understand the technical "how" behind every item.
+    </div>
+    <div class="comparison">
+      <div class="comp-bad">
+        <span class="comp-label">❌ The feature list</span>
+        "This quarter we delivered a new customer dashboard, resolved 47 bugs, and completed the database migration."
+      </div>
+      <div class="comp-good">
+        <span class="comp-label">✅ The technical leader version</span>
+        "The customer dashboard cut support tickets by 35%. The PostgreSQL 16 migration unlocked native partitioning. Heaviest queries run 4× faster, saving €2K/month on compute. And 80% of our bugs are now caught by automated tests before production, up 25 points from last quarter."
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">Why this works</div>
+      <div class="example-text">
+        Same deliverables. But the second version shows you understand the technical "why" behind each item, you connect technical decisions to business impact, and you use concrete numbers instead of vague claims. Everyone in the room remembers the person who speaks like this.
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Scenario 2 · Cross-Team Integration Meeting</div>
+    <div class="card-title">An API is your perfect abstraction layer</div>
+    <div class="card-text">
+      A meeting with another team to discuss system integration. Someone presents an API contract design. You don't need to understand the implementation underneath. The API surface is your level, and it's where critical decisions happen.
+    </div>
+    <div class="comparison">
+      <div class="comp-bad">
+        <span class="comp-label">❌ The passive response</span>
+        "Looks good. I'll let the developers work out the details."
+      </div>
+      <div class="comp-good">
+        <span class="comp-label">✅ The technical leader response</span>
+        "This endpoint returns the full customer object on every page load. Do we really need address and payment history every time? I'd suggest a lightweight endpoint for basics and a separate call for details. Also, what's the rate limit? We have 50K active users with a Monday morning peak."
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">Why this works</div>
+      <div class="example-text">
+        Notice: you didn't ask about the framework, the code, or the internal architecture. You asked about payload size, usage patterns, and limits. Things visible in any Swagger doc or Postman collection. You just influenced an architectural decision without writing a single line of code. This is what "choosing the right abstraction layer" looks like in practice.
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Scenario 3 · Budget & Resource Discussion</div>
+    <div class="card-title">Selling technical investment to management</div>
+    <div class="card-text">
+      Management is pushing for new features. Your team desperately needs time for technical debt. Most team leads lose this argument because they speak developer language in a business room.
+    </div>
+    <div class="comparison">
+      <div class="comp-bad">
+        <span class="comp-label">❌ The developer translation</span>
+        "The developers say we need to refactor the legacy module. The code is old and hard to maintain. They estimate it will take about 3 sprints."
+      </div>
+      <div class="comp-good">
+        <span class="comp-label">✅ The business translation</span>
+        "The legacy payment module eats 30% of every sprint in workarounds. That's 1.5 engineers doing rework instead of features. A 2-sprint redesign brings that to 5%. Over two quarters, that frees ~400 engineering hours. Exactly the capacity we need for the partner onboarding feature on the Q3 roadmap."
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">Why this works</div>
+      <div class="example-text">
+        You translated "tech debt" into lost capacity. You translated "refactoring" into freed-up engineering hours. You connected the investment directly to a feature management already cares about. This is technical credibility. Not because you wrote the code, but because you understood the system well enough to build a business case around it.
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway reveal">
+    <div class="takeaway-label">The Pattern</div>
+    <p>Notice what these scenarios have in common: you never need to know the implementation details. You need to understand <mark>business impact</mark>, <mark>system behavior</mark>, and <mark>trade-offs</mark>. And you need to show that understanding in the rooms where it matters, not in your team's standup, but in front of leadership.</p>
+  </div>
+</section>
+
+<!-- PRODUCT KNOWLEDGE -->
+<div class="divider"></div>
+
+<section>
+  <div class="reveal">
+    <div class="section-number">03 · The Overlooked Skill</div>
+    <div class="section-title">Product Knowledge<br><em>Is</em> Technical Knowledge</div>
+    <p class="section-lead">
+      Most team leads think "technical" means code, infrastructure, and architecture. They're missing the most powerful form of technical credibility: understanding how the product works, who uses it, and why it's built the way it is.
+    </p>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Why This Matters</div>
+    <div class="card-title">Product knowledge makes you visible in the room</div>
+    <div class="card-text">
+      When leadership discusses strategy, most team leads sit quietly or nod along. The ones who speak up with product-informed technical insight become the people VPs remember and trust. You don't need to challenge the direction. You need to enrich it with information only you have.
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Scenario 1 · Strategy Discussion with VP</div>
+    <div class="card-title">Confirming direction with substance</div>
+    <div class="card-text">
+      VP presents next quarter's direction: expansion into a new customer segment. Most leads nod. You have a chance to show you understand both the product and the technology.
+    </div>
+    <div class="comparison">
+      <div class="comp-bad">
+        <span class="comp-label">❌ The nodding lead</span>
+        "Sounds great. We'll support whatever the team needs to deliver."
+      </div>
+      <div class="comp-good">
+        <span class="comp-label">✅ The informed lead</span>
+        "That makes sense. Our onboarding flow currently requires manual configuration per client, which takes about 3 days. If we want to onboard 50 new clients in Q3, we'll need self-service provisioning. Good news is our API already partially supports it, so it's 2-3 sprints, not a full redesign."
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">What just happened</div>
+      <div class="example-text">
+        You confirmed the VP's direction (you're not the opposition). You showed product knowledge (onboarding flow, manual configuration). You showed technical understanding (API partially supports it). And you gave concrete data (3 days, 50 clients, 2-3 sprints). The VP remembers: "this person knows what they're talking about."
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Scenario 2 · Executive Quarterly Review</div>
+    <div class="card-title">Making invisible work visible</div>
+    <div class="card-text">
+      Your team spent two sprints on something that doesn't look like a new feature. Leadership wants to know why. This is where product knowledge turns "technical work" into a business story.
+    </div>
+    <div class="comparison">
+      <div class="comp-bad">
+        <span class="comp-label">❌ The technical excuse</span>
+        "We did some performance optimizations and technical improvements to the checkout flow."
+      </div>
+      <div class="comp-good">
+        <span class="comp-label">✅ The business case</span>
+        "We reduced checkout time from 12 to 3 seconds. At our volume, that means roughly 15% fewer abandoned carts. That's approximately €50K per month in recovered revenue."
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">What just happened</div>
+      <div class="example-text">
+        Same work, completely different story. The first version sounds like the team was doing housekeeping. The second version sounds like a strategic investment with measurable ROI. Product knowledge let you make that translation.
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Scenario 3 · Cross-Functional Strategy Meeting</div>
+    <div class="card-title">Connecting dots across teams</div>
+    <div class="card-text">
+      Roadmap discussion with other team leads and senior management. Each team presents their plans for the next quarter. Without product knowledge, you only know your own silo.
+    </div>
+    <div class="comparison">
+      <div class="comp-bad">
+        <span class="comp-label">❌ The silo lead</span>
+        "Our plan looks solid. We'll deliver our backlog items on schedule."
+      </div>
+      <div class="comp-good">
+        <span class="comp-label">✅ The connected lead</span>
+        "If Team B ships their integration before us, our clients will have to do a double import during the transition. We should sync our release dates. I'd suggest a joint demo in week 3 to align on the handoff."
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">What just happened</div>
+      <div class="example-text">
+        You saw a cross-team dependency that nobody else caught. Not because you're smarter, but because you understand how the product works end-to-end. That kind of awareness is rare and extremely valued by senior leadership.
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway reveal">
+    <div class="takeaway-label">Remember</div>
+    <p>When you can connect technology to business outcomes in a room full of senior leaders, you become indispensable. Not because you're the best coder, but because you're the person who understands <mark>what the system does</mark>, <mark>why it matters</mark>, and <mark>what it would take to change it</mark>.</p>
+  </div>
+</section>
+
+<!-- PERCEPTION -->
+<div class="divider"></div>
+
+<div class="big-statement reveal">
+  <p>It's not what you <em>know</em>.<br>It's what they <em>think</em> you know.</p>
+</div>
+
+<div class="divider"></div>
+
+<section>
+  <div class="reveal">
+    <div class="section-number">04 · The Uncomfortable Truth</div>
+    <div class="section-title">You Are<br><em>What They See.</em></div>
+    <p class="section-lead">
+      Here's what nobody tells you: being technically competent and being perceived as technically competent are two different skills. You need both.
+    </p>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Building Perception</div>
+    <div class="card-title">Five habits that signal technical credibility</div>
+    <div class="card-text" style="padding: 0;">
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-num">1</div>
+          <div class="action-content">
+            <h4>Use precise language</h4>
+            <p>Say "we need to add an index on the orders table" not "the database is slow." Say "our p95 latency increased from 200ms to 800ms after the last deployment" not "users say it's slow sometimes."</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">2</div>
+          <div class="action-content">
+            <h4>Know your system's numbers</h4>
+            <p>How many requests per second does your main API handle? What's the database size? How many deployments per week? You don't need to monitor these yourself, but you should know them by heart.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">3</div>
+          <div class="action-content">
+            <h4>Participate in technical ceremonies</h4>
+            <p>Attend architecture reviews. Join post-mortem discussions. Sit in on code review discussions (you don't need to review code, just listen). The knowledge compounds over time.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">4</div>
+          <div class="action-content">
+            <h4>Own your team's technical narrative</h4>
+            <p>Don't wait for your VP to read Confluence. Actively communicate your team's technical wins in leadership channels, in emails, in meetings. If you don't tell the story, nobody will.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-num">5</div>
+          <div class="action-content">
+            <h4>Bridge the gap between business and tech</h4>
+            <p>In every meeting, be the person who translates. When the business says "we need it faster," translate it to "we need to reduce our lead time for changes." When the dev says "the tech debt is killing us," translate it to "we're spending 30% of capacity on rework."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway reveal">
+    <div class="takeaway-label">This Is Not Faking It</div>
+    <p>This is not about pretending. It's about being <mark>intentional</mark> about which technical skills you develop and how you communicate them. Every point above requires real understanding, but it's understanding at the <mark>right level of abstraction</mark> for your role.</p>
+  </div>
+</section>
+
+<!-- SELF REFLECTION -->
+<div class="divider"></div>
+
+<section>
+  <div class="reveal">
+    <div class="section-number">05 · Reflect</div>
+    <div class="section-title">Questions for<br><em>Self-Assessment</em></div>
+    <p class="section-lead">
+      You've received a self-assessment questionnaire. Here are the key questions mapped to each pillar. Don't aim for perfection. Aim for honest awareness of where you stand.
+    </p>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">🔬 Technical Depth vs. Breadth</div>
+    <div class="card-title">Do you know what's under the hood?</div>
+    <div class="questions-grid">
+      <div class="question-item">
+        <span class="q-number">Q7</span>
+        <div class="q-content">
+          <strong>Do you know what technologies and tools your team uses in development?</strong>
+          <p>Can you name the framework, database, hosting model, and CI/CD pipeline? Or do you delegate that to "the tech people"?</p>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-number">Q9</span>
+        <div class="q-content">
+          <strong>What is the biggest technical debt your team is addressing?</strong>
+          <p>If you can describe it with specifics and measurable impact, you're thinking like a technical leader.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">🗣️ Communication & Influence</div>
+    <div class="card-title">Can you move the room?</div>
+    <div class="questions-grid">
+      <div class="question-item">
+        <span class="q-number">Q1</span>
+        <div class="q-content">
+          <strong>What's the most important change awaiting your area in the next 6 months?</strong>
+          <p>A technical leader describes the change with measurable impact and team implications, not just "we're implementing a new tool."</p>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-number">Q24</span>
+        <div class="q-content">
+          <strong>When was the last time you said NO?</strong>
+          <p>Saying no with a technical rationale and proposing an alternative: that's influence. Saying yes to everything is not leadership.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">🎯 Ownership & Decision-Making</div>
+    <div class="card-title">Do you own the technical direction?</div>
+    <div class="questions-grid">
+      <div class="question-item">
+        <span class="q-number">Q31</span>
+        <div class="q-content">
+          <strong>Describe a recent significant technical or architectural decision.</strong>
+          <p>If your answer is "the developers suggested it and I approved," you're not owning the technical direction. If you can describe the trade-offs you considered, you are.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">🚀 Multiplying Through Others</div>
+    <div class="card-title">Are you making the team better?</div>
+    <div class="questions-grid">
+      <div class="question-item">
+        <span class="q-number">Q11</span>
+        <div class="q-content">
+          <strong>How does your team learn and improve technically?</strong>
+          <p>If your answer references specific, regular learning activities that you initiated or support, you're multiplying. If learning is "each person's responsibility," you're missing an opportunity.</p>
+        </div>
+      </div>
+      <div class="question-item">
+        <span class="q-number">Q27</span>
+        <div class="q-content">
+          <strong>How do you get feedback from the team?</strong>
+          <p>Multiple channels (1-on-1s, retros, surveys) and a specific example of a change you made based on feedback. That's leadership through listening.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<div class="divider"></div>
+
+<div class="big-statement reveal">
+  <p>Start with <em>one</em> pillar.<br>Go deep. Be consistent.<br>The perception will follow.</p>
+</div>
+
+<div class="divider"></div>
+
+<section>
+  <div class="reveal">
+    <div class="section-number">06 · Next Steps</div>
+    <div class="section-title">Your Action Plan</div>
+    <p class="section-lead">
+      Don't try to improve everything at once. Pick one area and commit to it for the next month.
+    </p>
+  </div>
+
+  <div class="action-list reveal">
+    <div class="action-item">
+      <div class="action-num">1</div>
+      <div class="action-content">
+        <h4>Complete the self-assessment honestly</h4>
+        <p>Go through the full questionnaire. Mark where you're TOP, MID, and LOW. No judgment. This is your baseline.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">2</div>
+      <div class="action-content">
+        <h4>Pick your pillar</h4>
+        <p>Choose the one area where improvement would have the biggest impact on how your team and stakeholders perceive you. Focus there first.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">3</div>
+      <div class="action-content">
+        <h4>One concrete habit this week</h4>
+        <p>Read one ADR. Attend one architecture discussion. Ask one probing question in a technical meeting. Translate one business requirement into technical terms. Small, consistent actions compound.</p>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">4</div>
+      <div class="action-content">
+        <h4>Bring your reflections to the next session</h4>
+        <p>In our next coaching session, we'll dive deeper into your individual challenges. Come prepared with a specific situation where you felt technically out of depth. We'll work through it together.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXERCISE SECTION -->
+<section>
+  <div class="reveal">
+    <div class="section-number">07 · Exercise</div>
+    <div class="section-title">What Helps Me:<br><em>The Problem-First Mind Map</em></div>
+    <p class="section-lead">
+      Start with a real business problem. Then map out the possible technical solutions. For each one, ask: does it solve my problem? What's the trade-off? When would it make sense? Here are two examples.
+    </p>
+  </div>
+
+  <!-- EXAMPLE 1: SIM ACTIVATION -->
+  <div class="insight-card reveal" style="padding: 0; overflow: hidden;">
+    <div style="padding: 2rem 2rem 1rem;">
+      <div class="card-label">Example 1 · Telecom</div>
+      <div class="card-title">SIM activation takes 24 hours. Customers are leaving.</div>
+    </div>
+
+    <div style="padding: 0 1rem 0.5rem; overflow-x: auto;">
+      <svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" style="width: 100%; min-width: 750px; height: auto;">
+        <rect width="1000" height="620" fill="#0a0a0f" rx="12"/>
+
+        <!-- Problem node -->
+        <rect x="300" y="20" width="400" height="50" rx="25" fill="#f9731633" stroke="#f97316" stroke-width="1.5"/>
+        <text x="500" y="42" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="13" font-weight="600">PROBLEM: SIM activation takes 24 hours.</text>
+        <text x="500" y="58" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="13" font-weight="600">Customers want it in under 5 minutes.</text>
+
+        <!-- SOLUTION A: REST API -->
+        <line x1="400" y1="70" x2="170" y2="110" stroke="#22c55e" stroke-width="1" opacity="0.4"/>
+        <rect x="20" y="100" width="300" height="34" rx="17" fill="#22c55e20" stroke="#22c55e40" stroke-width="1"/>
+        <text x="170" y="122" text-anchor="middle" fill="#86efac" font-family="sans-serif" font-size="12" font-weight="600">A: REST API + real-time provisioning</text>
+
+        <rect x="20" y="148" width="300" height="50" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
+        <text x="32" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
+        <text x="32" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Self-service portal → API → provisioning</text>
+        <text x="32" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">system. SIM active in under 2 minutes.</text>
+
+        <rect x="20" y="208" width="300" height="62" rx="8" fill="#22c55e10" stroke="#22c55e30" stroke-width="1"/>
+        <text x="32" y="225" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHY IT SOLVES THE PROBLEM</text>
+        <text x="32" y="242" fill="#86efac" font-family="sans-serif" font-size="10">No call center needed. Fully automated.</text>
+        <text x="32" y="255" fill="#86efac" font-family="sans-serif" font-size="10">Scales linearly with requests. Customer</text>
+        <text x="32" y="268" fill="#86efac" font-family="sans-serif" font-size="10">gets instant result.</text>
+
+        <rect x="20" y="280" width="300" height="42" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
+        <text x="32" y="297" fill="#f97316" font-family="monospace" font-size="8" letter-spacing="1.5">TRADE-OFF</text>
+        <text x="32" y="314" fill="#e8e6e1" font-family="sans-serif" font-size="10">SOAP-to-REST wrapper for legacy system.</text>
+
+        <!-- SOLUTION B: BATCH -->
+        <line x1="500" y1="70" x2="500" y2="110" stroke="#ef4444" stroke-width="1" opacity="0.4"/>
+        <rect x="350" y="100" width="300" height="34" rx="17" fill="#ef444420" stroke="#ef444430" stroke-width="1"/>
+        <text x="500" y="122" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="12" font-weight="600">B: Batch processing overnight</text>
+
+        <rect x="350" y="148" width="300" height="50" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
+        <text x="362" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
+        <text x="362" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Orders collected during the day, processed</text>
+        <text x="362" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">in bulk at 2:00 AM.</text>
+
+        <rect x="350" y="208" width="300" height="62" rx="8" fill="#ef444410" stroke="#ef444430" stroke-width="1"/>
+        <text x="362" y="225" fill="#ef4444" font-family="monospace" font-size="8" letter-spacing="1.5">✗ WHY IT DOESN'T FIT HERE</text>
+        <text x="362" y="242" fill="#fca5a5" font-family="sans-serif" font-size="10">Customer still waits 24 hours. This is</text>
+        <text x="362" y="255" fill="#fca5a5" font-family="sans-serif" font-size="10">exactly the problem we're solving.</text>
+        <text x="362" y="268" fill="#fca5a5" font-family="sans-serif" font-size="10">Competitor already does it in minutes.</text>
+
+        <rect x="350" y="280" width="300" height="55" rx="8" fill="#12121a" stroke="#22c55e30" stroke-width="1"/>
+        <text x="362" y="297" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHEN IT WOULD WORK</text>
+        <text x="362" y="314" fill="#86efac" font-family="sans-serif" font-size="10">Bulk enterprise orders (500 SIMs at once)</text>
+        <text x="362" y="327" fill="#86efac" font-family="sans-serif" font-size="10">where reliability matters more than speed.</text>
+
+        <!-- SOLUTION C: MANUAL -->
+        <line x1="600" y1="70" x2="830" y2="110" stroke="#ef4444" stroke-width="1" opacity="0.4"/>
+        <rect x="680" y="100" width="300" height="34" rx="17" fill="#ef444420" stroke="#ef444430" stroke-width="1"/>
+        <text x="830" y="122" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="12" font-weight="600">C: Manual processing via internal tool</text>
+
+        <rect x="680" y="148" width="300" height="50" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
+        <text x="692" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
+        <text x="692" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Call center operator manually enters data</text>
+        <text x="692" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">into internal provisioning system.</text>
+
+        <rect x="680" y="208" width="300" height="62" rx="8" fill="#ef444410" stroke="#ef444430" stroke-width="1"/>
+        <text x="692" y="225" fill="#ef4444" font-family="monospace" font-size="8" letter-spacing="1.5">✗ WHY IT DOESN'T FIT HERE</text>
+        <text x="692" y="242" fill="#fca5a5" font-family="sans-serif" font-size="10">Doesn't scale. Depends on operator</text>
+        <text x="692" y="255" fill="#fca5a5" font-family="sans-serif" font-size="10">availability. Error-prone. High cost per</text>
+        <text x="692" y="268" fill="#fca5a5" font-family="sans-serif" font-size="10">activation.</text>
+
+        <rect x="680" y="280" width="300" height="55" rx="8" fill="#12121a" stroke="#22c55e30" stroke-width="1"/>
+        <text x="692" y="297" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHEN IT WOULD WORK</text>
+        <text x="692" y="314" fill="#86efac" font-family="sans-serif" font-size="10">Edge cases and escalations where</text>
+        <text x="692" y="327" fill="#86efac" font-family="sans-serif" font-size="10">automation fails. VIP customers.</text>
+
+        <!-- KEY INSIGHT -->
+        <rect x="150" y="370" width="700" height="44" rx="22" fill="#f9731615" stroke="#f9731640" stroke-width="1"/>
+        <text x="500" y="397" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="12" font-weight="500">Same problem, three solutions. Each valid in a different context. Knowing which one fits where is the skill.</text>
+
+        <!-- THINKING PATTERN -->
+        <text x="500" y="450" text-anchor="middle" fill="#8a8880" font-family="monospace" font-size="9" letter-spacing="2">THE THINKING PATTERN</text>
+
+        <rect x="80" y="470" width="180" height="36" rx="8" fill="#12121a" stroke="#f9731640" stroke-width="1"/>
+        <text x="170" y="493" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="11">What's the problem?</text>
+
+        <text x="272" y="493" fill="#f9731640" font-family="sans-serif" font-size="16">→</text>
+
+        <rect x="300" y="470" width="180" height="36" rx="8" fill="#12121a" stroke="#f9731640" stroke-width="1"/>
+        <text x="390" y="493" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="11">What are the options?</text>
+
+        <text x="492" y="493" fill="#f9731640" font-family="sans-serif" font-size="16">→</text>
+
+        <rect x="520" y="470" width="200" height="36" rx="8" fill="#12121a" stroke="#f9731640" stroke-width="1"/>
+        <text x="620" y="493" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="11">Which fits my context?</text>
+
+        <text x="732" y="493" fill="#f9731640" font-family="sans-serif" font-size="16">→</text>
+
+        <rect x="760" y="470" width="180" height="36" rx="8" fill="#12121a" stroke="#f9731640" stroke-width="1"/>
+        <text x="850" y="493" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="11">What's the trade-off?</text>
+
+      </svg>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 2: CONTRACT SYSTEM PERFORMANCE -->
+  <div class="insight-card reveal" style="padding: 0; overflow: hidden;">
+    <div style="padding: 2rem 2rem 1rem;">
+      <div class="card-label">Example 2 · IT Infrastructure</div>
+      <div class="card-title">Contract management system crashes at end of month. Budget is tight.</div>
+    </div>
+
+    <div style="padding: 0 1rem 0.5rem; overflow-x: auto;">
+      <svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" style="width: 100%; min-width: 750px; height: auto;">
+        <rect width="1000" height="620" fill="#0a0a0f" rx="12"/>
+
+        <!-- Problem node -->
+        <rect x="270" y="20" width="460" height="50" rx="25" fill="#f9731633" stroke="#f97316" stroke-width="1.5"/>
+        <text x="500" y="42" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="13" font-weight="600">PROBLEM: System crashes when 200+ users</text>
+        <text x="500" y="58" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="13" font-weight="600">generate reports at month-end. Budget is limited.</text>
+
+        <!-- SOLUTION A: CACHE + READ REPLICA -->
+        <line x1="400" y1="70" x2="170" y2="110" stroke="#22c55e" stroke-width="1" opacity="0.4"/>
+        <rect x="20" y="100" width="300" height="34" rx="17" fill="#22c55e20" stroke="#22c55e40" stroke-width="1"/>
+        <text x="170" y="122" text-anchor="middle" fill="#86efac" font-family="sans-serif" font-size="12" font-weight="600">A: Cache layer + DB read replica</text>
+
+        <rect x="20" y="148" width="300" height="62" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
+        <text x="32" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
+        <text x="32" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Redis cache for frequent queries. Read</text>
+        <text x="32" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">replica handles report load. Main DB stays</text>
+        <text x="32" y="206" fill="#e8e6e1" font-family="sans-serif" font-size="10">free for write operations.</text>
+
+        <rect x="20" y="220" width="300" height="62" rx="8" fill="#22c55e10" stroke="#22c55e30" stroke-width="1"/>
+        <text x="32" y="237" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHY IT SOLVES THE PROBLEM</text>
+        <text x="32" y="254" fill="#86efac" font-family="sans-serif" font-size="10">80% of reports pull same monthly data.</text>
+        <text x="32" y="267" fill="#86efac" font-family="sans-serif" font-size="10">Cache hit rate will be high. Read replica</text>
+        <text x="32" y="280" fill="#86efac" font-family="sans-serif" font-size="10">isolates reporting from daily operations.</text>
+
+        <rect x="20" y="292" width="300" height="52" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
+        <text x="32" y="309" fill="#f97316" font-family="monospace" font-size="8" letter-spacing="1.5">TRADE-OFF</text>
+        <text x="32" y="326" fill="#e8e6e1" font-family="sans-serif" font-size="10">Report data may be a few minutes stale</text>
+        <text x="32" y="339" fill="#e8e6e1" font-family="sans-serif" font-size="10">(replication lag). Fine for monthly reports.</text>
+
+        <!-- SOLUTION B: MICROSERVICES -->
+        <line x1="500" y1="70" x2="500" y2="110" stroke="#ef4444" stroke-width="1" opacity="0.4"/>
+        <rect x="350" y="100" width="300" height="34" rx="17" fill="#ef444420" stroke="#ef444430" stroke-width="1"/>
+        <text x="500" y="122" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="12" font-weight="600">B: Rewrite as microservices</text>
+
+        <rect x="350" y="148" width="300" height="62" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
+        <text x="362" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
+        <text x="362" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Split monolith into separate services:</text>
+        <text x="362" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">contracts, reporting, notifications.</text>
+        <text x="362" y="206" fill="#e8e6e1" font-family="sans-serif" font-size="10">Each scales independently.</text>
+
+        <rect x="350" y="220" width="300" height="62" rx="8" fill="#ef444410" stroke="#ef444430" stroke-width="1"/>
+        <text x="362" y="237" fill="#ef4444" font-family="monospace" font-size="8" letter-spacing="1.5">✗ WHY IT DOESN'T FIT HERE</text>
+        <text x="362" y="254" fill="#fca5a5" font-family="sans-serif" font-size="10">This is a performance problem, not an</text>
+        <text x="362" y="267" fill="#fca5a5" font-family="sans-serif" font-size="10">architecture problem. Adds network latency,</text>
+        <text x="362" y="280" fill="#fca5a5" font-family="sans-serif" font-size="10">needs service mesh, 5× the budget and time.</text>
+
+        <rect x="350" y="292" width="300" height="52" rx="8" fill="#12121a" stroke="#22c55e30" stroke-width="1"/>
+        <text x="362" y="309" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHEN IT WOULD WORK</text>
+        <text x="362" y="326" fill="#86efac" font-family="sans-serif" font-size="10">If different parts need fundamentally</text>
+        <text x="362" y="339" fill="#86efac" font-family="sans-serif" font-size="10">different scaling or availability strategies.</text>
+
+        <!-- SOLUTION C: BIGGER SERVER -->
+        <line x1="600" y1="70" x2="830" y2="110" stroke="#ef4444" stroke-width="1" opacity="0.4"/>
+        <rect x="680" y="100" width="300" height="34" rx="17" fill="#ef444420" stroke="#ef444430" stroke-width="1"/>
+        <text x="830" y="122" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="12" font-weight="600">C: Vertical scaling (bigger server)</text>
+
+        <rect x="680" y="148" width="300" height="50" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
+        <text x="692" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
+        <text x="692" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Double the RAM and CPU on the existing</text>
+        <text x="692" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">server.</text>
+
+        <rect x="680" y="208" width="300" height="74" rx="8" fill="#ef444410" stroke="#ef444430" stroke-width="1"/>
+        <text x="692" y="225" fill="#ef4444" font-family="monospace" font-size="8" letter-spacing="1.5">✗ WHY IT DOESN'T FIT HERE</text>
+        <text x="692" y="242" fill="#fca5a5" font-family="sans-serif" font-size="10">Treats symptom, not cause. Reports do</text>
+        <text x="692" y="255" fill="#fca5a5" font-family="sans-serif" font-size="10">full table scans. Bigger server just delays</text>
+        <text x="692" y="268" fill="#fca5a5" font-family="sans-serif" font-size="10">the crash by a few months. Cloud costs</text>
+        <text x="692" y="281" fill="#fca5a5" font-family="sans-serif" font-size="10">grow non-linearly.</text>
+
+        <rect x="680" y="292" width="300" height="52" rx="8" fill="#12121a" stroke="#22c55e30" stroke-width="1"/>
+        <text x="692" y="309" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHEN IT WOULD WORK</text>
+        <text x="692" y="326" fill="#86efac" font-family="sans-serif" font-size="10">As a short-term hotfix to buy time while</text>
+        <text x="692" y="339" fill="#86efac" font-family="sans-serif" font-size="10">implementing the real solution.</text>
+
+        <!-- KEY INSIGHT -->
+        <rect x="150" y="380" width="700" height="44" rx="22" fill="#f9731615" stroke="#f9731640" stroke-width="1"/>
+        <text x="500" y="407" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="12" font-weight="500">The "obvious" solution (bigger server) is a trap. The "ambitious" solution (microservices) is overkill. The right one is in the middle.</text>
+
+      </svg>
+    </div>
+  </div>
+
+  <div class="takeaway reveal">
+    <div class="takeaway-label">Try this yourself</div>
+    <p>Pick one problem your team is facing right now. Map out three possible solutions. For each one, write down: how it works, why it does or doesn't fit your context, and when it would make sense. You'll walk into your next leadership meeting with <mark>an opinion you can defend</mark>.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<div class="footer">
+  <p class="accent-text">The journey from team lead to technical leader is not about writing more code.</p>
+  <p style="margin-top: 0.75rem;">It's about making better technical decisions at the right level of abstraction.</p>
+</div>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
