@@ -806,6 +806,216 @@ mark {
     display: block;
   }
 }
+/* Problem-Solution Cards (new) */
+.problem-box {
+  background: linear-gradient(135deg, var(--accent-dim) 0%, var(--bg-card) 100%);
+  border: 1px solid var(--border-accent);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.problem-box .card-label {
+  margin-bottom: 0.5rem;
+}
+
+.problem-box p {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 800px) {
+  .solutions-grid { grid-template-columns: 1fr; }
+}
+
+.sol-card {
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.sol-card.good {
+  background: var(--bg-card);
+  border: 1px solid #22c55e40;
+}
+
+.sol-card.bad {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.solution-badge {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.sol-card.good .solution-badge {
+  background: var(--green-dim);
+  color: var(--green);
+}
+
+.sol-card.bad .solution-badge {
+  background: var(--red-dim);
+  color: var(--red);
+}
+
+.sol-card h4 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+
+.sol-section {
+  margin-bottom: 0.75rem;
+}
+
+.sol-section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.sol-card.good .sol-section-label { color: var(--green); }
+.sol-card.bad .sol-section-label { color: var(--text-muted); }
+
+.sol-section p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.sol-card.good .verdict p { color: #86efac; }
+.sol-card.bad .verdict p { color: #fca5a5; }
+.sol-card .when-works p { color: #86efac; }
+
+.problem-insight {
+  text-align: center;
+  padding: 1rem;
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+/* Drill-down system */
+.drilldown-trigger {
+  cursor: pointer;
+  position: relative;
+}
+
+.drilldown-trigger::after {
+  content: '▼ Click to explore next decision';
+  display: block;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: var(--accent-dim);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  animation: subtlePulse 2s ease-in-out infinite;
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.drilldown-trigger:hover::after {
+  background: var(--border-accent);
+  color: var(--text-primary);
+}
+
+.drilldown-trigger.expanded::after {
+  content: '▲ Collapse';
+  animation: none;
+  opacity: 0.5;
+}
+
+.drilldown-level {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, margin 0.4s ease;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.drilldown-level.open {
+  max-height: 2000px;
+  opacity: 1;
+  margin-top: 1.5rem;
+}
+
+.drilldown-connector {
+  text-align: center;
+  padding: 0.75rem 0;
+  position: relative;
+}
+
+.drilldown-connector::before {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-dim));
+  margin: 0 auto;
+}
+
+.drilldown-connector span {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  background: var(--bg-deep);
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--border-accent);
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.level-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.level-label::before,
+.level-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
 </style>
 </head>
 <body>
@@ -1311,366 +1521,324 @@ mark {
     <div class="section-number">07 · Exercise</div>
     <div class="section-title">What Helps Me:<br><em>The Problem-First Mind Map</em></div>
     <p class="section-lead">
-      Start with a real business problem. Then map out the possible technical solutions. For each one, ask: does it solve my problem? What's the trade-off? When would it make sense? Here are two examples.
+      Start with a real business problem. Map out possible solutions. For each one ask: does it solve my problem? What's the trade-off? When would it make sense instead?
     </p>
   </div>
 
-  <!-- EXAMPLE 1: SIM ACTIVATION -->
-  <div class="insight-card reveal" style="padding: 0; overflow: hidden;">
-    <div style="padding: 2rem 2rem 1rem;">
-      <div class="card-label">Example 1 · Telecom</div>
-      <div class="card-title">SIM activation takes 24 hours. Customers are leaving.</div>
+  <!-- EXAMPLE 1: REPORTING (Interactive Drill-Down) -->
+  <div class="reveal">
+    <div class="problem-box">
+      <div class="card-label">Example 1 · Interactive</div>
+      <p>The team spends 2 hours every day on manual reporting into Excel. We need to cut that to 15 minutes.</p>
     </div>
 
-    <div style="padding: 0 1rem 0.5rem; overflow-x: auto;">
-      <svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" style="width: 100%; min-width: 750px; height: auto;">
-        <rect width="1000" height="620" fill="#0a0a0f" rx="12"/>
+    <!-- LEVEL 1: What approach? -->
+    <div class="level-label">Level 1: What approach?</div>
 
-        <!-- Problem node -->
-        <rect x="300" y="20" width="400" height="50" rx="25" fill="#f9731633" stroke="#f97316" stroke-width="1.5"/>
-        <text x="500" y="42" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="13" font-weight="600">PROBLEM: SIM activation takes 24 hours.</text>
-        <text x="500" y="58" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="13" font-weight="600">Customers want it in under 5 minutes.</text>
-
-        <!-- SOLUTION A: REST API -->
-        <line x1="400" y1="70" x2="170" y2="110" stroke="#22c55e" stroke-width="1" opacity="0.4"/>
-        <rect x="20" y="100" width="300" height="34" rx="17" fill="#22c55e20" stroke="#22c55e40" stroke-width="1"/>
-        <text x="170" y="122" text-anchor="middle" fill="#86efac" font-family="sans-serif" font-size="12" font-weight="600">A: REST API + real-time provisioning</text>
-
-        <rect x="20" y="148" width="300" height="50" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
-        <text x="32" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
-        <text x="32" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Self-service portal → API → provisioning</text>
-        <text x="32" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">system. SIM active in under 2 minutes.</text>
-
-        <rect x="20" y="208" width="300" height="62" rx="8" fill="#22c55e10" stroke="#22c55e30" stroke-width="1"/>
-        <text x="32" y="225" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHY IT SOLVES THE PROBLEM</text>
-        <text x="32" y="242" fill="#86efac" font-family="sans-serif" font-size="10">No call center needed. Fully automated.</text>
-        <text x="32" y="255" fill="#86efac" font-family="sans-serif" font-size="10">Scales linearly with requests. Customer</text>
-        <text x="32" y="268" fill="#86efac" font-family="sans-serif" font-size="10">gets instant result.</text>
-
-        <rect x="20" y="280" width="300" height="42" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
-        <text x="32" y="297" fill="#f97316" font-family="monospace" font-size="8" letter-spacing="1.5">TRADE-OFF</text>
-        <text x="32" y="314" fill="#e8e6e1" font-family="sans-serif" font-size="10">SOAP-to-REST wrapper for legacy system.</text>
-
-        <!-- SOLUTION B: BATCH -->
-        <line x1="500" y1="70" x2="500" y2="110" stroke="#ef4444" stroke-width="1" opacity="0.4"/>
-        <rect x="350" y="100" width="300" height="34" rx="17" fill="#ef444420" stroke="#ef444430" stroke-width="1"/>
-        <text x="500" y="122" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="12" font-weight="600">B: Batch processing overnight</text>
-
-        <rect x="350" y="148" width="300" height="50" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
-        <text x="362" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
-        <text x="362" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Orders collected during the day, processed</text>
-        <text x="362" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">in bulk at 2:00 AM.</text>
-
-        <rect x="350" y="208" width="300" height="62" rx="8" fill="#ef444410" stroke="#ef444430" stroke-width="1"/>
-        <text x="362" y="225" fill="#ef4444" font-family="monospace" font-size="8" letter-spacing="1.5">✗ WHY IT DOESN'T FIT HERE</text>
-        <text x="362" y="242" fill="#fca5a5" font-family="sans-serif" font-size="10">Customer still waits 24 hours. This is</text>
-        <text x="362" y="255" fill="#fca5a5" font-family="sans-serif" font-size="10">exactly the problem we're solving.</text>
-        <text x="362" y="268" fill="#fca5a5" font-family="sans-serif" font-size="10">Competitor already does it in minutes.</text>
-
-        <rect x="350" y="280" width="300" height="55" rx="8" fill="#12121a" stroke="#22c55e30" stroke-width="1"/>
-        <text x="362" y="297" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHEN IT WOULD WORK</text>
-        <text x="362" y="314" fill="#86efac" font-family="sans-serif" font-size="10">Bulk enterprise orders (500 SIMs at once)</text>
-        <text x="362" y="327" fill="#86efac" font-family="sans-serif" font-size="10">where reliability matters more than speed.</text>
-
-        <!-- SOLUTION C: MANUAL -->
-        <line x1="600" y1="70" x2="830" y2="110" stroke="#ef4444" stroke-width="1" opacity="0.4"/>
-        <rect x="680" y="100" width="300" height="34" rx="17" fill="#ef444420" stroke="#ef444430" stroke-width="1"/>
-        <text x="830" y="122" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="12" font-weight="600">C: Manual processing via internal tool</text>
-
-        <rect x="680" y="148" width="300" height="50" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
-        <text x="692" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
-        <text x="692" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Call center operator manually enters data</text>
-        <text x="692" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">into internal provisioning system.</text>
-
-        <rect x="680" y="208" width="300" height="62" rx="8" fill="#ef444410" stroke="#ef444430" stroke-width="1"/>
-        <text x="692" y="225" fill="#ef4444" font-family="monospace" font-size="8" letter-spacing="1.5">✗ WHY IT DOESN'T FIT HERE</text>
-        <text x="692" y="242" fill="#fca5a5" font-family="sans-serif" font-size="10">Doesn't scale. Depends on operator</text>
-        <text x="692" y="255" fill="#fca5a5" font-family="sans-serif" font-size="10">availability. Error-prone. High cost per</text>
-        <text x="692" y="268" fill="#fca5a5" font-family="sans-serif" font-size="10">activation.</text>
-
-        <rect x="680" y="280" width="300" height="55" rx="8" fill="#12121a" stroke="#22c55e30" stroke-width="1"/>
-        <text x="692" y="297" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHEN IT WOULD WORK</text>
-        <text x="692" y="314" fill="#86efac" font-family="sans-serif" font-size="10">Edge cases and escalations where</text>
-        <text x="692" y="327" fill="#86efac" font-family="sans-serif" font-size="10">automation fails. VIP customers.</text>
-
-        <!-- KEY INSIGHT -->
-        <rect x="150" y="370" width="700" height="44" rx="22" fill="#f9731615" stroke="#f9731640" stroke-width="1"/>
-        <text x="500" y="397" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="12" font-weight="500">Same problem, three solutions. Each valid in a different context. Knowing which one fits where is the skill.</text>
-
-        <!-- THINKING PATTERN -->
-        <text x="500" y="450" text-anchor="middle" fill="#8a8880" font-family="monospace" font-size="9" letter-spacing="2">THE THINKING PATTERN</text>
-
-        <rect x="80" y="470" width="180" height="36" rx="8" fill="#12121a" stroke="#f9731640" stroke-width="1"/>
-        <text x="170" y="493" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="11">What's the problem?</text>
-
-        <text x="272" y="493" fill="#f9731640" font-family="sans-serif" font-size="16">→</text>
-
-        <rect x="300" y="470" width="180" height="36" rx="8" fill="#12121a" stroke="#f9731640" stroke-width="1"/>
-        <text x="390" y="493" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="11">What are the options?</text>
-
-        <text x="492" y="493" fill="#f9731640" font-family="sans-serif" font-size="16">→</text>
-
-        <rect x="520" y="470" width="200" height="36" rx="8" fill="#12121a" stroke="#f9731640" stroke-width="1"/>
-        <text x="620" y="493" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="11">Which fits my context?</text>
-
-        <text x="732" y="493" fill="#f9731640" font-family="sans-serif" font-size="16">→</text>
-
-        <rect x="760" y="470" width="180" height="36" rx="8" fill="#12121a" stroke="#f9731640" stroke-width="1"/>
-        <text x="850" y="493" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="11">What's the trade-off?</text>
-
-      </svg>
-    </div>
-
-    <!-- Mobile-friendly version -->
-    <div class="solution-mobile">
-      <div class="problem-card">
-        <strong>Problem</strong>
-        <p>SIM activation takes 24 hours. Customers want it in under 5 minutes.</p>
-      </div>
-
-      <div class="solution-card solution-good">
-        <div class="solution-header">
-          <span class="solution-status">✓</span>
-          <h4>Solution A: REST API + real-time provisioning</h4>
+    <div class="solutions-grid">
+      <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('level2')">
+        <span class="solution-badge">✓ Best fit</span>
+        <h4>A: Automated dashboard</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>BI tool connected directly to the data source. Reports update automatically.</p>
         </div>
-        
-        <div class="solution-section">
-          <strong>How it works</strong>
-          <p>Self-service portal → API → provisioning system. SIM active in under 2 minutes.</p>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it fits</span>
+          <p>Eliminates manual work entirely. Data is always fresh. Scales to any number of reports without extra effort.</p>
         </div>
-        
-        <div class="solution-section success">
-          <strong>✓ Why it solves the problem</strong>
-          <p>No call center needed. Fully automated. Scales linearly with requests. Customer gets instant result.</p>
-        </div>
-        
-        <div class="solution-section trade-off">
-          <strong>Trade-off</strong>
-          <p>SOAP-to-REST wrapper for legacy system.</p>
+        <div class="sol-section">
+          <span class="sol-section-label">Trade-off</span>
+          <p>Initial setup takes 2-3 weeks. Requires someone who knows the data model.</p>
         </div>
       </div>
 
-      <div class="solution-card solution-bad">
-        <div class="solution-header">
-          <span class="solution-status">✗</span>
-          <h4>Solution B: Batch processing overnight</h4>
+      <div class="sol-card bad">
+        <span class="solution-badge">✗ Doesn't fit here</span>
+        <h4>B: Hire a reporting person</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>A dedicated person handles all reporting for the team.</p>
         </div>
-        
-        <div class="solution-section">
-          <strong>How it works</strong>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it doesn't fit</span>
+          <p>Expensive. Doesn't scale. Creates a single point of failure. The problem is the process, not the headcount.</p>
+        </div>
+        <div class="sol-section when-works">
+          <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+          <p>When reports need expert commentary and interpretation that can't be automated.</p>
+        </div>
+      </div>
+
+      <div class="sol-card bad">
+        <span class="solution-badge">✗ Doesn't fit here</span>
+        <h4>C: Better Excel template with macros</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>Pre-built template with VBA macros that auto-fill common fields.</p>
+        </div>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it doesn't fit</span>
+          <p>Cuts time from 2h to maybe 1h. Still manual. Still error-prone. Macros break when data format changes.</p>
+        </div>
+        <div class="sol-section when-works">
+          <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+          <p>As a quick win to buy time while the dashboard is being built.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 2: Which tool? -->
+    <div id="level2" class="drilldown-level">
+      <div class="drilldown-connector"><span>Next decision</span></div>
+      <div class="level-label">Level 2: Which tool?</div>
+
+      <div class="solutions-grid">
+        <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('level3')">
+          <span class="solution-badge">✓ Best fit</span>
+          <h4>A: Power BI</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Microsoft BI platform. Connects to SQL, Excel, APIs. Drag-and-drop report builder.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it fits</span>
+            <p>Enterprise licenses already included in our Microsoft agreement. IT supports it. Business users can build their own reports after training.</p>
+          </div>
+          <div class="sol-section">
+            <span class="sol-section-label">Trade-off</span>
+            <p>Less flexible for real-time monitoring. Desktop app needed for authoring.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>B: Grafana</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Open-source dashboarding tool. Great for time-series data and real-time monitoring.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>Nobody on the team knows it. Requires self-hosting or Grafana Cloud. Built for ops/dev monitoring, not business reporting.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>For infrastructure and application monitoring dashboards where real-time matters.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>C: Custom-built (React + API)</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Custom web app with charts, filters, exports. Full control over UX and features.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>3 months to build. Needs ongoing maintenance by developers. We need a solution in weeks, not quarters.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>When the dashboard is customer-facing or needs features no BI tool supports (custom workflows, integrations).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 3: How to connect data? -->
+    <div id="level3" class="drilldown-level">
+      <div class="drilldown-connector"><span>Next decision</span></div>
+      <div class="level-label">Level 3: How to connect the data?</div>
+
+      <div class="solutions-grid">
+        <div class="sol-card good">
+          <span class="solution-badge">✓ Best fit</span>
+          <h4>A: Import mode with scheduled refresh</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Power BI imports a snapshot of the data. Refreshes automatically every morning at 6 AM before the team starts.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it fits</span>
+            <p>Fast dashboards (data is local). Simple setup. Daily refresh is enough for reporting that was previously done once a day in Excel anyway.</p>
+          </div>
+          <div class="sol-section">
+            <span class="sol-section-label">Trade-off</span>
+            <p>Data is up to 24h old. If someone needs "right now" numbers, they wait until next refresh.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>B: DirectQuery (real-time)</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Every dashboard interaction queries the live database. Always fresh data.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>Slower dashboards (each click hits the DB). Adds load to the production database. Overkill when daily freshness is enough.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>For operational dashboards where decisions depend on the last 5 minutes of data (call center, live monitoring).</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>C: Dataflow (ETL in Power BI)</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Power BI extracts, transforms, and loads data into its own storage. Clean data model shared across reports.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>More complex to set up. Requires Premium capacity. Only worth it when multiple teams share the same data model.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>When 5+ teams need dashboards from the same source and you want one clean, governed data layer.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaway" style="margin-top: 1.5rem;">
+        <div class="takeaway-label">The Point</div>
+        <p>One business problem. Three levels of decisions. Each level requires understanding the context, not just the technology. This is what technical leadership looks like: <mark>navigating the decision tree</mark>, not just picking a tool.</p>
+      </div>
+    </div>
+
+    <div class="problem-insight">Same problem, three options. Each valid somewhere. Knowing which fits your context is the skill.</div>
+  </div>
+
+  <!-- EXAMPLE 2: SIM ACTIVATION -->
+  <div class="reveal">
+    <div class="problem-box">
+      <div class="card-label">Example 2</div>
+      <p>SIM card activation takes 24 hours. Customers are leaving. Competitor does it in minutes.</p>
+    </div>
+
+    <div class="solutions-grid">
+      <div class="sol-card good">
+        <span class="solution-badge">✓ Best fit</span>
+        <h4>A: REST API with real-time provisioning</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>Self-service portal calls an API, which triggers provisioning. SIM active in under 2 minutes.</p>
+        </div>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it fits</span>
+          <p>No call center needed. Fully automated. Scales linearly. Customer gets instant result.</p>
+        </div>
+        <div class="sol-section">
+          <span class="sol-section-label">Trade-off</span>
+          <p>Needs a SOAP-to-REST wrapper for the legacy provisioning system.</p>
+        </div>
+      </div>
+
+      <div class="sol-card bad">
+        <span class="solution-badge">✗ Doesn't fit here</span>
+        <h4>B: Batch processing overnight</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
           <p>Orders collected during the day, processed in bulk at 2:00 AM.</p>
         </div>
-        
-        <div class="solution-section failure">
-          <strong>✗ Why it doesn't fit here</strong>
-          <p>Customer still waits 24 hours. This is exactly the problem we're solving. Competitor already does it in minutes.</p>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it doesn't fit</span>
+          <p>Customer still waits 24 hours. This is exactly the problem we're trying to solve.</p>
         </div>
-        
-        <div class="solution-section success">
-          <strong>✓ When it would work</strong>
-          <p>Bulk enterprise orders (500 SIMs at once) where reliability matters more than speed.</p>
+        <div class="sol-section when-works">
+          <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+          <p>Bulk enterprise orders (500 SIMs) where reliability matters more than speed.</p>
         </div>
       </div>
 
-      <div class="solution-card solution-bad">
-        <div class="solution-header">
-          <span class="solution-status">✗</span>
-          <h4>Solution C: Manual processing via internal tool</h4>
+      <div class="sol-card bad">
+        <span class="solution-badge">✗ Doesn't fit here</span>
+        <h4>C: Manual processing via call center</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>Operator manually enters data into the internal provisioning system.</p>
         </div>
-        
-        <div class="solution-section">
-          <strong>How it works</strong>
-          <p>Call center operator manually enters data into internal provisioning system.</p>
-        </div>
-        
-        <div class="solution-section failure">
-          <strong>✗ Why it doesn't fit here</strong>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it doesn't fit</span>
           <p>Doesn't scale. Depends on operator availability. Error-prone. High cost per activation.</p>
         </div>
-        
-        <div class="solution-section success">
-          <strong>✓ When it would work</strong>
+        <div class="sol-section when-works">
+          <span class="sol-section-label" style="color: var(--green);">When it would work</span>
           <p>Edge cases and escalations where automation fails. VIP customers.</p>
         </div>
-      </div>
-
-      <div class="key-insight">
-        <p>Same problem, three solutions. Each valid in a different context. Knowing which one fits where is the skill.</p>
       </div>
     </div>
   </div>
 
-  <!-- EXAMPLE 2: CONTRACT SYSTEM PERFORMANCE -->
-  <div class="insight-card reveal" style="padding: 0; overflow: hidden;">
-    <div style="padding: 2rem 2rem 1rem;">
-      <div class="card-label">Example 2 · IT Infrastructure</div>
-      <div class="card-title">Contract management system crashes at end of month. Budget is tight.</div>
+  <!-- EXAMPLE 3: CONTRACT SYSTEM -->
+  <div class="reveal">
+    <div class="problem-box">
+      <div class="card-label">Example 3</div>
+      <p>Contract management system crashes when 200+ people generate reports at month-end. Budget is tight.</p>
     </div>
 
-    <div style="padding: 0 1rem 0.5rem; overflow-x: auto;">
-      <svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" style="width: 100%; min-width: 750px; height: auto;">
-        <rect width="1000" height="620" fill="#0a0a0f" rx="12"/>
-
-        <!-- Problem node -->
-        <rect x="270" y="20" width="460" height="50" rx="25" fill="#f9731633" stroke="#f97316" stroke-width="1.5"/>
-        <text x="500" y="42" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="13" font-weight="600">PROBLEM: System crashes when 200+ users</text>
-        <text x="500" y="58" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="13" font-weight="600">generate reports at month-end. Budget is limited.</text>
-
-        <!-- SOLUTION A: CACHE + READ REPLICA -->
-        <line x1="400" y1="70" x2="170" y2="110" stroke="#22c55e" stroke-width="1" opacity="0.4"/>
-        <rect x="20" y="100" width="300" height="34" rx="17" fill="#22c55e20" stroke="#22c55e40" stroke-width="1"/>
-        <text x="170" y="122" text-anchor="middle" fill="#86efac" font-family="sans-serif" font-size="12" font-weight="600">A: Cache layer + DB read replica</text>
-
-        <rect x="20" y="148" width="300" height="62" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
-        <text x="32" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
-        <text x="32" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Redis cache for frequent queries. Read</text>
-        <text x="32" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">replica handles report load. Main DB stays</text>
-        <text x="32" y="206" fill="#e8e6e1" font-family="sans-serif" font-size="10">free for write operations.</text>
-
-        <rect x="20" y="220" width="300" height="62" rx="8" fill="#22c55e10" stroke="#22c55e30" stroke-width="1"/>
-        <text x="32" y="237" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHY IT SOLVES THE PROBLEM</text>
-        <text x="32" y="254" fill="#86efac" font-family="sans-serif" font-size="10">80% of reports pull same monthly data.</text>
-        <text x="32" y="267" fill="#86efac" font-family="sans-serif" font-size="10">Cache hit rate will be high. Read replica</text>
-        <text x="32" y="280" fill="#86efac" font-family="sans-serif" font-size="10">isolates reporting from daily operations.</text>
-
-        <rect x="20" y="292" width="300" height="52" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
-        <text x="32" y="309" fill="#f97316" font-family="monospace" font-size="8" letter-spacing="1.5">TRADE-OFF</text>
-        <text x="32" y="326" fill="#e8e6e1" font-family="sans-serif" font-size="10">Report data may be a few minutes stale</text>
-        <text x="32" y="339" fill="#e8e6e1" font-family="sans-serif" font-size="10">(replication lag). Fine for monthly reports.</text>
-
-        <!-- SOLUTION B: MICROSERVICES -->
-        <line x1="500" y1="70" x2="500" y2="110" stroke="#ef4444" stroke-width="1" opacity="0.4"/>
-        <rect x="350" y="100" width="300" height="34" rx="17" fill="#ef444420" stroke="#ef444430" stroke-width="1"/>
-        <text x="500" y="122" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="12" font-weight="600">B: Rewrite as microservices</text>
-
-        <rect x="350" y="148" width="300" height="62" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
-        <text x="362" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
-        <text x="362" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Split monolith into separate services:</text>
-        <text x="362" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">contracts, reporting, notifications.</text>
-        <text x="362" y="206" fill="#e8e6e1" font-family="sans-serif" font-size="10">Each scales independently.</text>
-
-        <rect x="350" y="220" width="300" height="62" rx="8" fill="#ef444410" stroke="#ef444430" stroke-width="1"/>
-        <text x="362" y="237" fill="#ef4444" font-family="monospace" font-size="8" letter-spacing="1.5">✗ WHY IT DOESN'T FIT HERE</text>
-        <text x="362" y="254" fill="#fca5a5" font-family="sans-serif" font-size="10">This is a performance problem, not an</text>
-        <text x="362" y="267" fill="#fca5a5" font-family="sans-serif" font-size="10">architecture problem. Adds network latency,</text>
-        <text x="362" y="280" fill="#fca5a5" font-family="sans-serif" font-size="10">needs service mesh, 5× the budget and time.</text>
-
-        <rect x="350" y="292" width="300" height="52" rx="8" fill="#12121a" stroke="#22c55e30" stroke-width="1"/>
-        <text x="362" y="309" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHEN IT WOULD WORK</text>
-        <text x="362" y="326" fill="#86efac" font-family="sans-serif" font-size="10">If different parts need fundamentally</text>
-        <text x="362" y="339" fill="#86efac" font-family="sans-serif" font-size="10">different scaling or availability strategies.</text>
-
-        <!-- SOLUTION C: BIGGER SERVER -->
-        <line x1="600" y1="70" x2="830" y2="110" stroke="#ef4444" stroke-width="1" opacity="0.4"/>
-        <rect x="680" y="100" width="300" height="34" rx="17" fill="#ef444420" stroke="#ef444430" stroke-width="1"/>
-        <text x="830" y="122" text-anchor="middle" fill="#fca5a5" font-family="sans-serif" font-size="12" font-weight="600">C: Vertical scaling (bigger server)</text>
-
-        <rect x="680" y="148" width="300" height="50" rx="8" fill="#12121a" stroke="#ffffff0a" stroke-width="1"/>
-        <text x="692" y="165" fill="#8a8880" font-family="monospace" font-size="8" letter-spacing="1.5">HOW IT WORKS</text>
-        <text x="692" y="180" fill="#e8e6e1" font-family="sans-serif" font-size="10">Double the RAM and CPU on the existing</text>
-        <text x="692" y="193" fill="#e8e6e1" font-family="sans-serif" font-size="10">server.</text>
-
-        <rect x="680" y="208" width="300" height="74" rx="8" fill="#ef444410" stroke="#ef444430" stroke-width="1"/>
-        <text x="692" y="225" fill="#ef4444" font-family="monospace" font-size="8" letter-spacing="1.5">✗ WHY IT DOESN'T FIT HERE</text>
-        <text x="692" y="242" fill="#fca5a5" font-family="sans-serif" font-size="10">Treats symptom, not cause. Reports do</text>
-        <text x="692" y="255" fill="#fca5a5" font-family="sans-serif" font-size="10">full table scans. Bigger server just delays</text>
-        <text x="692" y="268" fill="#fca5a5" font-family="sans-serif" font-size="10">the crash by a few months. Cloud costs</text>
-        <text x="692" y="281" fill="#fca5a5" font-family="sans-serif" font-size="10">grow non-linearly.</text>
-
-        <rect x="680" y="292" width="300" height="52" rx="8" fill="#12121a" stroke="#22c55e30" stroke-width="1"/>
-        <text x="692" y="309" fill="#22c55e" font-family="monospace" font-size="8" letter-spacing="1.5">✓ WHEN IT WOULD WORK</text>
-        <text x="692" y="326" fill="#86efac" font-family="sans-serif" font-size="10">As a short-term hotfix to buy time while</text>
-        <text x="692" y="339" fill="#86efac" font-family="sans-serif" font-size="10">implementing the real solution.</text>
-
-        <!-- KEY INSIGHT -->
-        <rect x="150" y="380" width="700" height="44" rx="22" fill="#f9731615" stroke="#f9731640" stroke-width="1"/>
-        <text x="500" y="407" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="12" font-weight="500">The "obvious" solution (bigger server) is a trap. The "ambitious" solution (microservices) is overkill. The right one is in the middle.</text>
-
-      </svg>
-    </div>
-
-    <!-- Mobile-friendly version -->
-    <div class="solution-mobile">
-      <div class="problem-card">
-        <strong>Problem</strong>
-        <p>System crashes when 200+ users generate reports at month-end. Budget is limited.</p>
-      </div>
-
-      <div class="solution-card solution-good">
-        <div class="solution-header">
-          <span class="solution-status">✓</span>
-          <h4>Solution A: Cache layer + DB read replica</h4>
+    <div class="solutions-grid">
+      <div class="sol-card good">
+        <span class="solution-badge">✓ Best fit</span>
+        <h4>A: Cache layer + DB read replica</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>Redis cache for frequent queries. Read replica handles report load. Main DB stays free for writes.</p>
         </div>
-        
-        <div class="solution-section">
-          <strong>How it works</strong>
-          <p>Redis cache for frequent queries. Read replica handles report load. Main DB stays free for write operations.</p>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it fits</span>
+          <p>80% of reports pull the same monthly data. High cache hit rate. Read replica isolates reporting from daily operations.</p>
         </div>
-        
-        <div class="solution-section success">
-          <strong>✓ Why it solves the problem</strong>
-          <p>80% of reports pull same monthly data. Cache hit rate will be high. Read replica isolates reporting from daily operations.</p>
-        </div>
-        
-        <div class="solution-section trade-off">
-          <strong>Trade-off</strong>
+        <div class="sol-section">
+          <span class="sol-section-label">Trade-off</span>
           <p>Report data may be a few minutes stale (replication lag). Fine for monthly reports.</p>
         </div>
       </div>
 
-      <div class="solution-card solution-bad">
-        <div class="solution-header">
-          <span class="solution-status">✗</span>
-          <h4>Solution B: Rewrite as microservices</h4>
+      <div class="sol-card bad">
+        <span class="solution-badge">✗ Doesn't fit here</span>
+        <h4>B: Rewrite as microservices</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>Split monolith into separate services: contracts, reporting, notifications.</p>
         </div>
-        
-        <div class="solution-section">
-          <strong>How it works</strong>
-          <p>Split monolith into separate services: contracts, reporting, notifications. Each scales independently.</p>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it doesn't fit</span>
+          <p>This is a performance problem, not an architecture problem. Adds complexity, needs service mesh. 5x the budget and time.</p>
         </div>
-        
-        <div class="solution-section failure">
-          <strong>✗ Why it doesn't fit here</strong>
-          <p>This is a performance problem, not an architecture problem. Adds network latency, needs service mesh, 5× the budget and time.</p>
-        </div>
-        
-        <div class="solution-section success">
-          <strong>✓ When it would work</strong>
+        <div class="sol-section when-works">
+          <span class="sol-section-label" style="color: var(--green);">When it would work</span>
           <p>If different parts need fundamentally different scaling or availability strategies.</p>
         </div>
       </div>
 
-      <div class="solution-card solution-bad">
-        <div class="solution-header">
-          <span class="solution-status">✗</span>
-          <h4>Solution C: Vertical scaling (bigger server)</h4>
-        </div>
-        
-        <div class="solution-section">
-          <strong>How it works</strong>
+      <div class="sol-card bad">
+        <span class="solution-badge">✗ Doesn't fit here</span>
+        <h4>C: Bigger server (vertical scaling)</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
           <p>Double the RAM and CPU on the existing server.</p>
         </div>
-        
-        <div class="solution-section failure">
-          <strong>✗ Why it doesn't fit here</strong>
-          <p>Treats symptom, not cause. Reports do full table scans. Bigger server just delays the crash by a few months. Cloud costs grow non-linearly.</p>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it doesn't fit</span>
+          <p>Treats the symptom, not the cause. Reports do full table scans. Bigger server just delays the crash by a few months.</p>
         </div>
-        
-        <div class="solution-section success">
-          <strong>✓ When it would work</strong>
+        <div class="sol-section when-works">
+          <span class="sol-section-label" style="color: var(--green);">When it would work</span>
           <p>As a short-term hotfix to buy time while implementing the real solution.</p>
         </div>
-      </div>
-
-      <div class="key-insight">
-        <p>The "obvious" solution (bigger server) is a trap. The "ambitious" solution (microservices) is overkill. The right one is in the middle.</p>
       </div>
     </div>
   </div>
 
   <div class="takeaway reveal">
     <div class="takeaway-label">Try this yourself</div>
-    <p>Pick one problem your team is facing right now. Map out three possible solutions. For each one, write down: how it works, why it does or doesn't fit your context, and when it would make sense. You'll walk into your next leadership meeting with <mark>an opinion you can defend</mark>.</p>
+    <p>Pick one problem your team is facing right now. Map out three possible solutions. For each one, write down: how it works, why it does or doesn't fit, and when it would make sense. You'll walk into your next leadership meeting with <mark>an opinion you can defend</mark>.</p>
   </div>
 </section>
 
@@ -1692,6 +1860,32 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Drill-down toggle
+function toggleDrilldown(levelId) {
+  const level = document.getElementById(levelId);
+
+  if (level.classList.contains('open')) {
+    level.classList.remove('open');
+    level.querySelectorAll('.drilldown-level').forEach(nested => nested.classList.remove('open'));
+    level.querySelectorAll('.drilldown-trigger').forEach(t => t.classList.remove('expanded'));
+    document.querySelectorAll('.drilldown-trigger').forEach(t => {
+      if (t.getAttribute('onclick') && t.getAttribute('onclick').includes(levelId)) {
+        t.classList.remove('expanded');
+      }
+    });
+  } else {
+    level.classList.add('open');
+    document.querySelectorAll('.drilldown-trigger').forEach(t => {
+      if (t.getAttribute('onclick') && t.getAttribute('onclick').includes(levelId)) {
+        t.classList.add('expanded');
+      }
+    });
+    setTimeout(() => {
+      level.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+}
 </script>
 
 </body>
