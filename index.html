@@ -404,6 +404,44 @@ section {
 .spectrum-item:nth-child(2) .spectrum-level { color: var(--text-muted); }
 .spectrum-item:nth-child(3) .spectrum-level { color: var(--green); }
 
+/* Mobile: Stack spectrum vertically */
+@media (max-width: 700px) {
+  .spectrum {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .spectrum-item {
+    padding: 1.5rem;
+    border-left: 4px solid;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+  
+  .spectrum-item:nth-child(1) { 
+    background: var(--red-dim);
+    border: 1px solid #ef444430;
+    border-left: 4px solid var(--red);
+  }
+  
+  .spectrum-item:nth-child(2) { 
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--text-muted);
+  }
+  
+  .spectrum-item:nth-child(3) { 
+    background: var(--green-dim);
+    border: 1px solid #22c55e30;
+    border-left: 4px solid var(--green);
+  }
+  
+  .spectrum-level {
+    font-size: 0.7rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
 /* Pillar Grid */
 .pillar-grid {
   display: grid;
@@ -606,6 +644,167 @@ mark {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.7;
+}
+
+/* Solution cards for mobile - replaces SVG diagrams */
+.solution-mobile {
+  display: none;
+  padding: 1rem;
+}
+
+.solution-mobile .problem-card {
+  background: #f9731633;
+  border: 2px solid #f97316;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.solution-mobile .problem-card strong {
+  color: #f97316;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.solution-mobile .problem-card p {
+  color: #f97316;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.solution-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.solution-card.solution-good {
+  border-left: 4px solid var(--green);
+  background: var(--green-dim);
+}
+
+.solution-card.solution-bad {
+  border-left: 4px solid var(--red);
+  background: var(--red-dim);
+}
+
+.solution-card .solution-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.solution-card .solution-status {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.solution-card h4 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin: 0;
+  flex: 1;
+}
+
+.solution-card.solution-good h4 {
+  color: #86efac;
+}
+
+.solution-card.solution-bad h4 {
+  color: #fca5a5;
+}
+
+.solution-section {
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 0.75rem;
+}
+
+.solution-section strong {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+}
+
+.solution-section p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.solution-section.success {
+  background: var(--green-dim);
+  border-color: #22c55e30;
+}
+
+.solution-section.success strong {
+  color: var(--green);
+}
+
+.solution-section.success p {
+  color: #86efac;
+}
+
+.solution-section.failure {
+  background: var(--red-dim);
+  border-color: #ef444430;
+}
+
+.solution-section.failure strong {
+  color: var(--red);
+}
+
+.solution-section.failure p {
+  color: #fca5a5;
+}
+
+.solution-section.trade-off strong {
+  color: #f97316;
+}
+
+.solution-mobile .key-insight {
+  background: #f9731615;
+  border: 1px solid #f9731640;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.solution-mobile .key-insight p {
+  color: #f97316;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Hide SVG on mobile, show cards */
+@media (max-width: 700px) {
+  .insight-card > div[style*="overflow-x: auto"] {
+    display: none !important;
+  }
+  
+  .solution-mobile {
+    display: block;
+  }
 }
 </style>
 </head>
@@ -1221,6 +1420,84 @@ mark {
 
       </svg>
     </div>
+
+    <!-- Mobile-friendly version -->
+    <div class="solution-mobile">
+      <div class="problem-card">
+        <strong>Problem</strong>
+        <p>SIM activation takes 24 hours. Customers want it in under 5 minutes.</p>
+      </div>
+
+      <div class="solution-card solution-good">
+        <div class="solution-header">
+          <span class="solution-status">✓</span>
+          <h4>Solution A: REST API + real-time provisioning</h4>
+        </div>
+        
+        <div class="solution-section">
+          <strong>How it works</strong>
+          <p>Self-service portal → API → provisioning system. SIM active in under 2 minutes.</p>
+        </div>
+        
+        <div class="solution-section success">
+          <strong>✓ Why it solves the problem</strong>
+          <p>No call center needed. Fully automated. Scales linearly with requests. Customer gets instant result.</p>
+        </div>
+        
+        <div class="solution-section trade-off">
+          <strong>Trade-off</strong>
+          <p>SOAP-to-REST wrapper for legacy system.</p>
+        </div>
+      </div>
+
+      <div class="solution-card solution-bad">
+        <div class="solution-header">
+          <span class="solution-status">✗</span>
+          <h4>Solution B: Batch processing overnight</h4>
+        </div>
+        
+        <div class="solution-section">
+          <strong>How it works</strong>
+          <p>Orders collected during the day, processed in bulk at 2:00 AM.</p>
+        </div>
+        
+        <div class="solution-section failure">
+          <strong>✗ Why it doesn't fit here</strong>
+          <p>Customer still waits 24 hours. This is exactly the problem we're solving. Competitor already does it in minutes.</p>
+        </div>
+        
+        <div class="solution-section success">
+          <strong>✓ When it would work</strong>
+          <p>Bulk enterprise orders (500 SIMs at once) where reliability matters more than speed.</p>
+        </div>
+      </div>
+
+      <div class="solution-card solution-bad">
+        <div class="solution-header">
+          <span class="solution-status">✗</span>
+          <h4>Solution C: Manual processing via internal tool</h4>
+        </div>
+        
+        <div class="solution-section">
+          <strong>How it works</strong>
+          <p>Call center operator manually enters data into internal provisioning system.</p>
+        </div>
+        
+        <div class="solution-section failure">
+          <strong>✗ Why it doesn't fit here</strong>
+          <p>Doesn't scale. Depends on operator availability. Error-prone. High cost per activation.</p>
+        </div>
+        
+        <div class="solution-section success">
+          <strong>✓ When it would work</strong>
+          <p>Edge cases and escalations where automation fails. VIP customers.</p>
+        </div>
+      </div>
+
+      <div class="key-insight">
+        <p>Same problem, three solutions. Each valid in a different context. Knowing which one fits where is the skill.</p>
+      </div>
+    </div>
   </div>
 
   <!-- EXAMPLE 2: CONTRACT SYSTEM PERFORMANCE -->
@@ -1310,6 +1587,84 @@ mark {
         <text x="500" y="407" text-anchor="middle" fill="#f97316" font-family="sans-serif" font-size="12" font-weight="500">The "obvious" solution (bigger server) is a trap. The "ambitious" solution (microservices) is overkill. The right one is in the middle.</text>
 
       </svg>
+    </div>
+
+    <!-- Mobile-friendly version -->
+    <div class="solution-mobile">
+      <div class="problem-card">
+        <strong>Problem</strong>
+        <p>System crashes when 200+ users generate reports at month-end. Budget is limited.</p>
+      </div>
+
+      <div class="solution-card solution-good">
+        <div class="solution-header">
+          <span class="solution-status">✓</span>
+          <h4>Solution A: Cache layer + DB read replica</h4>
+        </div>
+        
+        <div class="solution-section">
+          <strong>How it works</strong>
+          <p>Redis cache for frequent queries. Read replica handles report load. Main DB stays free for write operations.</p>
+        </div>
+        
+        <div class="solution-section success">
+          <strong>✓ Why it solves the problem</strong>
+          <p>80% of reports pull same monthly data. Cache hit rate will be high. Read replica isolates reporting from daily operations.</p>
+        </div>
+        
+        <div class="solution-section trade-off">
+          <strong>Trade-off</strong>
+          <p>Report data may be a few minutes stale (replication lag). Fine for monthly reports.</p>
+        </div>
+      </div>
+
+      <div class="solution-card solution-bad">
+        <div class="solution-header">
+          <span class="solution-status">✗</span>
+          <h4>Solution B: Rewrite as microservices</h4>
+        </div>
+        
+        <div class="solution-section">
+          <strong>How it works</strong>
+          <p>Split monolith into separate services: contracts, reporting, notifications. Each scales independently.</p>
+        </div>
+        
+        <div class="solution-section failure">
+          <strong>✗ Why it doesn't fit here</strong>
+          <p>This is a performance problem, not an architecture problem. Adds network latency, needs service mesh, 5× the budget and time.</p>
+        </div>
+        
+        <div class="solution-section success">
+          <strong>✓ When it would work</strong>
+          <p>If different parts need fundamentally different scaling or availability strategies.</p>
+        </div>
+      </div>
+
+      <div class="solution-card solution-bad">
+        <div class="solution-header">
+          <span class="solution-status">✗</span>
+          <h4>Solution C: Vertical scaling (bigger server)</h4>
+        </div>
+        
+        <div class="solution-section">
+          <strong>How it works</strong>
+          <p>Double the RAM and CPU on the existing server.</p>
+        </div>
+        
+        <div class="solution-section failure">
+          <strong>✗ Why it doesn't fit here</strong>
+          <p>Treats symptom, not cause. Reports do full table scans. Bigger server just delays the crash by a few months. Cloud costs grow non-linearly.</p>
+        </div>
+        
+        <div class="solution-section success">
+          <strong>✓ When it would work</strong>
+          <p>As a short-term hotfix to buy time while implementing the real solution.</p>
+        </div>
+      </div>
+
+      <div class="key-insight">
+        <p>The "obvious" solution (bigger server) is a trap. The "ambitious" solution (microservices) is overkill. The right one is in the middle.</p>
+      </div>
     </div>
   </div>
 
