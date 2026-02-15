@@ -2,6 +2,8 @@
 
 An interactive resource for team leads transitioning to technical leadership roles, without the need to be the most technical person in the room.
 
+**🌐 [View Live Presentation](https://mkovacik.github.io/Technical_leadership/)**
+
 ## Overview
 
 This project is a single-page web application that presents a comprehensive guide for team leads who want to develop technical leadership credibility without competing with their senior developers' coding expertise. It emphasizes choosing the right "abstraction layer" and communicating technical concepts effectively.
