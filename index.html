@@ -1717,12 +1717,15 @@ mark {
   <!-- EXAMPLE 2: SIM ACTIVATION -->
   <div class="reveal">
     <div class="problem-box">
-      <div class="card-label">Example 2</div>
+      <div class="card-label">Example 2 · Interactive Decision Tree</div>
       <p>SIM activation takes 24 hours. Competitor does it in minutes, customers are switching. The provisioning backend is a legacy SOAP system. Call center handles 800 activations/day manually with a 3% error rate.</p>
     </div>
 
+    <!-- LEVEL 1: What approach? -->
+    <div class="level-label">Level 1: What approach?</div>
+
     <div class="solutions-grid">
-      <div class="sol-card good">
+      <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('sim-level2')">
         <span class="solution-badge">✓ Best fit</span>
         <h4>A: REST API with real-time provisioning</h4>
         <div class="sol-section">
@@ -1735,7 +1738,7 @@ mark {
         </div>
         <div class="sol-section">
           <span class="sol-section-label">Trade-off</span>
-          <p>Needs a SOAP-to-REST wrapper for the legacy provisioning system.</p>
+          <p>Legacy SOAP backend can't be exposed directly. Needs an integration layer.</p>
         </div>
       </div>
 
@@ -1765,11 +1768,129 @@ mark {
         </div>
         <div class="sol-section verdict">
           <span class="sol-section-label">Why it doesn't fit</span>
-          <p>Doesn't scale. Depends on operator availability. Error-prone. High cost per activation.</p>
+          <p>This is what we already do. 800/day, 3% error rate. The problem is the process itself.</p>
         </div>
         <div class="sol-section when-works">
           <span class="sol-section-label" style="color: var(--green);">When it would work</span>
           <p>Edge cases and escalations where automation fails. VIP customers.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 2: How to handle legacy? -->
+    <div id="sim-level2" class="drilldown-level">
+      <div class="drilldown-connector"><span>Next decision</span></div>
+      <div class="level-label">Level 2: How to handle the legacy backend?</div>
+
+      <div class="solutions-grid">
+        <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('sim-level3')">
+          <span class="solution-badge">✓ Best fit</span>
+          <h4>A: SOAP-to-REST wrapper</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Thin API layer translates REST calls into SOAP requests. Legacy system untouched. New portal talks REST only.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it fits</span>
+            <p>No changes to the legacy system (risky, no team wants to touch it). New frontend gets a clean REST API. Can be built in 2-3 sprints.</p>
+          </div>
+          <div class="sol-section">
+            <span class="sol-section-label">Trade-off</span>
+            <p>Another layer to maintain. If SOAP backend changes, wrapper needs updating too.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>B: Replace the SOAP system entirely</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Build a new provisioning backend from scratch with modern REST APIs.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>6-12 month project. The SOAP system handles billing integration, number porting, and 15 other downstream systems. Too much risk, too slow.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>As a long-term strategic initiative once the wrapper proves the business case.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>C: Direct SOAP calls from frontend</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>The self-service portal calls the SOAP API directly. No middleware.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>Exposes legacy internals to the public internet. SOAP is verbose (XML payloads). No place to add auth, rate limiting, or error translation.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>Internal tools behind a VPN where security and UX are less critical.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 3: How to handle failures? -->
+    <div id="sim-level3" class="drilldown-level">
+      <div class="drilldown-connector"><span>Next decision</span></div>
+      <div class="level-label">Level 3: How to handle failures?</div>
+
+      <div class="solutions-grid">
+        <div class="sol-card good">
+          <span class="solution-badge">✓ Best fit</span>
+          <h4>A: Async with retry queue</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>API accepts the request immediately, puts it on a queue. Worker retries if SOAP backend is slow or down. Customer sees "activating..." then gets a notification.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it fits</span>
+            <p>SOAP backend has known downtime windows. Retry handles 95% of transient failures automatically. Customer never sees an error page.</p>
+          </div>
+          <div class="sol-section">
+            <span class="sol-section-label">Trade-off</span>
+            <p>Activation is not instant (30 sec to 2 min). Need a status page or push notification.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>B: Synchronous (fail = error to customer)</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>API waits for SOAP response. If it times out or fails, customer sees an error and has to retry.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>Legacy system has 2-3% failure rate. At 800 activations/day that's 24 failed customers daily seeing error pages. Worse experience than calling the call center.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>If the backend is highly reliable (99.9%+) and response time is consistently under 2 seconds.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>C: Manual fallback for all failures</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>If automated activation fails, ticket is created for call center agent to process manually.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>We're back to manual processing for 3% of cases. Call center still needed at full capacity "just in case." Defeats the purpose of automation.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>As a last-resort escalation path after retry queue is exhausted (e.g. after 3 retries over 10 minutes).</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1778,12 +1899,15 @@ mark {
   <!-- EXAMPLE 3: CONTRACT SYSTEM -->
   <div class="reveal">
     <div class="problem-box">
-      <div class="card-label">Example 3</div>
+      <div class="card-label">Example 3 · Interactive Decision Tree</div>
       <p>Contract system crashes when 200+ users run reports at month-end. Reports do full table scans on a single DB. Budget covers one quarter of effort max. The system is a monolith with no plans to replace it in the next 2 years.</p>
     </div>
 
+    <!-- LEVEL 1: What approach? -->
+    <div class="level-label">Level 1: What approach?</div>
+
     <div class="solutions-grid">
-      <div class="sol-card good">
+      <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('contract-level2')">
         <span class="solution-badge">✓ Best fit</span>
         <h4>A: Cache layer + DB read replica</h4>
         <div class="sol-section">
@@ -1809,7 +1933,7 @@ mark {
         </div>
         <div class="sol-section verdict">
           <span class="sol-section-label">Why it doesn't fit</span>
-          <p>This is a performance problem, not an architecture problem. Adds complexity, needs service mesh. 5x the budget and time.</p>
+          <p>Monolith stays for 2+ years. This is a performance problem, not architecture. 5x over budget and timeline.</p>
         </div>
         <div class="sol-section when-works">
           <span class="sol-section-label" style="color: var(--green);">When it would work</span>
@@ -1826,11 +1950,129 @@ mark {
         </div>
         <div class="sol-section verdict">
           <span class="sol-section-label">Why it doesn't fit</span>
-          <p>Treats the symptom, not the cause. Reports do full table scans. Bigger server just delays the crash by a few months.</p>
+          <p>Reports do full table scans. Bigger server just delays the crash by a few months. Cloud costs grow non-linearly.</p>
         </div>
         <div class="sol-section when-works">
           <span class="sol-section-label" style="color: var(--green);">When it would work</span>
           <p>As a short-term hotfix to buy time while implementing the real solution.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 2: What cache strategy? -->
+    <div id="contract-level2" class="drilldown-level">
+      <div class="drilldown-connector"><span>Next decision</span></div>
+      <div class="level-label">Level 2: What cache strategy?</div>
+
+      <div class="solutions-grid">
+        <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('contract-level3')">
+          <span class="solution-badge">✓ Best fit</span>
+          <h4>A: Redis with TTL per report type</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Redis stores query results. Monthly reports cached for 24h, weekly for 4h. Cache invalidated on data write.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it fits</span>
+            <p>200 users pulling the same monthly numbers = one DB query, 199 cache hits. Dramatically reduces DB load. TTL means data stays reasonably fresh.</p>
+          </div>
+          <div class="sol-section">
+            <span class="sol-section-label">Trade-off</span>
+            <p>Need to define TTL per report type. First request after cache expiry is still slow.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>B: Application-level in-memory cache</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Cache stored in the application's memory (e.g. HashMap). No external dependency.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>Cache lost on every restart or deploy. If we run multiple app instances, each has its own cache (duplicated queries). Eats into application memory.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>Small apps with a single instance where simplicity matters more than scale.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>C: Pre-generate all reports overnight</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Cron job runs every night, generates all possible reports as static files. Users download pre-built PDFs.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>Users apply custom filters (date range, department, contract type). Impossible to pre-generate every combination. Data stale by morning.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>Standard reports that everyone gets the same way (e.g. monthly KPI summary, no filters).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 3: How to set up read replica? -->
+    <div id="contract-level3" class="drilldown-level">
+      <div class="drilldown-connector"><span>Next decision</span></div>
+      <div class="level-label">Level 3: How to set up the read replica?</div>
+
+      <div class="solutions-grid">
+        <div class="sol-card good">
+          <span class="solution-badge">✓ Best fit</span>
+          <h4>A: Managed cloud replica (RDS / Azure SQL)</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Cloud provider handles replication, failover, backups. One click to add a read replica. App points reporting queries to replica endpoint.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it fits</span>
+            <p>No DBA needed to maintain it. Automated failover. Fits within one quarter of effort. We're already on Azure.</p>
+          </div>
+          <div class="sol-section">
+            <span class="sol-section-label">Trade-off</span>
+            <p>Additional monthly cloud cost (~30-40% of primary DB). Replication lag of a few seconds.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>B: Self-managed replica on own server</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Set up PostgreSQL streaming replication manually on a second VM. Configure failover, monitoring, backups yourself.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>Need a DBA to set up and maintain. Manual failover testing. If replication breaks at month-end, we're back to the same crash. More effort than budget allows.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>On-premise environments where cloud is not an option and you have a dedicated DBA team.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>C: Separate reporting DB with ETL</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Separate database optimized for reporting. ETL pipeline copies and transforms data nightly.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>ETL pipeline is a project in itself (schema mapping, transformation logic, error handling). Over budget. Data only fresh once a day.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>When reporting needs a fundamentally different data model (star schema, aggregations) or combines data from multiple source systems.</p>
+          </div>
         </div>
       </div>
     </div>
