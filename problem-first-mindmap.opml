@@ -41,18 +41,18 @@
               <outline text="When it works: Infrastructure monitoring where real-time matters." />
             </outline>
             <outline text="❌ Custom-built (React + API)">
-              <outline text="3 months to build. Ongoing dev maintenance. No dev skills in team." />
-              <outline text="When it works: Customer-facing dashboards needing custom workflows." />
+              <outline text="3 months to build. Needs ongoing dev maintenance. We need a solution in weeks, not quarters." />
+              <outline text="When it works: Customer-facing dashboard or features no BI tool supports (custom workflows, integrations)." />
             </outline>
           </outline>
         </outline>
 
         <outline text="❌ Hire a reporting person">
-          <outline text="€50K/year for a problem tooling should solve. Single point of failure. Doesn't scale." />
+          <outline text="Expensive. Doesn't scale. Single point of failure. The problem is the process, not the headcount." />
           <outline text="When it works: Reports need expert commentary that can't be automated." />
         </outline>
         <outline text="❌ Better Excel template with macros">
-          <outline text="Already tried. Cut to 90 min, still manual and error-prone." />
+          <outline text="Cuts time from 2h to maybe 1h. Still manual. Still error-prone. Macros break when data format changes." />
           <outline text="When it works: Quick win to buy time while dashboard is being built." />
         </outline>
 
@@ -113,55 +113,55 @@
       </outline>
     </outline>
 
-    <!-- EXAMPLE 3: CONTRACT SYSTEM -->
-    <outline text="📋 Contract system crashes at month-end">
-      <outline text="Context: 200+ users, full table scans on single DB, budget for 1 quarter max, monolith staying 2+ years">
+    <!-- EXAMPLE 3: E-COMMERCE SEARCH -->
+    <outline text="🔍 E-commerce search: 6-8 seconds per query">
+      <outline text="Context: 500K product catalog, SQL LIKE queries on main DB, mobile conversion 40% below desktop, holiday season in 6 weeks">
 
-        <outline text="✅ Cache layer + DB read replica">
-          <outline text="80% of reports = same monthly data. High cache hit rate. Replica isolates reporting from operations.">
-            <outline text="Trade-off: Data a few minutes stale (replication lag). Fine for monthly reports." />
+        <outline text="✅ Dedicated search engine">
+          <outline text="Elasticsearch indexes catalog. Fuzzy matching, typo tolerance, faceted filtering. Results under 200ms.">
+            <outline text="Trade-off: New infrastructure to maintain. Data sync between DB and search index needed." />
           </outline>
 
-          <outline text="What cache strategy?">
-            <outline text="✅ Redis with TTL per report type">
-              <outline text="Monthly reports cached 24h, weekly 4h. 200 users = 1 DB query + 199 cache hits.">
-                <outline text="Trade-off: Need to define TTL per report type. First request after expiry still slow." />
+          <outline text="How to sync product data?">
+            <outline text="✅ Event-driven sync">
+              <outline text="Product changes publish events. Consumer updates index in near real-time. Searchable within seconds.">
+                <outline text="Trade-off: Needs message queue (RabbitMQ, Kafka). More moving parts than a cron job." />
               </outline>
 
-              <outline text="How to set up read replica?">
-                <outline text="✅ Managed cloud replica (Azure SQL)">
-                  <outline text="Already on Azure. One click. No DBA needed. Automated failover. Fits in 1 quarter." />
-                  <outline text="Trade-off: ~30-40% extra monthly cloud cost. Few seconds replication lag." />
+              <outline text="How to roll out safely?">
+                <outline text="✅ Shadow mode + gradual cutover">
+                  <outline text="New search runs in parallel but hidden. Compare results. Route 10% → 50% → 100% when confident." />
+                  <outline text="Trade-off: Running two search systems for a few weeks. More operational overhead during transition." />
                 </outline>
-                <outline text="❌ Self-managed replica on own server">
-                  <outline text="Need DBA to set up and maintain. Manual failover. If replication breaks at month-end = same crash." />
-                  <outline text="When it works: On-premise where cloud is not an option + dedicated DBA team." />
+                <outline text="❌ Big bang release">
+                  <outline text="If anything breaks during peak, all customers affected. Rollback = back to slow search. Too risky before holidays." />
+                  <outline text="When it works: Low-traffic apps where brief downtime is acceptable and rollback is instant." />
                 </outline>
-                <outline text="❌ Separate reporting DB with ETL">
-                  <outline text="ETL pipeline is a project itself (schema mapping, transforms, error handling). Over budget." />
-                  <outline text="When it works: Reporting needs different data model or combines multiple source systems." />
+                <outline text="❌ A/B test indefinitely">
+                  <outline text="Half of customers still get slow search during peak. Maintaining two systems permanently is expensive." />
+                  <outline text="When it works: Genuinely unsure if new approach is better and need statistical proof." />
                 </outline>
               </outline>
             </outline>
 
-            <outline text="❌ Application-level in-memory cache">
-              <outline text="Lost on restart/deploy. Multiple instances = duplicated queries. Eats app memory." />
-              <outline text="When it works: Small single-instance apps where simplicity &gt; scale." />
+            <outline text="❌ Full re-index nightly">
+              <outline text="New products not searchable until morning. Price changes stale up to 24h. Lost sales during holiday season." />
+              <outline text="When it works: Static catalogs that change weekly or less (B2B parts, document archives)." />
             </outline>
-            <outline text="❌ Pre-generate all reports overnight">
-              <outline text="Users apply custom filters (date, department, type). Impossible to pre-generate every combination." />
-              <outline text="When it works: Standard reports everyone gets the same way (monthly KPI, no filters)." />
+            <outline text="❌ Dual-write from application">
+              <outline text="If search index write fails, data inconsistent. App coupled to two storage systems. Every update path needs changes." />
+              <outline text="When it works: Prototypes or MVPs where simplicity matters more than reliability." />
             </outline>
           </outline>
         </outline>
 
-        <outline text="❌ Rewrite as microservices">
-          <outline text="Monolith stays 2+ years. Performance problem, not architecture. 5x over budget." />
-          <outline text="When it works: Different parts need fundamentally different scaling strategies." />
+        <outline text="❌ Add database indexes and optimize queries">
+          <outline text="SQL full-text better than LIKE but can't do fuzzy matching, typo tolerance, or relevance tuning. Ceiling at 500K products." />
+          <outline text="When it works: Smaller catalogs (under 50K) where basic keyword matching is sufficient." />
         </outline>
-        <outline text="❌ Bigger server (vertical scaling)">
-          <outline text="Full table scans are the cause. Bigger server delays crash by a few months. Costs grow non-linearly." />
-          <outline text="When it works: Short-term hotfix to buy time for the real solution." />
+        <outline text="❌ Pre-computed search results">
+          <outline text="Long-tail queries (product names, SKUs, misspellings) are unpredictable. Can't pre-compute every search." />
+          <outline text="When it works: 80%+ of searches are the same 100 queries (category browsing, not free-text)." />
         </outline>
 
       </outline>

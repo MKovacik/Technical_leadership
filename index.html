@@ -15,7 +15,7 @@
   <img src="icon.png" alt="Technical Leader Icon" class="hero-icon">
   <div class="hero-label">Coaching Session · 2025 · by <a href="https://github.com/MKovacik/Technical_leadership" target="_blank" style="color: var(--telekom-color-primary-standard); text-decoration: none; border-bottom: 1px solid var(--telekom-color-primary-standard); transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Michal Kováčik</a></div>
   <h1>Becoming a<br><em>Technical Leader</em></h1>
-  <p class="hero-sub">You don't need 15 years of coding experience.<br>You need the right abstraction layer.</p>
+  <p class="hero-sub">You don't need 15 years of coding experience.<br>You need to know enough to lead.</p>
   <div class="scroll-hint">Scroll to begin</div>
 </div>
 
@@ -49,7 +49,17 @@
     <div class="card-label">The Reframe</div>
     <div class="card-title">Choose your abstraction layer</div>
     <div class="card-text">
-      Software is built in layers: infrastructure (AWS, Azure, servers) → platform (Kubernetes, Docker, where code runs) → data (PostgreSQL, MongoDB, databases) → services (backend systems, microservices) → API (REST, GraphQL, how systems talk) → business logic (pricing rules, validation logic) → user interface (React, Angular, what users see). You don't need to master every layer. You need to choose the right layer for your role and go deep enough there to make credible decisions.
+      Software is built in layers. Each one is a different level of detail:
+      <div class="action-list" style="margin: 1rem 0;">
+        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">1</div><div class="action-content"><h4>Infrastructure</h4><p>AWS, Azure, servers — where things physically run</p></div></div>
+        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">2</div><div class="action-content"><h4>Platform</h4><p>Kubernetes, Docker — how code is packaged and deployed</p></div></div>
+        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">3</div><div class="action-content"><h4>Data</h4><p>PostgreSQL, MongoDB — where information is stored</p></div></div>
+        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">4</div><div class="action-content"><h4>Services</h4><p>Backend systems, microservices — the engines that do the work</p></div></div>
+        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">5</div><div class="action-content"><h4>API</h4><p>REST, GraphQL — how systems talk to each other</p></div></div>
+        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">6</div><div class="action-content"><h4>Business logic</h4><p>Pricing rules, validation — the rules that drive decisions</p></div></div>
+        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">7</div><div class="action-content"><h4>User interface</h4><p>React, Angular — what users see and interact with</p></div></div>
+      </div>
+      You don't need to master every layer. You need to choose the right layer for your role and go deep enough there to make credible decisions.
     </div>
 
     <div class="example-box" style="margin-bottom: 1rem;">
@@ -110,7 +120,7 @@
     <div class="section-number">02 · The Skill</div>
     <div class="section-title">Speaking the<br><em>Technical Language</em></div>
     <p class="section-lead">
-      Here's the secret: you don't need to be the most technical person in the room. You need to sound like you understand technology. When you speak with technical precision—using the right terms, citing concrete data, connecting systems to outcomes—leadership perceives you as technically credible. Perception shapes reality.
+      Here's the secret: you don't need to be the most technical person in the room. You need to demonstrate that you understand technology. When you speak with technical precision—using the right terms, citing concrete data, connecting systems to outcomes—leadership sees your technical credibility. And credibility compounds.
     </p>
   </div>
 
@@ -127,7 +137,7 @@
       </div>
       <div class="comp-good">
         <span class="comp-label">✅ The technical leader version</span>
-        "The customer dashboard cut support tickets by 35%. The PostgreSQL 16 migration unlocked native partitioning. Heaviest queries run 4× faster, saving €2K/month on compute. And 80% of our bugs are now caught by automated tests before production, up 25 points from last quarter."
+        "The customer dashboard cut support tickets by 35%. The PostgreSQL 16 migration unlocked native partitioning — in our case, the heaviest queries run 4× faster, saving roughly €2K/month on compute. And 80% of our bugs are now caught by automated tests before production, up 25 points from last quarter."
       </div>
     </div>
     <div class="example-box">
@@ -175,7 +185,7 @@
       </div>
       <div class="comp-good">
         <span class="comp-label">✅ The business translation</span>
-        "The legacy payment module eats 30% of every sprint in workarounds. That's 1.5 engineers doing rework instead of features. A 2-sprint redesign brings that to 5%. Over two quarters, that frees ~400 engineering hours. Exactly the capacity we need for the partner onboarding feature on the Q3 roadmap."
+        "The legacy payment module eats 30% of every sprint in workarounds. That's roughly 1.5 engineers doing rework instead of features. Based on our velocity, a 2-sprint redesign brings that to 5% — freeing around 400 engineering hours over two quarters. That's the capacity we need for the partner onboarding feature on the Q3 roadmap."
       </div>
     </div>
     <div class="example-box">
@@ -225,7 +235,7 @@
       </div>
       <div class="comp-good">
         <span class="comp-label">✅ The informed lead</span>
-        "That makes sense. Our onboarding flow currently requires manual configuration per client, which takes about 3 days. If we want to onboard 50 new clients in Q3, we'll need self-service provisioning. Good news is our API already partially supports it, so it's 2-3 sprints, not a full redesign."
+        "That makes sense. Our onboarding flow currently requires manual configuration per client, which takes about 3 days. If we want to onboard 50 new clients in Q3, we'll need self-service provisioning. Good news is our API already partially supports it — so we're looking at a focused effort, not a full redesign."
       </div>
     </div>
     <div class="example-box">
@@ -249,7 +259,7 @@
       </div>
       <div class="comp-good">
         <span class="comp-label">✅ The business case</span>
-        "We reduced checkout time from 12 to 3 seconds. At our volume, that means roughly 15% fewer abandoned carts. That's approximately €50K per month in recovered revenue."
+        "We reduced checkout time from 12 to 3 seconds. Based on our traffic, that translates to roughly 15% fewer abandoned carts — in the range of €50K per month in recovered revenue."
       </div>
     </div>
     <div class="example-box">
@@ -294,7 +304,7 @@
 <div class="divider"></div>
 
 <div class="big-statement reveal">
-  <p>It's not what you <em>know</em>.<br>It's what they <em>think</em> you know.</p>
+  <p>It's not just what you <em>know</em>.<br>It's how you <em>show</em> what you know.</p>
 </div>
 
 <div class="divider"></div>
@@ -304,7 +314,7 @@
     <div class="section-number">04 · The Uncomfortable Truth</div>
     <div class="section-title">You Are<br><em>What They See.</em></div>
     <p class="section-lead">
-      Here's what nobody tells you: being technically competent and being perceived as technically competent are two different skills. You need both.
+      Here's what nobody tells you: being technically competent and communicating that competence are two different skills. You need both. This isn't about faking it. It's about being intentional with what you already know.
     </p>
   </div>
 
@@ -353,8 +363,8 @@
   </div>
 
   <div class="takeaway reveal">
-    <div class="takeaway-label">This Is Not Faking It</div>
-    <p>This is not about pretending. It's about being <mark>intentional</mark> about which technical skills you develop and how you communicate them. Every point above requires real understanding, but it's understanding at the <mark>right level of abstraction</mark> for your role.</p>
+    <div class="takeaway-label">The Principle</div>
+    <p>Every habit above requires <mark>real understanding</mark>. But it's understanding at the <mark>right level of abstraction</mark> for your role. The difference between invisible competence and visible leadership is often just communication.</p>
   </div>
 </section>
 
@@ -380,14 +390,12 @@
     <div class="card-title">Do you know what's under the hood?</div>
     <div class="questions-grid">
       <div class="question-item">
-        <span class="q-number">Q7</span>
         <div class="q-content">
           <strong>Do you know what technologies and tools your team uses in development?</strong>
           <p>Can you name the framework, database, hosting model, and CI/CD pipeline? Or do you delegate that to "the tech people"?</p>
         </div>
       </div>
       <div class="question-item">
-        <span class="q-number">Q9</span>
         <div class="q-content">
           <strong>What is the biggest technical debt your team is addressing?</strong>
           <p>If you can describe it with specifics and measurable impact, you're thinking like a technical leader.</p>
@@ -401,14 +409,12 @@
     <div class="card-title">Can you move the room?</div>
     <div class="questions-grid">
       <div class="question-item">
-        <span class="q-number">Q1</span>
         <div class="q-content">
           <strong>What's the most important change awaiting your area in the next 6 months?</strong>
           <p>A technical leader describes the change with measurable impact and team implications, not just "we're implementing a new tool."</p>
         </div>
       </div>
       <div class="question-item">
-        <span class="q-number">Q24</span>
         <div class="q-content">
           <strong>When was the last time you said NO?</strong>
           <p>Saying no with a technical rationale and proposing an alternative: that's influence. Saying yes to everything is not leadership.</p>
@@ -422,7 +428,6 @@
     <div class="card-title">Do you own the technical direction?</div>
     <div class="questions-grid">
       <div class="question-item">
-        <span class="q-number">Q31</span>
         <div class="q-content">
           <strong>Describe a recent significant technical or architectural decision.</strong>
           <p>If your answer is "the developers suggested it and I approved," you're not owning the technical direction. If you can describe the trade-offs you considered, you are.</p>
@@ -436,14 +441,12 @@
     <div class="card-title">Are you making the team better?</div>
     <div class="questions-grid">
       <div class="question-item">
-        <span class="q-number">Q11</span>
         <div class="q-content">
           <strong>How does your team learn and improve technically?</strong>
           <p>If your answer references specific, regular learning activities that you initiated or support, you're multiplying. If learning is "each person's responsibility," you're missing an opportunity.</p>
         </div>
       </div>
       <div class="question-item">
-        <span class="q-number">Q27</span>
         <div class="q-content">
           <strong>How do you get feedback from the team?</strong>
           <p>Multiple channels (1-on-1s, retros, surveys) and a specific example of a change you made based on feedback. That's leadership through listening.</p>
@@ -464,8 +467,8 @@
 
 <section>
   <div class="reveal">
-    <div class="section-number">06 · Next Steps</div>
-    <div class="section-title">Your Action Plan</div>
+    <div class="section-number">06 · The Commitment</div>
+    <div class="section-title">Your<br><em>Action Plan</em></div>
     <p class="section-lead">
       Don't try to improve everything at once. Pick one area and commit to it for the next month.
     </p>
@@ -895,181 +898,181 @@
     </div>
   </div>
 
-  <!-- EXAMPLE 3: CONTRACT SYSTEM -->
+  <!-- EXAMPLE 3: E-COMMERCE SEARCH -->
   <div class="reveal">
     <div class="problem-box">
       <div class="card-label">Example 3 · Interactive Decision Tree</div>
-      <p>Contract system crashes when 200+ users run reports at month-end. Reports do full table scans on a single DB. Budget covers one quarter of effort max. The system is a monolith with no plans to replace it in the next 2 years.</p>
+      <p>Your e-commerce platform's product search takes 6-8 seconds per query. Catalog has grown to 500K products. Search runs SQL LIKE queries on the main database. Mobile conversion from search is 40% below desktop. Holiday season starts in 6 weeks.</p>
     </div>
 
     <!-- LEVEL 1: What approach? -->
     <div class="level-label">Level 1: What approach?</div>
 
     <div class="solutions-grid">
-      <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('contract-level2')">
+      <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('search-level2')">
         <span class="solution-badge">✓ Best fit</span>
-        <h4>A: Cache layer + DB read replica</h4>
+        <h4>A: Dedicated search engine</h4>
         <div class="sol-section">
           <span class="sol-section-label">How it works</span>
-          <p>Redis cache for frequent queries. Read replica handles report load. Main DB stays free for writes.</p>
+          <p>Elasticsearch indexes the product catalog. Fuzzy matching, typo tolerance, faceted filtering. Results in under 200ms.</p>
         </div>
         <div class="sol-section verdict">
           <span class="sol-section-label">Why it fits</span>
-          <p>80% of reports pull the same monthly data. High cache hit rate. Read replica isolates reporting from daily operations.</p>
+          <p>SQL LIKE can't do relevance ranking, fuzzy matching, or faceted search efficiently. A search engine was built for exactly this. Handles 500K products easily.</p>
         </div>
         <div class="sol-section">
           <span class="sol-section-label">Trade-off</span>
-          <p>Report data may be a few minutes stale (replication lag). Fine for monthly reports.</p>
+          <p>New infrastructure to maintain. Data sync between database and search index needed.</p>
         </div>
       </div>
 
       <div class="sol-card bad">
         <span class="solution-badge">✗ Doesn't fit here</span>
-        <h4>B: Rewrite as microservices</h4>
+        <h4>B: Add database indexes and optimize queries</h4>
         <div class="sol-section">
           <span class="sol-section-label">How it works</span>
-          <p>Split monolith into separate services: contracts, reporting, notifications.</p>
+          <p>Create full-text indexes on the product table. Rewrite SQL queries. Add materialized views for common searches.</p>
         </div>
         <div class="sol-section verdict">
           <span class="sol-section-label">Why it doesn't fit</span>
-          <p>Monolith stays for 2+ years. This is a performance problem, not architecture. 5x over budget and timeline.</p>
+          <p>SQL full-text search is better than LIKE, but still can't do fuzzy matching, typo tolerance, or relevance tuning. Hitting a ceiling with 500K products and growing.</p>
         </div>
         <div class="sol-section when-works">
           <span class="sol-section-label" style="color: var(--green);">When it would work</span>
-          <p>If different parts need fundamentally different scaling or availability strategies.</p>
+          <p>Smaller catalogs (under 50K items) where basic keyword matching is sufficient.</p>
         </div>
       </div>
 
       <div class="sol-card bad">
         <span class="solution-badge">✗ Doesn't fit here</span>
-        <h4>C: Bigger server (vertical scaling)</h4>
+        <h4>C: Pre-computed search results</h4>
         <div class="sol-section">
           <span class="sol-section-label">How it works</span>
-          <p>Double the RAM and CPU on the existing server.</p>
+          <p>Cache the top 1,000 most common search queries. Serve results directly from cache.</p>
         </div>
         <div class="sol-section verdict">
           <span class="sol-section-label">Why it doesn't fit</span>
-          <p>Reports do full table scans. Bigger server just delays the crash by a few months. Cloud costs grow non-linearly.</p>
+          <p>Long-tail queries (product names, SKUs, misspellings) are unpredictable. Can't pre-compute every possible search. Misses the majority of real user queries.</p>
         </div>
         <div class="sol-section when-works">
           <span class="sol-section-label" style="color: var(--green);">When it would work</span>
-          <p>As a short-term hotfix to buy time while implementing the real solution.</p>
+          <p>When 80%+ of searches are the same 100 queries (e.g., category browsing, not free-text search).</p>
         </div>
       </div>
     </div>
 
-    <!-- LEVEL 2: What cache strategy? -->
-    <div id="contract-level2" class="drilldown-level">
+    <!-- LEVEL 2: How to sync product data? -->
+    <div id="search-level2" class="drilldown-level">
       <div class="drilldown-connector"><span>Next decision</span></div>
-      <div class="level-label">Level 2: What cache strategy?</div>
+      <div class="level-label">Level 2: How to sync product data?</div>
 
       <div class="solutions-grid">
-        <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('contract-level3')">
+        <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('search-level3')">
           <span class="solution-badge">✓ Best fit</span>
-          <h4>A: Redis with TTL per report type</h4>
+          <h4>A: Event-driven sync</h4>
           <div class="sol-section">
             <span class="sol-section-label">How it works</span>
-            <p>Redis stores query results. Monthly reports cached for 24h, weekly for 4h. Cache invalidated on data write.</p>
+            <p>When a product is created, updated, or deleted, an event is published. A consumer updates the search index in near real-time. Products searchable within seconds of a change.</p>
           </div>
           <div class="sol-section verdict">
             <span class="sol-section-label">Why it fits</span>
-            <p>200 users pulling the same monthly numbers = one DB query, 199 cache hits. Dramatically reduces DB load. TTL means data stays reasonably fresh.</p>
+            <p>Catalog changes frequently (price updates, stock changes, new products). Near real-time means customers always find current data. No batch delays.</p>
           </div>
           <div class="sol-section">
             <span class="sol-section-label">Trade-off</span>
-            <p>Need to define TTL per report type. First request after cache expiry is still slow.</p>
+            <p>Needs a message queue (RabbitMQ, Kafka). More moving parts than a simple cron job.</p>
           </div>
         </div>
 
         <div class="sol-card bad">
           <span class="solution-badge">✗ Doesn't fit here</span>
-          <h4>B: Application-level in-memory cache</h4>
+          <h4>B: Full re-index nightly</h4>
           <div class="sol-section">
             <span class="sol-section-label">How it works</span>
-            <p>Cache stored in the application's memory (e.g. HashMap). No external dependency.</p>
+            <p>Cron job dumps the entire catalog to Elasticsearch every night at 2 AM.</p>
           </div>
           <div class="sol-section verdict">
             <span class="sol-section-label">Why it doesn't fit</span>
-            <p>Cache lost on every restart or deploy. If we run multiple app instances, each has its own cache (duplicated queries). Eats into application memory.</p>
+            <p>New products not searchable until next morning. Price changes stale for up to 24 hours. During holiday season, that means lost sales.</p>
           </div>
           <div class="sol-section when-works">
             <span class="sol-section-label" style="color: var(--green);">When it would work</span>
-            <p>Small apps with a single instance where simplicity matters more than scale.</p>
+            <p>Static catalogs that change weekly or less (B2B parts catalogs, document archives).</p>
           </div>
         </div>
 
         <div class="sol-card bad">
           <span class="solution-badge">✗ Doesn't fit here</span>
-          <h4>C: Pre-generate all reports overnight</h4>
+          <h4>C: Dual-write from application</h4>
           <div class="sol-section">
             <span class="sol-section-label">How it works</span>
-            <p>Cron job runs every night, generates all possible reports as static files. Users download pre-built PDFs.</p>
+            <p>Application writes to both database and search index on every product save. No middleware needed.</p>
           </div>
           <div class="sol-section verdict">
             <span class="sol-section-label">Why it doesn't fit</span>
-            <p>Users apply custom filters (date range, department, contract type). Impossible to pre-generate every combination. Data stale by morning.</p>
+            <p>If the search index write fails, data is inconsistent. Application code becomes coupled to two storage systems. Every product update path needs modification.</p>
           </div>
           <div class="sol-section when-works">
             <span class="sol-section-label" style="color: var(--green);">When it would work</span>
-            <p>Standard reports that everyone gets the same way (e.g. monthly KPI summary, no filters).</p>
+            <p>Prototypes or MVPs where simplicity matters more than reliability.</p>
           </div>
         </div>
       </div>
 
-    <!-- LEVEL 3: How to set up read replica? -->
-    <div id="contract-level3" class="drilldown-level">
+    <!-- LEVEL 3: How to roll out safely? -->
+    <div id="search-level3" class="drilldown-level">
       <div class="drilldown-connector"><span>Next decision</span></div>
-      <div class="level-label">Level 3: How to set up the read replica?</div>
+      <div class="level-label">Level 3: How to roll out safely?</div>
 
       <div class="solutions-grid">
         <div class="sol-card good">
           <span class="solution-badge">✓ Best fit</span>
-          <h4>A: Managed cloud replica (RDS / Azure SQL)</h4>
+          <h4>A: Shadow mode + gradual cutover</h4>
           <div class="sol-section">
             <span class="sol-section-label">How it works</span>
-            <p>Cloud provider handles replication, failover, backups. One click to add a read replica. App points reporting queries to replica endpoint.</p>
+            <p>New search runs in parallel but hidden. Log results and compare with old search. When confidence is high, route 10% of traffic, then 50%, then 100%.</p>
           </div>
           <div class="sol-section verdict">
             <span class="sol-section-label">Why it fits</span>
-            <p>No DBA needed to maintain it. Automated failover. Fits within one quarter of effort. We're already on Azure.</p>
+            <p>Holiday season in 6 weeks. Can't afford a broken search during peak. Shadow mode catches issues before customers see them. Gradual rollout limits blast radius.</p>
           </div>
           <div class="sol-section">
             <span class="sol-section-label">Trade-off</span>
-            <p>Additional monthly cloud cost (~30-40% of primary DB). Replication lag of a few seconds.</p>
+            <p>Running two search systems for a few weeks. Slightly more operational overhead during the transition.</p>
           </div>
         </div>
 
         <div class="sol-card bad">
           <span class="solution-badge">✗ Doesn't fit here</span>
-          <h4>B: Self-managed replica on own server</h4>
+          <h4>B: Big bang release</h4>
           <div class="sol-section">
             <span class="sol-section-label">How it works</span>
-            <p>Set up PostgreSQL streaming replication manually on a second VM. Configure failover, monitoring, backups yourself.</p>
+            <p>Replace old search with new search in a single deployment on a scheduled date.</p>
           </div>
           <div class="sol-section verdict">
             <span class="sol-section-label">Why it doesn't fit</span>
-            <p>Need a DBA to set up and maintain. Manual failover testing. If replication breaks at month-end, we're back to the same crash. More effort than budget allows.</p>
+            <p>If anything goes wrong during peak season, all customers are affected. Rollback means switching back to slow search. Too risky 6 weeks before holidays.</p>
           </div>
           <div class="sol-section when-works">
             <span class="sol-section-label" style="color: var(--green);">When it would work</span>
-            <p>On-premise environments where cloud is not an option and you have a dedicated DBA team.</p>
+            <p>Low-traffic applications where brief downtime is acceptable and rollback is instant.</p>
           </div>
         </div>
 
         <div class="sol-card bad">
           <span class="solution-badge">✗ Doesn't fit here</span>
-          <h4>C: Separate reporting DB with ETL</h4>
+          <h4>C: A/B test indefinitely</h4>
           <div class="sol-section">
             <span class="sol-section-label">How it works</span>
-            <p>Separate database optimized for reporting. ETL pipeline copies and transforms data nightly.</p>
+            <p>Permanently split traffic 50/50 between old and new search. Compare conversion rates over months.</p>
           </div>
           <div class="sol-section verdict">
             <span class="sol-section-label">Why it doesn't fit</span>
-            <p>ETL pipeline is a project in itself (schema mapping, transformation logic, error handling). Over budget. Data only fresh once a day.</p>
+            <p>Half your customers still get the slow experience during peak season. Maintaining two systems permanently is expensive. The goal is to migrate, not to experiment forever.</p>
           </div>
           <div class="sol-section when-works">
             <span class="sol-section-label" style="color: var(--green);">When it would work</span>
-            <p>When reporting needs a fundamentally different data model (star schema, aggregations) or combines data from multiple source systems.</p>
+            <p>When you're genuinely unsure if the new approach is better and need statistical proof before committing.</p>
           </div>
         </div>
       </div>
