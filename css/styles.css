@@ -1,0 +1,1156 @@
+/* =========================================
+   Technical Leadership Page Styles
+   Deutsche Telekom Dark Theme
+   ========================================= */
+
+:root {
+  /* === TELEKOM BRAND === */
+  --telekom-color-primary-standard: #e10075;
+  --telekom-color-primary-hover: #f50080;
+  --telekom-color-primary-active: #e10075;
+  --telekom-color-primary-subtle: rgba(225, 0, 117, 0.15);
+  
+  /* === BACKGROUNDS === */
+  --telekom-color-background-canvas: #0d0d0d;
+  --telekom-color-background-surface: #181818;
+  --telekom-color-background-subtle: #222222;
+  --telekom-color-background-overlay: rgba(0, 0, 0, 0.75);
+  
+  /* === TEXT === */
+  --telekom-color-text-and-icon-standard: #f0f0f0;
+  --telekom-color-text-and-icon-additional: #a0a0a0;
+  --telekom-color-text-and-icon-disabled: #555555;
+  --telekom-color-text-and-icon-inverted: #0d0d0d;
+  --telekom-color-text-and-icon-link: #e10075;
+  
+  /* === BORDERS === */
+  --telekom-color-ui-border-standard: #333333;
+  --telekom-color-ui-border-subtle: #242424;
+  --telekom-color-ui-border-strong: #555555;
+  
+  /* === SEMANTIC === */
+  --telekom-color-functional-success: #00c67f;
+  --telekom-color-functional-warning: #ffb000;
+  --telekom-color-functional-danger: #e51a1a;
+  --telekom-color-functional-info: #5a7eff;
+  
+  /* === ELEVATION / SHADOW === */
+  --telekom-shadow-low: 0 1px 4px rgba(0,0,0,0.4);
+  --telekom-shadow-medium: 0 4px 16px rgba(0,0,0,0.5);
+  --telekom-shadow-high: 0 8px 32px rgba(0,0,0,0.65);
+  
+  /* === SPACING (8pt grid) === */
+  --telekom-spacing-1: 0.25rem;
+  --telekom-spacing-2: 0.5rem;
+  --telekom-spacing-3: 0.75rem;
+  --telekom-spacing-4: 1rem;
+  --telekom-spacing-6: 1.5rem;
+  --telekom-spacing-8: 2rem;
+  --telekom-spacing-12: 3rem;
+  --telekom-spacing-16: 4rem;
+  
+  /* === BORDER RADIUS === */
+  --telekom-radius-small: 4px;
+  --telekom-radius-medium: 8px;
+  --telekom-radius-large: 12px;
+  --telekom-radius-pill: 9999px;
+  
+  /* === ALIAS FOR BACKWARDS COMPATIBILITY === */
+  --bg-deep: var(--telekom-color-background-canvas);
+  --bg-card: var(--telekom-color-background-surface);
+  --bg-card-hover: var(--telekom-color-background-subtle);
+  --accent: var(--telekom-color-primary-standard);
+  --accent-dim: var(--telekom-color-primary-subtle);
+  --accent-glow: rgba(225, 0, 117, 0.25);
+  --text-primary: var(--telekom-color-text-and-icon-standard);
+  --text-secondary: var(--telekom-color-text-and-icon-additional);
+  --text-muted: var(--telekom-color-text-and-icon-disabled);
+  --border: var(--telekom-color-ui-border-subtle);
+  --border-accent: rgba(225, 0, 117, 0.4);
+  --green: var(--telekom-color-functional-success);
+  --green-dim: rgba(0, 198, 127, 0.15);
+  --red: var(--telekom-color-functional-danger);
+  --red-dim: rgba(229, 26, 26, 0.15);
+  --blue: var(--telekom-color-functional-info);
+  --blue-dim: rgba(90, 126, 255, 0.15);
+}
+
+/* =========================================
+   Reset & Base Styles
+   ========================================= */
+
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
+
+body {
+  background: var(--telekom-color-background-canvas);
+  color: var(--telekom-color-text-and-icon-standard);
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  overflow-x: hidden;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent-dim); border-radius: 2px; }
+
+/* =========================================
+   Hero Section
+   ========================================= */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--telekom-spacing-8);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-icon {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin-bottom: var(--telekom-spacing-8);
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.1s;
+  border: 3px solid var(--telekom-color-primary-subtle);
+  box-shadow: 0 0 60px var(--accent-glow), var(--telekom-shadow-high);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(ellipse at 30% 40%, var(--accent-glow) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 60%, rgba(225, 0, 117, 0.15) 0%, transparent 50%);
+  animation: pulse 10s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+.hero-label {
+  font-family: 'IBM Plex Mono', 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--telekom-color-primary-standard);
+  margin-bottom: var(--telekom-spacing-8);
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.5s;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--telekom-color-primary-standard);
+  font-weight: 700;
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--telekom-color-text-and-icon-additional);
+  margin-top: var(--telekom-spacing-6);
+  max-width: 500px;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.7s;
+  font-weight: 400;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: var(--telekom-spacing-8);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--telekom-color-text-and-icon-disabled);
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.2s;
+}
+
+.scroll-hint::after {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(to bottom, var(--telekom-color-primary-standard), transparent);
+  margin: var(--telekom-spacing-3) auto 0;
+  animation: scrollPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; height: 30px; }
+  50% { opacity: 1; height: 50px; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   Section Base
+   ========================================= */
+
+section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--telekom-spacing-16) var(--telekom-spacing-8);
+}
+
+.section-number {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--telekom-color-primary-standard);
+  text-transform: uppercase;
+  margin-bottom: var(--telekom-spacing-2);
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--telekom-spacing-6);
+  letter-spacing: -0.01em;
+}
+
+.section-lead {
+  font-size: 1.1rem;
+  color: var(--telekom-color-text-and-icon-additional);
+  max-width: 650px;
+  margin-bottom: var(--telekom-spacing-12);
+  line-height: 1.8;
+}
+
+/* =========================================
+   Dividers & Statements
+   ========================================= */
+
+.divider {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--telekom-spacing-8);
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--telekom-color-ui-border-standard), transparent);
+}
+
+.big-statement {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--telekom-spacing-16) var(--telekom-spacing-8);
+  text-align: center;
+}
+
+.big-statement p {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--telekom-color-text-and-icon-standard);
+  letter-spacing: -0.01em;
+}
+
+.big-statement p em {
+  color: var(--telekom-color-primary-standard);
+  font-style: italic;
+  font-weight: 700;
+}
+
+.big-statement .attribution {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--telekom-color-text-and-icon-disabled);
+  letter-spacing: 0.12em;
+  margin-top: var(--telekom-spacing-6);
+}
+
+/* =========================================
+   Cards & Components
+   ========================================= */
+
+.insight-card {
+  background: var(--telekom-color-background-surface);
+  border: 1px solid var(--telekom-color-ui-border-standard);
+  border-radius: var(--telekom-radius-large);
+  padding: var(--telekom-spacing-8);
+  margin-bottom: var(--telekom-spacing-6);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--telekom-shadow-low);
+}
+
+.insight-card:hover {
+  background: var(--telekom-color-background-subtle);
+  border-color: var(--border-accent);
+  box-shadow: var(--telekom-shadow-medium);
+  transform: translateY(-2px);
+}
+
+.insight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--telekom-color-primary-standard);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.insight-card:hover::before {
+  opacity: 1;
+}
+
+.card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--telekom-color-primary-standard);
+  margin-bottom: var(--telekom-spacing-3);
+  font-weight: 500;
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: var(--telekom-spacing-3);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.card-text {
+  color: var(--telekom-color-text-and-icon-additional);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* =========================================
+   Example & Comparison Boxes
+   ========================================= */
+
+.example-box {
+  background: var(--telekom-color-background-canvas);
+  border: 1px solid var(--telekom-color-ui-border-standard);
+  border-radius: var(--telekom-radius-medium);
+  padding: var(--telekom-spacing-4) var(--telekom-spacing-6);
+  margin-top: var(--telekom-spacing-4);
+  position: relative;
+}
+
+.example-box::before {
+  content: '💡';
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  font-size: 0.9rem;
+  background: var(--telekom-color-background-surface);
+  padding: 0 var(--telekom-spacing-2);
+}
+
+.example-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--telekom-color-text-and-icon-disabled);
+  text-transform: uppercase;
+  margin-bottom: var(--telekom-spacing-2);
+}
+
+.example-text {
+  font-size: 0.9rem;
+  color: var(--telekom-color-text-and-icon-additional);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--telekom-spacing-4);
+  margin-top: var(--telekom-spacing-4);
+}
+
+@media (max-width: 600px) {
+  .comparison { grid-template-columns: 1fr; }
+}
+
+.comp-bad, .comp-good {
+  border-radius: var(--telekom-radius-medium);
+  padding: var(--telekom-spacing-4);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.comp-bad {
+  background: var(--red-dim);
+  border: 1px solid rgba(229, 26, 26, 0.3);
+  color: #fca5a5;
+}
+
+.comp-good {
+  background: var(--green-dim);
+  border: 1px solid rgba(0, 198, 127, 0.3);
+  color: #86efac;
+}
+
+.comp-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: var(--telekom-spacing-2);
+  display: block;
+  font-weight: 500;
+}
+
+.comp-bad .comp-label { color: var(--telekom-color-functional-danger); }
+.comp-good .comp-label { color: var(--telekom-color-functional-success); }
+
+/* =========================================
+   Spectrum Component
+   ========================================= */
+
+.spectrum {
+  display: flex;
+  gap: 0;
+  margin-top: 1.25rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.spectrum-item {
+  flex: 1;
+  padding: 1.25rem;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.spectrum-item:nth-child(1) { 
+  background: var(--red-dim); 
+  border: 1px solid #ef444430;
+  color: #fca5a5;
+}
+
+.spectrum-item:nth-child(2) { 
+  background: var(--bg-card); 
+  color: var(--text-secondary);
+}
+
+.spectrum-item:nth-child(3) { 
+  background: var(--green-dim); 
+  border: 1px solid #22c55e30;
+  color: #86efac;
+}
+
+.spectrum-level {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.spectrum-item:nth-child(1) .spectrum-level { color: var(--red); }
+.spectrum-item:nth-child(2) .spectrum-level { color: var(--text-muted); }
+.spectrum-item:nth-child(3) .spectrum-level { color: var(--green); }
+
+/* Mobile: Stack spectrum vertically */
+@media (max-width: 700px) {
+  .spectrum {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .spectrum-item {
+    padding: 1.5rem;
+    border-left: 4px solid;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+  
+  .spectrum-item:nth-child(1) { 
+    background: var(--red-dim);
+    border: 1px solid #ef444430;
+    border-left: 4px solid var(--red);
+  }
+  
+  .spectrum-item:nth-child(2) { 
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--text-muted);
+  }
+  
+  .spectrum-item:nth-child(3) { 
+    background: var(--green-dim);
+    border: 1px solid #22c55e30;
+    border-left: 4px solid var(--green);
+  }
+  
+  .spectrum-level {
+    font-size: 0.7rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* =========================================
+   Pillar Grid
+   ========================================= */
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--telekom-spacing-6);
+  margin-top: var(--telekom-spacing-8);
+}
+
+@media (max-width: 700px) {
+  .pillar-grid { grid-template-columns: 1fr; }
+}
+
+.pillar {
+  background: var(--telekom-color-background-surface);
+  border: 1px solid var(--telekom-color-ui-border-standard);
+  border-radius: var(--telekom-radius-large);
+  padding: var(--telekom-spacing-8);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--telekom-shadow-low);
+}
+
+.pillar:hover {
+  border-color: var(--border-accent);
+  box-shadow: var(--telekom-shadow-medium);
+  transform: translateY(-4px);
+}
+
+.pillar-icon {
+  font-size: 1.8rem;
+  margin-bottom: var(--telekom-spacing-4);
+}
+
+.pillar h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: var(--telekom-spacing-2);
+  letter-spacing: -0.01em;
+}
+
+.pillar p {
+  font-size: 0.9rem;
+  color: var(--telekom-color-text-and-icon-additional);
+  line-height: 1.7;
+}
+
+/* =========================================
+   Takeaway & Highlights
+   ========================================= */
+
+.takeaway {
+  background: linear-gradient(135deg, var(--telekom-color-primary-subtle) 0%, var(--telekom-color-background-surface) 100%);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--telekom-radius-large);
+  padding: var(--telekom-spacing-8);
+  margin-top: var(--telekom-spacing-8);
+  box-shadow: var(--telekom-shadow-low);
+}
+
+.takeaway-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--telekom-color-primary-standard);
+  text-transform: uppercase;
+  margin-bottom: var(--telekom-spacing-3);
+  font-weight: 500;
+}
+
+.takeaway p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.num-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--telekom-spacing-2);
+  background: var(--telekom-color-primary-subtle);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--telekom-radius-small);
+  padding: var(--telekom-spacing-1) var(--telekom-spacing-3);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--telekom-color-primary-standard);
+  margin: var(--telekom-spacing-1) 0;
+  font-weight: 500;
+}
+
+mark {
+  background: var(--telekom-color-primary-subtle);
+  color: var(--telekom-color-primary-standard);
+  padding: 0.1em 0.4em;
+  border-radius: var(--telekom-radius-small);
+  font-weight: 500;
+}
+
+/* =========================================
+   Questions Grid
+   ========================================= */
+
+.questions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--telekom-spacing-4);
+  margin-top: var(--telekom-spacing-6);
+}
+
+.question-item {
+  background: var(--telekom-color-background-surface);
+  border: 1px solid var(--telekom-color-ui-border-standard);
+  border-radius: var(--telekom-radius-medium);
+  padding: var(--telekom-spacing-6);
+  display: flex;
+  gap: var(--telekom-spacing-4);
+  align-items: flex-start;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.question-item:hover {
+  border-color: var(--border-accent);
+  background: var(--telekom-color-background-subtle);
+  transform: translateX(4px);
+}
+
+.q-number {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--telekom-color-primary-standard);
+  background: var(--telekom-color-primary-subtle);
+  border-radius: var(--telekom-radius-small);
+  padding: var(--telekom-spacing-1) var(--telekom-spacing-2);
+  flex-shrink: 0;
+  margin-top: var(--telekom-spacing-1);
+  font-weight: 500;
+}
+
+.q-content p {
+  font-size: 0.95rem;
+  color: var(--telekom-color-text-and-icon-additional);
+  margin-top: var(--telekom-spacing-1);
+  line-height: 1.7;
+}
+
+.q-content strong {
+  color: var(--telekom-color-text-and-icon-standard);
+  font-weight: 600;
+}
+
+/* =========================================
+   Action Steps
+   ========================================= */
+
+.action-list {
+  margin-top: var(--telekom-spacing-6);
+}
+
+.action-item {
+  display: flex;
+  gap: var(--telekom-spacing-4);
+  align-items: flex-start;
+  padding: var(--telekom-spacing-4) 0;
+  border-bottom: 1px solid var(--telekom-color-ui-border-standard);
+}
+
+.action-item:last-child { border-bottom: none; }
+
+.action-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--telekom-color-primary-standard);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 2.5rem;
+  font-weight: 700;
+}
+
+.action-content h4 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: var(--telekom-spacing-1);
+}
+
+.action-content p {
+  font-size: 0.9rem;
+  color: var(--telekom-color-text-and-icon-additional);
+  line-height: 1.7;
+}
+
+/* =========================================
+   Solution Cards (Mobile/Desktop)
+   ========================================= */
+
+.solution-mobile {
+  display: none;
+  padding: 1rem;
+}
+
+.solution-mobile .problem-card {
+  background: #f9731633;
+  border: 2px solid #f97316;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.solution-mobile .problem-card strong {
+  color: #f97316;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.solution-mobile .problem-card p {
+  color: #f97316;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.solution-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.solution-card.solution-good {
+  border-left: 4px solid var(--green);
+  background: var(--green-dim);
+}
+
+.solution-card.solution-bad {
+  border-left: 4px solid var(--red);
+  background: var(--red-dim);
+}
+
+.solution-card .solution-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.solution-card .solution-status {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.solution-card h4 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin: 0;
+  flex: 1;
+}
+
+.solution-card.solution-good h4 {
+  color: #86efac;
+}
+
+.solution-card.solution-bad h4 {
+  color: #fca5a5;
+}
+
+.solution-section {
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 0.75rem;
+}
+
+.solution-section strong {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+}
+
+.solution-section p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.solution-section.success {
+  background: var(--green-dim);
+  border-color: #22c55e30;
+}
+
+.solution-section.success strong {
+  color: var(--green);
+}
+
+.solution-section.success p {
+  color: #86efac;
+}
+
+.solution-section.failure {
+  background: var(--red-dim);
+  border-color: #ef444430;
+}
+
+.solution-section.failure strong {
+  color: var(--red);
+}
+
+.solution-section.failure p {
+  color: #fca5a5;
+}
+
+.solution-section.trade-off strong {
+  color: #f97316;
+}
+
+.solution-mobile .key-insight {
+  background: #f9731615;
+  border: 1px solid #f9731640;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.solution-mobile .key-insight p {
+  color: #f97316;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Hide SVG on mobile, show cards */
+@media (max-width: 700px) {
+  .insight-card > div[style*="overflow-x: auto"] {
+    display: none !important;
+  }
+  
+  .solution-mobile {
+    display: block;
+  }
+}
+
+/* =========================================
+   Problem-Solution Cards
+   ========================================= */
+
+.problem-box {
+  background: linear-gradient(135deg, var(--telekom-color-primary-subtle) 0%, var(--telekom-color-background-surface) 100%);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--telekom-radius-large);
+  padding: var(--telekom-spacing-6) var(--telekom-spacing-8);
+  text-align: center;
+  margin-bottom: var(--telekom-spacing-8);
+  box-shadow: var(--telekom-shadow-low);
+}
+
+.problem-box .card-label {
+  margin-bottom: var(--telekom-spacing-2);
+}
+
+.problem-box p {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--telekom-spacing-4);
+  margin-bottom: var(--telekom-spacing-6);
+}
+
+@media (max-width: 800px) {
+  .solutions-grid { grid-template-columns: 1fr; }
+}
+
+.sol-card {
+  border-radius: var(--telekom-radius-large);
+  padding: var(--telekom-spacing-6);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sol-card.good {
+  background: var(--telekom-color-background-surface);
+  border: 1px solid rgba(0, 198, 127, 0.4);
+  box-shadow: var(--telekom-shadow-low);
+}
+
+.sol-card.good:hover {
+  box-shadow: var(--telekom-shadow-medium);
+  transform: translateY(-2px);
+}
+
+.sol-card.bad {
+  background: var(--telekom-color-background-surface);
+  border: 1px solid var(--telekom-color-ui-border-standard);
+}
+
+.solution-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: var(--telekom-spacing-1) var(--telekom-spacing-2);
+  border-radius: var(--telekom-radius-small);
+  margin-bottom: var(--telekom-spacing-3);
+  font-weight: 500;
+}
+
+.sol-card.good .solution-badge {
+  background: var(--green-dim);
+  color: var(--telekom-color-functional-success);
+}
+
+.sol-card.bad .solution-badge {
+  background: var(--red-dim);
+  color: var(--telekom-color-functional-danger);
+}
+
+.sol-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: var(--telekom-spacing-3);
+  letter-spacing: -0.01em;
+}
+
+.sol-section {
+  margin-bottom: var(--telekom-spacing-3);
+}
+
+.sol-section-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--telekom-spacing-1);
+  display: block;
+  font-weight: 500;
+}
+
+.sol-card.good .sol-section-label { color: var(--telekom-color-functional-success); }
+.sol-card.bad .sol-section-label { color: var(--telekom-color-text-and-icon-disabled); }
+
+.sol-section p {
+  font-size: 0.88rem;
+  color: var(--telekom-color-text-and-icon-additional);
+  line-height: 1.7;
+}
+
+.sol-card.good .verdict p { color: #86efac; }
+.sol-card.bad .verdict p { color: #fca5a5; }
+.sol-card .when-works p { color: #86efac; }
+
+.problem-insight {
+  text-align: center;
+  padding: var(--telekom-spacing-4);
+  color: var(--telekom-color-primary-standard);
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-bottom: var(--telekom-spacing-8);
+}
+
+/* =========================================
+   Drill-down Interactive System
+   ========================================= */
+
+.drilldown-trigger {
+  cursor: pointer;
+  position: relative;
+}
+
+.drilldown-trigger::after {
+  content: '▼ Click to explore next decision';
+  display: block;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--telekom-color-primary-standard);
+  margin-top: var(--telekom-spacing-4);
+  padding: var(--telekom-spacing-2);
+  background: var(--telekom-color-primary-subtle);
+  border-radius: var(--telekom-radius-small);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: subtlePulse 2s ease-in-out infinite;
+  font-weight: 500;
+}
+
+@keyframes subtlePulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.drilldown-trigger:hover::after {
+  background: var(--border-accent);
+  color: var(--telekom-color-text-and-icon-standard);
+}
+
+.drilldown-trigger.expanded::after {
+  content: '▲ Collapse';
+  animation: none;
+  opacity: 0.5;
+}
+
+.drilldown-level {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, margin 0.4s ease;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.drilldown-level.open {
+  max-height: 5000px;
+  opacity: 1;
+  margin-top: var(--telekom-spacing-6);
+}
+
+.drilldown-connector {
+  text-align: center;
+  padding: var(--telekom-spacing-3) 0;
+  position: relative;
+}
+
+.drilldown-connector::before {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(to bottom, var(--telekom-color-primary-standard), var(--telekom-color-primary-subtle));
+  margin: 0 auto;
+}
+
+.drilldown-connector span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--telekom-color-primary-standard);
+  text-transform: uppercase;
+  background: var(--telekom-color-background-canvas);
+  padding: var(--telekom-spacing-1) var(--telekom-spacing-3);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--telekom-radius-pill);
+  display: inline-block;
+  font-weight: 500;
+}
+
+.level-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--telekom-color-text-and-icon-disabled);
+  text-align: center;
+  margin-bottom: var(--telekom-spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--telekom-spacing-3);
+}
+
+.level-label::before,
+.level-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--telekom-color-ui-border-standard);
+}
+
+/* =========================================
+   Footer & Animations
+   ========================================= */
+
+.footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--telekom-spacing-16) var(--telekom-spacing-8) var(--telekom-spacing-16);
+  text-align: center;
+}
+
+.footer p {
+  color: var(--telekom-color-text-and-icon-disabled);
+  font-size: 0.85rem;
+}
+
+.footer .accent-text {
+  color: var(--telekom-color-primary-standard);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Scroll reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
