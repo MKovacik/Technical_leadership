@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Problem-First Mind Map</title>
+  </head>
+  <body>
+
+    <!-- EXAMPLE 1: REPORTING -->
+    <outline text="📊 Manual reporting: 10h/week per person">
+      <outline text="Context: SQL + SharePoint data, no dev skills in team, M365 E5 licenses, templates already tried">
+
+        <outline text="✅ Automated dashboard">
+          <outline text="Eliminates manual work. Data always fresh. Scales without effort.">
+            <outline text="Trade-off: 2-3 weeks setup, needs someone who knows the data model" />
+          </outline>
+
+          <outline text="Which tool?">
+            <outline text="✅ Power BI">
+              <outline text="Licenses included in E5. IT supports it. Non-devs can build reports after training.">
+                <outline text="Trade-off: Less flexible for real-time. Desktop app needed for authoring." />
+              </outline>
+
+              <outline text="How to connect data?">
+                <outline text="✅ Import mode + scheduled refresh">
+                  <outline text="Fast dashboards (data local). Daily refresh enough — was daily Excel anyway." />
+                  <outline text="Trade-off: Data up to 24h old." />
+                </outline>
+                <outline text="❌ DirectQuery (real-time)">
+                  <outline text="Each click hits DB. Adds production load. Overkill for daily reporting." />
+                  <outline text="When it works: Operational dashboards needing last 5 min of data." />
+                </outline>
+                <outline text="❌ Dataflow (ETL in Power BI)">
+                  <outline text="Requires Premium. Only worth it for 5+ teams sharing same data model." />
+                  <outline text="When it works: Multiple teams need one governed data layer." />
+                </outline>
+              </outline>
+            </outline>
+
+            <outline text="❌ Grafana">
+              <outline text="Nobody knows it. Needs self-hosting. Built for ops monitoring, not business reports." />
+              <outline text="When it works: Infrastructure monitoring where real-time matters." />
+            </outline>
+            <outline text="❌ Custom-built (React + API)">
+              <outline text="3 months to build. Ongoing dev maintenance. No dev skills in team." />
+              <outline text="When it works: Customer-facing dashboards needing custom workflows." />
+            </outline>
+          </outline>
+        </outline>
+
+        <outline text="❌ Hire a reporting person">
+          <outline text="€50K/year for a problem tooling should solve. Single point of failure. Doesn't scale." />
+          <outline text="When it works: Reports need expert commentary that can't be automated." />
+        </outline>
+        <outline text="❌ Better Excel template with macros">
+          <outline text="Already tried. Cut to 90 min, still manual and error-prone." />
+          <outline text="When it works: Quick win to buy time while dashboard is being built." />
+        </outline>
+
+      </outline>
+    </outline>
+
+    <!-- EXAMPLE 2: SIM ACTIVATION -->
+    <outline text="📱 SIM activation: 24h → minutes">
+      <outline text="Context: Legacy SOAP backend, 800 activations/day manual, 3% error rate, customers switching to competitor">
+
+        <outline text="✅ REST API with real-time provisioning">
+          <outline text="Fully automated. Scales linearly. Customer gets instant result.">
+            <outline text="Trade-off: Legacy SOAP backend can't be exposed directly." />
+          </outline>
+
+          <outline text="How to handle legacy?">
+            <outline text="✅ SOAP-to-REST wrapper">
+              <outline text="Legacy system untouched (risky to change). Clean REST API for new portal. 2-3 sprints.">
+                <outline text="Trade-off: Extra layer to maintain. Wrapper needs update if SOAP changes." />
+              </outline>
+
+              <outline text="How to handle failures?">
+                <outline text="✅ Async with retry queue">
+                  <outline text="Request accepted immediately, queued. Retries handle 95% of transient failures. Customer never sees error page." />
+                  <outline text="Trade-off: Not instant (30s-2min). Need status page or push notification." />
+                </outline>
+                <outline text="❌ Synchronous (fail = error to customer)">
+                  <outline text="3% failure rate = 24 failed customers/day seeing error pages. Worse than call center." />
+                  <outline text="When it works: Backend is 99.9%+ reliable with &lt;2s response time." />
+                </outline>
+                <outline text="❌ Manual fallback for all failures">
+                  <outline text="Back to manual for 3% of cases. Call center still needed at full capacity." />
+                  <outline text="When it works: Last-resort escalation after retry queue exhausted (3 retries, 10 min)." />
+                </outline>
+              </outline>
+            </outline>
+
+            <outline text="❌ Replace SOAP system entirely">
+              <outline text="6-12 months. Handles billing, number porting, 15 downstream systems. Too much risk." />
+              <outline text="When it works: Long-term strategic initiative once wrapper proves business case." />
+            </outline>
+            <outline text="❌ Direct SOAP calls from frontend">
+              <outline text="Exposes legacy to public internet. No auth, rate limiting, or error translation." />
+              <outline text="When it works: Internal tools behind VPN where security is less critical." />
+            </outline>
+          </outline>
+        </outline>
+
+        <outline text="❌ Batch processing overnight">
+          <outline text="Customer still waits 24h. This IS the problem we're solving." />
+          <outline text="When it works: Bulk enterprise orders (500 SIMs) where reliability &gt; speed." />
+        </outline>
+        <outline text="❌ Manual processing via call center">
+          <outline text="This is what we already do. 800/day, 3% error rate. The process IS the problem." />
+          <outline text="When it works: Edge cases and VIP customers where automation fails." />
+        </outline>
+
+      </outline>
+    </outline>
+
+    <!-- EXAMPLE 3: CONTRACT SYSTEM -->
+    <outline text="📋 Contract system crashes at month-end">
+      <outline text="Context: 200+ users, full table scans on single DB, budget for 1 quarter max, monolith staying 2+ years">
+
+        <outline text="✅ Cache layer + DB read replica">
+          <outline text="80% of reports = same monthly data. High cache hit rate. Replica isolates reporting from operations.">
+            <outline text="Trade-off: Data a few minutes stale (replication lag). Fine for monthly reports." />
+          </outline>
+
+          <outline text="What cache strategy?">
+            <outline text="✅ Redis with TTL per report type">
+              <outline text="Monthly reports cached 24h, weekly 4h. 200 users = 1 DB query + 199 cache hits.">
+                <outline text="Trade-off: Need to define TTL per report type. First request after expiry still slow." />
+              </outline>
+
+              <outline text="How to set up read replica?">
+                <outline text="✅ Managed cloud replica (Azure SQL)">
+                  <outline text="Already on Azure. One click. No DBA needed. Automated failover. Fits in 1 quarter." />
+                  <outline text="Trade-off: ~30-40% extra monthly cloud cost. Few seconds replication lag." />
+                </outline>
+                <outline text="❌ Self-managed replica on own server">
+                  <outline text="Need DBA to set up and maintain. Manual failover. If replication breaks at month-end = same crash." />
+                  <outline text="When it works: On-premise where cloud is not an option + dedicated DBA team." />
+                </outline>
+                <outline text="❌ Separate reporting DB with ETL">
+                  <outline text="ETL pipeline is a project itself (schema mapping, transforms, error handling). Over budget." />
+                  <outline text="When it works: Reporting needs different data model or combines multiple source systems." />
+                </outline>
+              </outline>
+            </outline>
+
+            <outline text="❌ Application-level in-memory cache">
+              <outline text="Lost on restart/deploy. Multiple instances = duplicated queries. Eats app memory." />
+              <outline text="When it works: Small single-instance apps where simplicity &gt; scale." />
+            </outline>
+            <outline text="❌ Pre-generate all reports overnight">
+              <outline text="Users apply custom filters (date, department, type). Impossible to pre-generate every combination." />
+              <outline text="When it works: Standard reports everyone gets the same way (monthly KPI, no filters)." />
+            </outline>
+          </outline>
+        </outline>
+
+        <outline text="❌ Rewrite as microservices">
+          <outline text="Monolith stays 2+ years. Performance problem, not architecture. 5x over budget." />
+          <outline text="When it works: Different parts need fundamentally different scaling strategies." />
+        </outline>
+        <outline text="❌ Bigger server (vertical scaling)">
+          <outline text="Full table scans are the cause. Bigger server delays crash by a few months. Costs grow non-linearly." />
+          <outline text="When it works: Short-term hotfix to buy time for the real solution." />
+        </outline>
+
+      </outline>
+    </outline>
+
+  </body>
+</opml>
