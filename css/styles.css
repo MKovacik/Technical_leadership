@@ -1265,3 +1265,264 @@ mark {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* =========================================
+   Progressive Disclosure — Insight Cards
+   ========================================= */
+
+.insight-card[data-expandable] {
+  cursor: pointer;
+}
+
+.insight-card[data-expandable] .card-title {
+  padding-right: 2rem;
+  position: relative;
+}
+
+.insight-card[data-expandable] .card-title::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--telekom-color-primary-standard);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.insight-card[aria-expanded="true"] .card-title::after {
+  content: '\2212';
+  transform: rotate(180deg);
+}
+
+/* Collapsible children inside collapsed cards */
+.insight-card[aria-expanded="false"] .card-text,
+.insight-card[aria-expanded="false"] .example-box,
+.insight-card[aria-expanded="false"] .comparison,
+.insight-card[aria-expanded="false"] .spectrum,
+.insight-card[aria-expanded="false"] .abstraction-layers,
+.insight-card[aria-expanded="false"] .action-list,
+.insight-card[aria-expanded="false"] .questions-grid {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease,
+              margin 0.35s ease,
+              padding 0.35s ease;
+}
+
+/* Expanded state */
+.insight-card[aria-expanded="true"] .card-text,
+.insight-card[aria-expanded="true"] .example-box,
+.insight-card[aria-expanded="true"] .comparison,
+.insight-card[aria-expanded="true"] .spectrum,
+.insight-card[aria-expanded="true"] .abstraction-layers,
+.insight-card[aria-expanded="true"] .action-list,
+.insight-card[aria-expanded="true"] .questions-grid {
+  max-height: 5000px;
+  opacity: 1;
+  overflow: visible;
+  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease 0.1s;
+}
+
+/* Keep card-label margin when collapsed */
+.insight-card[aria-expanded="false"] .card-title {
+  margin-bottom: 0;
+}
+
+/* =========================================
+   Sticky Section Navigation
+   ========================================= */
+
+.section-nav {
+  position: fixed;
+  top: var(--telekom-spacing-4);
+  right: var(--telekom-spacing-4);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(20px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-nav.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: var(--telekom-spacing-2);
+  background: var(--telekom-color-background-surface);
+  border: 1px solid var(--telekom-color-ui-border-standard);
+  border-radius: var(--telekom-radius-large);
+  box-shadow: var(--telekom-shadow-medium);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-list li a {
+  display: flex;
+  align-items: center;
+  gap: var(--telekom-spacing-2);
+  padding: var(--telekom-spacing-2) var(--telekom-spacing-3);
+  border-radius: var(--telekom-radius-medium);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--telekom-color-text-and-icon-additional);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-list li a:hover {
+  background: var(--telekom-color-background-subtle);
+  color: var(--telekom-color-text-and-icon-standard);
+}
+
+.nav-list li a.active {
+  background: var(--telekom-color-primary-subtle);
+  color: var(--telekom-color-primary-standard);
+}
+
+.nav-hamburger {
+  display: none;
+}
+
+/* Medium screens: numbers only */
+@media (min-width: 701px) and (max-width: 1100px) {
+  .nav-label {
+    display: none;
+  }
+}
+
+/* Mobile: hamburger + dropdown */
+@media (max-width: 700px) {
+  .section-nav {
+    top: var(--telekom-spacing-3);
+    right: var(--telekom-spacing-3);
+  }
+
+  .nav-hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: 40px;
+    height: 40px;
+    background: var(--telekom-color-background-surface);
+    border: 1px solid var(--telekom-color-ui-border-standard);
+    border-radius: var(--telekom-radius-medium);
+    box-shadow: var(--telekom-shadow-medium);
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+    transition: border-color 0.2s ease;
+  }
+
+  .nav-hamburger:hover {
+    border-color: var(--telekom-color-primary-standard);
+  }
+
+  .hamburger-bar {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--telekom-color-text-and-icon-standard);
+    border-radius: 1px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
+  }
+
+  .nav-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .nav-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .nav-hamburger[aria-expanded="true"] .hamburger-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .nav-list {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: var(--telekom-spacing-2);
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s ease;
+  }
+
+  .nav-list.open {
+    max-height: 500px;
+    opacity: 1;
+  }
+}
+
+/* =========================================
+   Back-to-Top Button
+   ========================================= */
+
+.back-to-top {
+  position: fixed;
+  bottom: var(--telekom-spacing-8);
+  right: var(--telekom-spacing-8);
+  z-index: 999;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--telekom-color-ui-border-standard);
+  border-radius: var(--telekom-radius-pill);
+  background: var(--telekom-color-background-surface);
+  color: var(--telekom-color-primary-standard);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--telekom-shadow-medium);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.2s ease,
+              color 0.2s ease,
+              border-color 0.2s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--telekom-color-primary-standard);
+  color: var(--telekom-color-text-and-icon-inverted);
+  border-color: var(--telekom-color-primary-standard);
+}
+
+@media (max-width: 700px) {
+  .back-to-top {
+    bottom: var(--telekom-spacing-4);
+    right: var(--telekom-spacing-4);
+    width: 42px;
+    height: 42px;
+  }
+}
