@@ -467,19 +467,20 @@ section {
 
 .spectrum-item:nth-child(1) { 
   background: var(--red-dim); 
-  border: 1px solid #ef444430;
+  border: 1px solid rgba(229, 26, 26, 0.3);
   color: #fca5a5;
 }
 
 .spectrum-item:nth-child(2) { 
-  background: var(--bg-card); 
-  color: var(--text-secondary);
+  background: var(--green-dim);
+  border: 1px solid rgba(0, 198, 127, 0.3);
+  color: #86efac;
 }
 
 .spectrum-item:nth-child(3) { 
-  background: var(--green-dim); 
-  border: 1px solid #22c55e30;
-  color: #86efac;
+  background: var(--red-dim); 
+  border: 1px solid rgba(229, 26, 26, 0.3);
+  color: #fca5a5;
 }
 
 .spectrum-level {
@@ -491,9 +492,9 @@ section {
   display: block;
 }
 
-.spectrum-item:nth-child(1) .spectrum-level { color: var(--red); }
-.spectrum-item:nth-child(2) .spectrum-level { color: var(--text-muted); }
-.spectrum-item:nth-child(3) .spectrum-level { color: var(--green); }
+.spectrum-item:nth-child(1) .spectrum-level { color: var(--telekom-color-functional-danger); }
+.spectrum-item:nth-child(2) .spectrum-level { color: var(--telekom-color-functional-success); }
+.spectrum-item:nth-child(3) .spectrum-level { color: var(--telekom-color-functional-danger); }
 
 /* Mobile: Stack spectrum vertically */
 @media (max-width: 700px) {
@@ -511,20 +512,20 @@ section {
   
   .spectrum-item:nth-child(1) { 
     background: var(--red-dim);
-    border: 1px solid #ef444430;
-    border-left: 4px solid var(--red);
+    border: 1px solid rgba(229, 26, 26, 0.3);
+    border-left: 4px solid var(--telekom-color-functional-danger);
   }
   
   .spectrum-item:nth-child(2) { 
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--text-muted);
+    background: var(--green-dim);
+    border: 1px solid rgba(0, 198, 127, 0.3);
+    border-left: 4px solid var(--telekom-color-functional-success);
   }
   
   .spectrum-item:nth-child(3) { 
-    background: var(--green-dim);
-    border: 1px solid #22c55e30;
-    border-left: 4px solid var(--green);
+    background: var(--red-dim);
+    border: 1px solid rgba(229, 26, 26, 0.3);
+    border-left: 4px solid var(--telekom-color-functional-danger);
   }
   
   .spectrum-level {
