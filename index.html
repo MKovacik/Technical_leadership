@@ -50,15 +50,68 @@
     <div class="card-title">Choose your abstraction layer</div>
     <div class="card-text">
       Software is built in layers. Each one is a different level of detail:
-      <div class="action-list" style="margin: 1rem 0;">
-        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">1</div><div class="action-content"><h4>Infrastructure</h4><p>AWS, Azure, servers — where things physically run</p></div></div>
-        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">2</div><div class="action-content"><h4>Platform</h4><p>Kubernetes, Docker — how code is packaged and deployed</p></div></div>
-        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">3</div><div class="action-content"><h4>Data</h4><p>PostgreSQL, MongoDB — where information is stored</p></div></div>
-        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">4</div><div class="action-content"><h4>Services</h4><p>Backend systems, microservices — the engines that do the work</p></div></div>
-        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">5</div><div class="action-content"><h4>API</h4><p>REST, GraphQL — how systems talk to each other</p></div></div>
-        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">6</div><div class="action-content"><h4>Business logic</h4><p>Pricing rules, validation — the rules that drive decisions</p></div></div>
-        <div class="action-item"><div class="action-num" style="font-size: 0.65rem;">7</div><div class="action-content"><h4>User interface</h4><p>React, Angular — what users see and interact with</p></div></div>
+    </div>
+
+    <div class="abstraction-layers">
+      <div class="layer-card">
+        <div class="layer-num">1</div>
+        <div class="layer-content">
+          <h4>Infrastructure</h4>
+          <p>AWS, Azure, servers — where things physically run</p>
+          <p class="layer-terms">You'll hear: <em>cloud, on-premise, VM, region, availability zone</em></p>
+        </div>
       </div>
+      <div class="layer-card">
+        <div class="layer-num">2</div>
+        <div class="layer-content">
+          <h4>Platform</h4>
+          <p>Kubernetes, Docker — how code is packaged and deployed</p>
+          <p class="layer-terms">You'll hear: <em>container, cluster, orchestration, CI/CD pipeline</em></p>
+        </div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">3</div>
+        <div class="layer-content">
+          <h4>Data</h4>
+          <p>PostgreSQL, MongoDB — where information is stored</p>
+          <p class="layer-terms">You'll hear: <em>schema, query, index, migration, replication</em></p>
+        </div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">4</div>
+        <div class="layer-content">
+          <h4>Services</h4>
+          <p>Backend systems, microservices — the engines that do the work</p>
+          <p class="layer-terms">You'll hear: <em>microservice, monolith, message queue, event-driven</em></p>
+        </div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">5</div>
+        <div class="layer-content">
+          <h4>API</h4>
+          <p>REST, GraphQL — how systems talk to each other</p>
+          <p class="layer-terms">You'll hear: <em>endpoint, payload, rate limit, authentication, webhook</em></p>
+        </div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">6</div>
+        <div class="layer-content">
+          <h4>Business logic</h4>
+          <p>Pricing rules, validation — the rules that drive decisions</p>
+          <p class="layer-terms">You'll hear: <em>workflow, rule engine, validation, edge case</em></p>
+        </div>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">7</div>
+        <div class="layer-content">
+          <h4>User interface</h4>
+          <p>React, Angular — what users see and interact with</p>
+          <p class="layer-terms">You'll hear: <em>component, responsive, frontend, UX, rendering</em></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-text" style="margin-top: var(--telekom-spacing-6);">
       You don't need to master every layer. You need to choose the right layer for your role and go deep enough there to make credible decisions.
     </div>
 
@@ -112,12 +165,167 @@
   <p>The best technical leaders don't have<br>all the <em>answers</em>.<br>They ask the right <em>questions</em>.</p>
 </div>
 
+<!-- VOCABULARY PRIMER -->
+<div class="divider"></div>
+
+<section>
+  <div class="reveal">
+    <div class="section-number">02 · The Foundation</div>
+    <div class="section-title">Words You Hear.<br><em>What They Mean.</em></div>
+    <p class="section-lead">
+      Your engineers use these terms every day. You've heard them in standups, architecture reviews, and incident calls. You don't need to use them yourself — but you need to know what's being said. Here are the most common terms, grouped by the situation where you'll encounter them.
+    </p>
+    <div style="text-align: center; margin: var(--telekom-spacing-8) 0;">
+      <a href="Technical_Vocabulary_EN.md" download style="display: inline-block; background: var(--telekom-color-primary-standard); border: 1px solid var(--telekom-color-primary-standard); border-radius: var(--telekom-radius-pill); padding: var(--telekom-spacing-3) var(--telekom-spacing-8); color: var(--telekom-color-text-and-icon-inverted); text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; letter-spacing: 0.1em; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); font-weight: 500; box-shadow: var(--telekom-shadow-low);" onmouseover="this.style.background='var(--telekom-color-primary-hover)'; this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--telekom-shadow-medium)'" onmouseout="this.style.background='var(--telekom-color-primary-standard)'; this.style.transform='translateY(0)'; this.style.boxShadow='var(--telekom-shadow-low)'">
+        DOWNLOAD FULL VOCABULARY CHEAT SHEET
+      </a>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Situation: "The system is slow"</div>
+    <div class="card-title">Performance vocabulary</div>
+    <div class="card-text" style="padding: 0;">
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Cache</h4>
+            <p><strong>Think of it as:</strong> A sticky note on your desk so you don't open the filing cabinet every time someone asks the same question.</p>
+            <p><strong>What your engineer means:</strong> The system is doing the same expensive work over and over. A cache stores the result so it can be served instantly next time.</p>
+            <p><strong>Ask:</strong> What data are we caching? How often does it change? What happens when the cache has stale data?</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Latency &amp; p95</h4>
+            <p><strong>Think of it as:</strong> Latency is the wait time at a service counter. p95 means "95 out of 100 users are served faster than this." It catches the slow experiences that averages hide.</p>
+            <p><strong>What your engineer means:</strong> "Our p95 went from 200ms to 800ms" means the slowest 5% of users are now waiting 4× longer than before.</p>
+            <p><strong>Ask:</strong> What's our p95 vs. our median? Which endpoint is the bottleneck? When did it start?</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Query optimization</h4>
+            <p><strong>Think of it as:</strong> Instead of reading an entire book to find one fact, you use the index at the back.</p>
+            <p><strong>What your engineer means:</strong> "The query does a full table scan" means the database reads every single row to find what it needs. An index tells it exactly where to look.</p>
+            <p><strong>Ask:</strong> How much time does this save? How many users does it affect?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Situation: "We need to scale"</div>
+    <div class="card-title">Infrastructure vocabulary</div>
+    <div class="card-text" style="padding: 0;">
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Load balancer</h4>
+            <p><strong>Think of it as:</strong> A receptionist who sends each visitor to whichever office is least busy.</p>
+            <p><strong>What your engineer means:</strong> One server can't handle all the traffic. The load balancer distributes requests across multiple servers.</p>
+            <p><strong>Ask:</strong> How many servers are behind it? What happens when one goes down? What's our peak traffic?</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Horizontal vs. vertical scaling</h4>
+            <p><strong>Think of it as:</strong> Horizontal = opening more checkout lanes. Vertical = making one cashier work faster.</p>
+            <p><strong>What your engineer means:</strong> "We should scale horizontally" means adding more servers. "Scale vertically" means making the existing server bigger (more CPU, RAM).</p>
+            <p><strong>Ask:</strong> Can our app run on multiple servers? What's the cost per additional server?</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Container &amp; Kubernetes</h4>
+            <p><strong>Think of it as:</strong> A container is a shipping container — standard size, works on any ship. Kubernetes is the port manager who decides where each container goes.</p>
+            <p><strong>What your engineer means:</strong> "We containerized the app" means it's packaged to run the same way everywhere. "We run on Kubernetes" means the containers are managed automatically.</p>
+            <p><strong>Ask:</strong> Who manages the Kubernetes cluster? What's the operational overhead?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Situation: "Something broke in production"</div>
+    <div class="card-title">Incident vocabulary</div>
+    <div class="card-text" style="padding: 0;">
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Rollback</h4>
+            <p><strong>Think of it as:</strong> Pressing Ctrl+Z on a deployment. You go back to the version that was working.</p>
+            <p><strong>What your engineer means:</strong> "We need to rollback" means the new version broke something and we need to revert to the previous one immediately.</p>
+            <p><strong>Ask:</strong> How long does a rollback take? Is it automated? Does it affect data written since the deployment?</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Post-mortem</h4>
+            <p><strong>Think of it as:</strong> A flight investigation after a near-miss. The goal is to improve the system, not to blame the pilot.</p>
+            <p><strong>What your engineer means:</strong> "We'll do a post-mortem" means the team will formally review what went wrong, why it wasn't caught earlier, and what to change.</p>
+            <p><strong>Ask:</strong> What was the root cause? What's the concrete action item, and who owns it?</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Monitoring &amp; SLA</h4>
+            <p><strong>Think of it as:</strong> Monitoring = security cameras watching the system. SLA = the contractual promise of how reliable it will be.</p>
+            <p><strong>What your engineer means:</strong> "We're at risk of breaching our SLA" means the system's reliability is dropping below what was promised to customers.</p>
+            <p><strong>Ask:</strong> What are we monitoring vs. what are we NOT? What's our current uptime vs. our SLA commitment?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal">
+    <div class="card-label">Situation: "We're modernizing"</div>
+    <div class="card-title">Technical debt vocabulary</div>
+    <div class="card-text" style="padding: 0;">
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Technical debt</h4>
+            <p><strong>Think of it as:</strong> Deferred maintenance on a building. Every month you skip, the repair bill grows.</p>
+            <p><strong>What your engineer means:</strong> "We have a lot of tech debt" means shortcuts were taken, and now every change takes longer than it should and risks breaking things.</p>
+            <p><strong>Ask:</strong> How much time does it cost us per sprint? What's the risk if we keep ignoring it?</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Refactoring</h4>
+            <p><strong>Think of it as:</strong> Reorganizing a messy warehouse. Everything is still there, but now you can find things and work faster.</p>
+            <p><strong>What your engineer means:</strong> "We need to refactor this module" means the code works but it's tangled, and every change risks breaking something else.</p>
+            <p><strong>Ask:</strong> Can we do it incrementally, or does it require a big rewrite? How do we know we haven't broken anything?</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Migration &amp; legacy system</h4>
+            <p><strong>Think of it as:</strong> A migration is moving offices — everything needs to work during and after the move. A legacy system is the old elevator: it works, but parts are hard to find and nobody wants to touch it.</p>
+            <p><strong>What your engineer means:</strong> "The legacy system doesn't support that" means the team hit a wall because the old system wasn't designed for what's now being asked of it.</p>
+            <p><strong>Ask:</strong> What's the rollback plan? Can we do it in phases? Who still understands how the old system works?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway reveal">
+    <div class="takeaway-label">The Pattern</div>
+    <p>You don't need to explain these terms to anyone. You need to <mark>recognize</mark> the term when you hear it, <mark>understand</mark> what problem it solves, and <mark>ask</mark> the right follow-up question. That's enough to be credible in any technical conversation.</p>
+  </div>
+</section>
+
 <!-- ASKING THE RIGHT QUESTIONS -->
 <div class="divider"></div>
 
 <section>
   <div class="reveal">
-    <div class="section-number">02 · The Skill</div>
+    <div class="section-number">03 · The Skill</div>
     <div class="section-title">Speaking the<br><em>Technical Language</em></div>
     <p class="section-lead">
       Here's the secret: you don't need to be the most technical person in the room. You need to demonstrate that you understand technology. When you speak with technical precision—using the right terms, citing concrete data, connecting systems to outcomes—leadership sees your technical credibility. And credibility compounds.
@@ -207,7 +415,7 @@
 
 <section>
   <div class="reveal">
-    <div class="section-number">03 · The Overlooked Skill</div>
+    <div class="section-number">04 · The Overlooked Skill</div>
     <div class="section-title">Product Knowledge<br><em>Is</em> Technical Knowledge</div>
     <p class="section-lead">
       Most team leads think "technical" means code, infrastructure, and architecture. They're missing the most powerful form of technical credibility: understanding how the product works, who uses it, and why it's built the way it is.
@@ -311,7 +519,7 @@
 
 <section>
   <div class="reveal">
-    <div class="section-number">04 · The Uncomfortable Truth</div>
+    <div class="section-number">05 · The Uncomfortable Truth</div>
     <div class="section-title">You Are<br><em>What They See.</em></div>
     <p class="section-lead">
       Here's what nobody tells you: being technically competent and communicating that competence are two different skills. You need both. This isn't about faking it. It's about being intentional with what you already know.
@@ -373,7 +581,7 @@
 
 <section>
   <div class="reveal">
-    <div class="section-number">05 · Reflect</div>
+    <div class="section-number">06 · Reflect</div>
     <div class="section-title">Questions for<br><em>Self-Assessment</em></div>
     <p class="section-lead">
       You've received a self-assessment questionnaire. Here are the key questions mapped to each pillar. Don't aim for perfection. Aim for honest awareness of where you stand.
@@ -467,7 +675,7 @@
 
 <section>
   <div class="reveal">
-    <div class="section-number">06 · The Commitment</div>
+    <div class="section-number">07 · The Commitment</div>
     <div class="section-title">Your<br><em>Action Plan</em></div>
     <p class="section-lead">
       Don't try to improve everything at once. Pick one area and commit to it for the next month.
@@ -511,7 +719,7 @@
 <!-- EXERCISE SECTION -->
 <section>
   <div class="reveal">
-    <div class="section-number">07 · Exercise</div>
+    <div class="section-number">08 · Exercise</div>
     <div class="section-title">What Helps Me:<br><em>The Problem-First Mind Map</em></div>
     <p class="section-lead">
       Start with a real business problem. Map out possible solutions. For each one ask: does it solve my problem? What's the trade-off? When would it make sense instead?

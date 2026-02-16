@@ -727,6 +727,116 @@ mark {
 }
 
 /* =========================================
+   Abstraction Layers
+   ========================================= */
+
+.abstraction-layers {
+  margin-top: var(--telekom-spacing-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--telekom-spacing-2);
+  position: relative;
+}
+
+.layer-card {
+  background: var(--telekom-color-background-canvas);
+  border: 1px solid var(--telekom-color-ui-border-standard);
+  border-radius: var(--telekom-radius-medium);
+  padding: var(--telekom-spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--telekom-spacing-4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.layer-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--telekom-color-primary-standard), var(--telekom-color-primary-subtle));
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.layer-card:hover {
+  background: var(--telekom-color-background-subtle);
+  border-color: var(--border-accent);
+  transform: translateX(4px);
+}
+
+.layer-card:hover::before {
+  opacity: 1;
+}
+
+.layer-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--telekom-color-primary-standard);
+  background: var(--telekom-color-primary-subtle);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--telekom-radius-small);
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.layer-card:hover .layer-num {
+  background: var(--telekom-color-primary-standard);
+  color: var(--telekom-color-text-and-icon-inverted);
+  transform: scale(1.1);
+}
+
+.layer-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.layer-content h4 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: var(--telekom-spacing-1);
+  color: var(--telekom-color-text-and-icon-standard);
+  letter-spacing: -0.01em;
+}
+
+.layer-content p {
+  font-size: 0.88rem;
+  color: var(--telekom-color-text-and-icon-additional);
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .layer-card {
+    padding: var(--telekom-spacing-3);
+  }
+  
+  .layer-num {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.7rem;
+  }
+  
+  .layer-content h4 {
+    font-size: 0.95rem;
+  }
+  
+  .layer-content p {
+    font-size: 0.85rem;
+  }
+}
+
+/* =========================================
    Solution Cards (Mobile/Desktop)
    ========================================= */
 
