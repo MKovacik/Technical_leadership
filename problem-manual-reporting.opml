@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Problem: Manual Reporting</title>
+  </head>
+  <body>
+
+    <outline text="📊 Manual reporting: 10h/week per person">
+      <outline text="Context: SQL + SharePoint data, no dev skills in team, M365 E5 licenses, templates already tried">
+
+        <outline text="✅ Automated dashboard">
+          <outline text="Eliminates manual work. Data always fresh. Scales without effort.">
+            <outline text="Trade-off: 2-3 weeks setup, needs someone who knows the data model" />
+          </outline>
+
+          <outline text="Which tool?">
+            <outline text="✅ Power BI">
+              <outline text="Licenses included in E5. IT supports it. Non-devs can build reports after training.">
+                <outline text="Trade-off: Less flexible for real-time. Desktop app needed for authoring." />
+              </outline>
+
+              <outline text="How to connect data?">
+                <outline text="✅ Import mode + scheduled refresh">
+                  <outline text="Fast dashboards (data local). Daily refresh enough — was daily Excel anyway." />
+                  <outline text="Trade-off: Data up to 24h old." />
+                </outline>
+                <outline text="❌ DirectQuery (real-time)">
+                  <outline text="Each click hits DB. Adds production load. Overkill for daily reporting." />
+                  <outline text="When it works: Operational dashboards needing last 5 min of data." />
+                </outline>
+                <outline text="❌ Dataflow (ETL in Power BI)">
+                  <outline text="Requires Premium. Only worth it for 5+ teams sharing same data model." />
+                  <outline text="When it works: Multiple teams need one governed data layer." />
+                </outline>
+              </outline>
+            </outline>
+
+            <outline text="❌ Grafana">
+              <outline text="Nobody knows it. Needs self-hosting. Built for ops monitoring, not business reports." />
+              <outline text="When it works: Infrastructure monitoring where real-time matters." />
+            </outline>
+            <outline text="❌ Custom-built (React + API)">
+              <outline text="3 months to build. Needs ongoing dev maintenance. We need a solution in weeks, not quarters." />
+              <outline text="When it works: Customer-facing dashboard or features no BI tool supports (custom workflows, integrations)." />
+            </outline>
+          </outline>
+        </outline>
+
+        <outline text="❌ Hire a reporting person">
+          <outline text="Expensive. Doesn't scale. Single point of failure. The problem is the process, not the headcount." />
+          <outline text="When it works: Reports need expert commentary that can't be automated." />
+        </outline>
+        <outline text="❌ Better Excel template with macros">
+          <outline text="Cuts time from 2h to maybe 1h. Still manual. Still error-prone. Macros break when data format changes." />
+          <outline text="When it works: Quick win to buy time while dashboard is being built." />
+        </outline>
+
+      </outline>
+    </outline>
+
+  </body>
+</opml>

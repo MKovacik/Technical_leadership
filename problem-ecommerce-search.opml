@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Problem: E-commerce Search</title>
+  </head>
+  <body>
+
+    <outline text="🔍 E-commerce search: 6-8 seconds per query">
+      <outline text="Context: 500K product catalog, SQL LIKE queries on main DB, mobile conversion 40% below desktop, holiday season in 6 weeks">
+
+        <outline text="✅ Dedicated search engine">
+          <outline text="Elasticsearch indexes catalog. Fuzzy matching, typo tolerance, faceted filtering. Results under 200ms.">
+            <outline text="Trade-off: New infrastructure to maintain. Data sync between DB and search index needed." />
+          </outline>
+
+          <outline text="How to sync product data?">
+            <outline text="✅ Event-driven sync">
+              <outline text="Product changes publish events. Consumer updates index in near real-time. Searchable within seconds.">
+                <outline text="Trade-off: Needs message queue (RabbitMQ, Kafka). More moving parts than a cron job." />
+              </outline>
+
+              <outline text="How to roll out safely?">
+                <outline text="✅ Shadow mode + gradual cutover">
+                  <outline text="New search runs in parallel but hidden. Compare results. Route 10% → 50% → 100% when confident." />
+                  <outline text="Trade-off: Running two search systems for a few weeks. More operational overhead during transition." />
+                </outline>
+                <outline text="❌ Big bang release">
+                  <outline text="If anything breaks during peak, all customers affected. Rollback = back to slow search. Too risky before holidays." />
+                  <outline text="When it works: Low-traffic apps where brief downtime is acceptable and rollback is instant." />
+                </outline>
+                <outline text="❌ A/B test indefinitely">
+                  <outline text="Half of customers still get slow search during peak. Maintaining two systems permanently is expensive." />
+                  <outline text="When it works: Genuinely unsure if new approach is better and need statistical proof." />
+                </outline>
+              </outline>
+            </outline>
+
+            <outline text="❌ Full re-index nightly">
+              <outline text="New products not searchable until morning. Price changes stale up to 24h. Lost sales during holiday season." />
+              <outline text="When it works: Static catalogs that change weekly or less (B2B parts, document archives)." />
+            </outline>
+            <outline text="❌ Dual-write from application">
+              <outline text="If search index write fails, data inconsistent. App coupled to two storage systems. Every update path needs changes." />
+              <outline text="When it works: Prototypes or MVPs where simplicity matters more than reliability." />
+            </outline>
+          </outline>
+        </outline>
+
+        <outline text="❌ Add database indexes and optimize queries">
+          <outline text="SQL full-text better than LIKE but can't do fuzzy matching, typo tolerance, or relevance tuning. Ceiling at 500K products." />
+          <outline text="When it works: Smaller catalogs (under 50K) where basic keyword matching is sufficient." />
+        </outline>
+        <outline text="❌ Pre-computed search results">
+          <outline text="Long-tail queries (product names, SKUs, misspellings) are unpredictable. Can't pre-compute every search." />
+          <outline text="When it works: 80%+ of searches are the same 100 queries (category browsing, not free-text)." />
+        </outline>
+
+      </outline>
+    </outline>
+
+  </body>
+</opml>

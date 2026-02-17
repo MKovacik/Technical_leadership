@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Problem: SIM Activation</title>
+  </head>
+  <body>
+
+    <outline text="📱 SIM activation: 24h → minutes">
+      <outline text="Context: Legacy SOAP backend, 800 activations/day manual, 3% error rate, customers switching to competitor">
+
+        <outline text="✅ REST API with real-time provisioning">
+          <outline text="Fully automated. Scales linearly. Customer gets instant result.">
+            <outline text="Trade-off: Legacy SOAP backend can't be exposed directly." />
+          </outline>
+
+          <outline text="How to handle legacy?">
+            <outline text="✅ SOAP-to-REST wrapper">
+              <outline text="Legacy system untouched (risky to change). Clean REST API for new portal. 2-3 sprints.">
+                <outline text="Trade-off: Extra layer to maintain. Wrapper needs update if SOAP changes." />
+              </outline>
+
+              <outline text="How to handle failures?">
+                <outline text="✅ Async with retry queue">
+                  <outline text="Request accepted immediately, queued. Retries handle 95% of transient failures. Customer never sees error page." />
+                  <outline text="Trade-off: Not instant (30s-2min). Need status page or push notification." />
+                </outline>
+                <outline text="❌ Synchronous (fail = error to customer)">
+                  <outline text="3% failure rate = 24 failed customers/day seeing error pages. Worse than call center." />
+                  <outline text="When it works: Backend is 99.9%+ reliable with &lt;2s response time." />
+                </outline>
+                <outline text="❌ Manual fallback for all failures">
+                  <outline text="Back to manual for 3% of cases. Call center still needed at full capacity." />
+                  <outline text="When it works: Last-resort escalation after retry queue exhausted (3 retries, 10 min)." />
+                </outline>
+              </outline>
+            </outline>
+
+            <outline text="❌ Replace SOAP system entirely">
+              <outline text="6-12 months. Handles billing, number porting, 15 downstream systems. Too much risk." />
+              <outline text="When it works: Long-term strategic initiative once wrapper proves business case." />
+            </outline>
+            <outline text="❌ Direct SOAP calls from frontend">
+              <outline text="Exposes legacy to public internet. No auth, rate limiting, or error translation." />
+              <outline text="When it works: Internal tools behind VPN where security is less critical." />
+            </outline>
+          </outline>
+        </outline>
+
+        <outline text="❌ Batch processing overnight">
+          <outline text="Customer still waits 24h. This IS the problem we're solving." />
+          <outline text="When it works: Bulk enterprise orders (500 SIMs) where reliability &gt; speed." />
+        </outline>
+        <outline text="❌ Manual processing via call center">
+          <outline text="This is what we already do. 800/day, 3% error rate. The process IS the problem." />
+          <outline text="When it works: Edge cases and VIP customers where automation fails." />
+        </outline>
+
+      </outline>
+    </outline>
+
+  </body>
+</opml>
