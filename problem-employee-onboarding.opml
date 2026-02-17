@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Problem: Employee Onboarding</title>
+  </head>
+  <body>
+
+    <outline text="🧑‍💼 Employee onboarding: 2 weeks across 6 departments, 30% missing equipment on day one">
+      <outline text="Context: 6 departments each own a checklist, no single system of record, 40 new hires/month, IT and facilities tickets created manually, M365 available">
+
+        <outline text="✅ Standardized digital checklist with workflow automation">
+          <outline text="One checklist triggers all departments in parallel. Tasks auto-assigned with deadlines. Nothing falls through the cracks.">
+            <outline text="Trade-off: Requires all 6 departments to agree on one process. Needs a process owner to maintain it." />
+          </outline>
+
+          <outline text="How to implement the workflow?">
+            <outline text="✅ Low-code platform (Power Automate + SharePoint)">
+              <outline text="Already licensed under M365. HR creates the list, Power Automate notifies each department and tracks completion. No developers needed. Live in 2-3 weeks." />
+              <outline text="Trade-off: Limited customization. Complex conditional logic (e.g., different flows for contractors vs. full-time) requires workarounds." />
+            </outline>
+            <outline text="❌ Custom-built HR portal">
+              <outline text="3-4 months of development. Needs a dedicated team to build and maintain. Overkill for a workflow problem that off-the-shelf tools can solve." />
+              <outline text="When it works: 500+ hires/month with complex compliance requirements (e.g., background checks, certifications) that no low-code tool can handle." />
+            </outline>
+            <outline text="❌ Outsource to HR SaaS vendor (BambooHR, Workday)">
+              <outline text="€15-30K/year licensing. 3-6 month implementation with vendor consultants. Solves a problem we can fix in 3 weeks with existing tools." />
+              <outline text="When it works: Company-wide HR transformation where onboarding is just one module alongside payroll, performance reviews, and benefits." />
+            </outline>
+          </outline>
+        </outline>
+
+        <outline text="❌ Hire a dedicated onboarding coordinator">
+          <outline text="Adds €45-55K/year in salary. Single point of failure during vacation or sick leave. Scales linearly — 2× hires needs 2× coordinators. The problem is the process, not the headcount." />
+          <outline text="When it works: White-glove onboarding for senior executives or regulated roles where personal guidance is legally required." />
+        </outline>
+        <outline text="❌ Better email templates and shared spreadsheet">
+          <outline text="Cuts coordination time from hours to maybe 45 minutes. Still manual. Still relies on people checking email. Spreadsheet goes stale by day two. Same 30% equipment miss rate." />
+          <outline text="When it works: Quick fix to buy time while the automated workflow is being built. Useful as the interim step, not the solution." />
+        </outline>
+
+      </outline>
+    </outline>
+
+  </body>
+</opml>

@@ -758,6 +758,12 @@
         <a href="problem-ecommerce-search.opml" download style="display: inline-block; background: transparent; border: 1px solid var(--telekom-color-primary-standard); border-radius: var(--telekom-radius-pill); padding: var(--telekom-spacing-2) var(--telekom-spacing-6); color: var(--telekom-color-primary-standard); text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); font-weight: 500;" onmouseover="this.style.background='var(--telekom-color-primary-standard)'; this.style.color='var(--telekom-color-text-and-icon-inverted)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='transparent'; this.style.color='var(--telekom-color-primary-standard)'; this.style.transform='translateY(0)'">
           E-COMMERCE SEARCH
         </a>
+        <a href="problem-employee-onboarding.opml" download style="display: inline-block; background: transparent; border: 1px solid var(--telekom-color-primary-standard); border-radius: var(--telekom-radius-pill); padding: var(--telekom-spacing-2) var(--telekom-spacing-6); color: var(--telekom-color-primary-standard); text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); font-weight: 500;" onmouseover="this.style.background='var(--telekom-color-primary-standard)'; this.style.color='var(--telekom-color-text-and-icon-inverted)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='transparent'; this.style.color='var(--telekom-color-primary-standard)'; this.style.transform='translateY(0)'">
+          ONBOARDING
+        </a>
+        <a href="problem-self-service-portal.opml" download style="display: inline-block; background: transparent; border: 1px solid var(--telekom-color-primary-standard); border-radius: var(--telekom-radius-pill); padding: var(--telekom-spacing-2) var(--telekom-spacing-6); color: var(--telekom-color-primary-standard); text-decoration: none; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; letter-spacing: 0.05em; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); font-weight: 500;" onmouseover="this.style.background='var(--telekom-color-primary-standard)'; this.style.color='var(--telekom-color-text-and-icon-inverted)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='transparent'; this.style.color='var(--telekom-color-primary-standard)'; this.style.transform='translateY(0)'">
+          SELF-SERVICE PORTAL
+        </a>
       </div>
       <p style="margin-top: var(--telekom-spacing-2); font-size: 0.85rem; color: var(--telekom-color-text-and-icon-additional);">
         Import into MindNode, MindManager, or any OPML-compatible tool
@@ -1314,6 +1320,380 @@
           </div>
         </div>
       </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 4: EMPLOYEE ONBOARDING (Simple — 2 levels) -->
+  <div class="reveal">
+    <div class="problem-box">
+      <div class="card-label">Example 4 · Simple — Business Logic Layer</div>
+      <p>New employee onboarding takes 2 weeks across 6 departments. Each department has its own checklist. 30% of new hires report missing equipment or access on day one. 40 new hires per month. IT and facilities tickets are created manually. The company has Microsoft 365 licenses.</p>
+    </div>
+
+    <!-- LEVEL 1: What approach? -->
+    <div class="level-label">Level 1: What approach?</div>
+
+    <div class="solutions-grid">
+      <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('onboard-level2')">
+        <span class="solution-badge">✓ Best fit</span>
+        <h4>A: Standardized digital checklist with workflow automation</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>One checklist triggers all departments in parallel. Tasks auto-assigned with deadlines. Nothing falls through the cracks.</p>
+        </div>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it fits</span>
+          <p>Eliminates the root cause: fragmented ownership. Every department gets notified automatically, tracks completion in one place. Equipment miss rate drops to near zero.</p>
+        </div>
+        <div class="sol-section">
+          <span class="sol-section-label">Trade-off</span>
+          <p>Requires all 6 departments to agree on one process. Needs a process owner to maintain it.</p>
+        </div>
+      </div>
+
+      <div class="sol-card bad">
+        <span class="solution-badge">✗ Doesn't fit here</span>
+        <h4>B: Hire a dedicated onboarding coordinator</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>A dedicated person manages every new hire's onboarding end-to-end.</p>
+        </div>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it doesn't fit</span>
+          <p>Adds €45-55K/year. Single point of failure during vacation or sick leave. Scales linearly — 2× hires needs 2× coordinators. The problem is the process, not the headcount.</p>
+        </div>
+        <div class="sol-section when-works">
+          <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+          <p>White-glove onboarding for senior executives or regulated roles where personal guidance is legally required.</p>
+        </div>
+      </div>
+
+      <div class="sol-card bad">
+        <span class="solution-badge">✗ Doesn't fit here</span>
+        <h4>C: Better email templates and shared spreadsheet</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>Standardized email templates for each department and a shared Google Sheet/Excel to track progress.</p>
+        </div>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it doesn't fit</span>
+          <p>Cuts coordination time from hours to maybe 45 minutes. Still manual. Still relies on people checking email. Spreadsheet goes stale by day two. Same 30% equipment miss rate.</p>
+        </div>
+        <div class="sol-section when-works">
+          <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+          <p>As a quick fix to buy time while the automated workflow is being built. Useful as the interim step, not the solution.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 2: How to implement? -->
+    <div id="onboard-level2" class="drilldown-level">
+      <div class="drilldown-connector"><span>Next decision</span></div>
+      <div class="level-label">Level 2: How to implement the workflow?</div>
+
+      <div class="solutions-grid">
+        <div class="sol-card good">
+          <span class="solution-badge">✓ Best fit</span>
+          <h4>A: Low-code platform (Power Automate + SharePoint)</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>HR creates a SharePoint list for each new hire. Power Automate triggers notifications to each department, tracks task completion, and escalates overdue items.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it fits</span>
+            <p>Already licensed under M365. No developers needed. HR can build and modify the workflow themselves. Can be live in 2-3 weeks.</p>
+          </div>
+          <div class="sol-section">
+            <span class="sol-section-label">Trade-off</span>
+            <p>Limited customization. Complex conditional logic (e.g., different flows for contractors vs. full-time) requires workarounds.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>B: Custom-built HR portal</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Custom web application with onboarding workflows, dashboards, and integrations to IT ticketing systems.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>3-4 months of development. Needs a dedicated team to build and maintain. Overkill for a workflow problem that off-the-shelf tools can solve.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>500+ hires/month with complex compliance requirements (background checks, certifications, multi-country regulations) that no low-code tool can handle.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>C: Outsource to HR SaaS vendor (BambooHR, Workday)</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Dedicated HR platform with built-in onboarding module, task management, and reporting.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>€15-30K/year licensing. 3-6 month implementation with vendor consultants. Solves a problem we can fix in 3 weeks with existing tools.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>Company-wide HR transformation where onboarding is just one module alongside payroll, performance reviews, and benefits.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaway" style="margin-top: 1.5rem;">
+        <div class="takeaway-label">The Point</div>
+        <p>This decision tree is intentionally shallow. Two levels, no infrastructure, no microservices. A technical leader knows <mark>when to stop drilling</mark>. This is a process problem at the business logic layer — and the solution stays there.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXAMPLE 5: SELF-SERVICE PORTAL EVOLUTION (Complex — 4 levels) -->
+  <div class="reveal">
+    <div class="problem-box">
+      <div class="card-label">Example 5 · Complex — Spanning 4 Abstraction Layers</div>
+      <p>Your customer self-service portal launched as an MVP in 8 weeks and took off. Now 15K active users and 200 new customers onboarding monthly. But it's a PHP monolith with a single MySQL database and no API layer. Sales has promised a mobile app and partner integrations for Q3. The current architecture can't support either. You have a 4-person dev team and can't freeze features — revenue depends on it.</p>
+    </div>
+
+    <!-- LEVEL 1: Strategic approach? -->
+    <div class="level-label">Level 1: Strategic approach?</div>
+
+    <div class="solutions-grid">
+      <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('portal-level2')">
+        <span class="solution-badge">✓ Best fit</span>
+        <h4>A: Strangler fig pattern — extract services incrementally</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>Wrap the existing monolith behind a reverse proxy. Extract one capability at a time into new services. Old and new run side by side. Zero downtime migration.</p>
+        </div>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it fits</span>
+          <p>Features keep shipping during migration. Each extraction delivers immediate value (API access, mobile support). Risk is contained to one service at a time. 4-person team can handle incremental work.</p>
+        </div>
+        <div class="sol-section">
+          <span class="sol-section-label">Trade-off</span>
+          <p>Slower than a rewrite initially. Team runs two architectures in parallel for 6-9 months. Requires discipline to not keep adding to the monolith.</p>
+        </div>
+      </div>
+
+      <div class="sol-card bad">
+        <span class="solution-badge">✗ Doesn't fit here</span>
+        <h4>B: Full rewrite (greenfield)</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>Start from scratch with modern stack. Rebuild all functionality in a new codebase.</p>
+        </div>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it doesn't fit</span>
+          <p>6-12 months with a 4-person team. No new features during rewrite. 200 customers/month still onboarding to the old system — who migrates their data? Rewrites consistently take 2-3× longer than estimated.</p>
+        </div>
+        <div class="sol-section when-works">
+          <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+          <p>The existing codebase is truly unmaintainable (no tests, no documentation, original developers gone) AND you can afford to freeze features for 6+ months.</p>
+        </div>
+      </div>
+
+      <div class="sol-card bad">
+        <span class="solution-badge">✗ Doesn't fit here</span>
+        <h4>C: Keep the monolith and scale the team</h4>
+        <div class="sol-section">
+          <span class="sol-section-label">How it works</span>
+          <p>Hire more developers to work faster within the existing architecture.</p>
+        </div>
+        <div class="sol-section verdict">
+          <span class="sol-section-label">Why it doesn't fit</span>
+          <p>Hiring takes 3-4 months. New devs need 2 months to learn a codebase with no documentation. More developers on a monolith means more merge conflicts and slower releases. Brooks's Law: adding people to a late project makes it later.</p>
+        </div>
+        <div class="sol-section when-works">
+          <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+          <p>The monolith is well-structured (modular, tested, documented) and the bottleneck is genuinely capacity, not architecture.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEVEL 2: What to extract first? -->
+    <div id="portal-level2" class="drilldown-level">
+      <div class="drilldown-connector"><span>Next decision</span></div>
+      <div class="level-label">Level 2: What to extract first?</div>
+
+      <div class="solutions-grid">
+        <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('portal-level3')">
+          <span class="solution-badge">✓ Best fit</span>
+          <h4>A: API gateway — expose existing functionality via REST</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Build a thin API layer in front of the monolith. Mobile app and partners consume the API. Monolith serves the API instead of rendering HTML directly.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it fits</span>
+            <p>Directly unblocks the two business commitments: mobile app and partner integrations. Delivers visible value in 6-8 weeks. Partners and mobile team can start building immediately once API is live.</p>
+          </div>
+          <div class="sol-section">
+            <span class="sol-section-label">Trade-off</span>
+            <p>API initially just proxies to monolith internals. Not a clean domain model yet. Will need refactoring as services are extracted behind it.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>B: Start with database splitting</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Separate the monolithic database into service-specific databases first, then build services on top.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>Database is the hardest part. Months of invisible infrastructure work with no user-facing value. Sales has nothing to show in Q3. Team morale drops working on plumbing while the monolith keeps growing.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>When the database itself is the bottleneck (connection limits, replication lag, storage costs). Here, it's the architecture that's the bottleneck, not the database.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>C: Extract the UI first (new React frontend)</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Rebuild the frontend in React/Vue while keeping the PHP backend. Modern UI, same backend.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>A new frontend still calls the same monolith — same speed, same limitations. It's a cosmetic change that doesn't unlock mobile or partner integrations. 8-10 weeks of work that doesn't solve the API problem.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>When the backend is solid but the frontend is the user experience bottleneck (e.g., accessibility compliance, mobile-responsive redesign on a stable API).</p>
+          </div>
+        </div>
+      </div>
+
+    <!-- LEVEL 3: How to handle data? -->
+    <div id="portal-level3" class="drilldown-level">
+      <div class="drilldown-connector"><span>Next decision</span></div>
+      <div class="level-label">Level 3: How to handle data during the transition?</div>
+
+      <div class="solutions-grid">
+        <div class="sol-card good drilldown-trigger" onclick="toggleDrilldown('portal-level4')">
+          <span class="solution-badge">✓ Best fit</span>
+          <h4>A: Shared database with API contracts</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>New API services read from the same MySQL database. But they only access data through well-defined internal APIs, never direct table access. This creates a seam for later extraction.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it fits</span>
+            <p>Pragmatic for a 4-person team. No data sync complexity. Consistent data guaranteed. The API contracts create the boundary you'll need when you eventually split the database.</p>
+          </div>
+          <div class="sol-section">
+            <span class="sol-section-label">Trade-off</span>
+            <p>Database is still a single point of failure. Schema changes require coordination. But it avoids the data sync nightmare while the team is small.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>B: Immediate database-per-service</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Each new service gets its own database from day one. Full data isolation between services.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>With 4 developers, maintaining multiple databases, sync jobs, and distributed transactions is impossible. One failed sync and customer data is inconsistent across portal and mobile.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>Teams of 15+ with a dedicated platform/infrastructure group. Or when services have genuinely independent data with no cross-service queries.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>C: Data sync via ETL pipeline</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Extract-Transform-Load jobs copy data between services on a schedule (every 5-30 minutes).</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>ETL introduces lag. Customer updates their profile on the portal, opens the mobile app, sees old data. Support tickets spike. ETL jobs fail silently on schema changes.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>Analytics and reporting where near-real-time is acceptable. Or read-only data replication for dashboards and BI.</p>
+          </div>
+        </div>
+      </div>
+
+    <!-- LEVEL 4: How to ship mobile? -->
+    <div id="portal-level4" class="drilldown-level">
+      <div class="drilldown-connector"><span>Next decision</span></div>
+      <div class="level-label">Level 4: How to ship the mobile app while migrating?</div>
+
+      <div class="solutions-grid">
+        <div class="sol-card good">
+          <span class="solution-badge">✓ Best fit</span>
+          <h4>A: API-first — mobile and new web consume the same API</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Mobile app built against the same REST API as the future web frontend. One API, two consumers. When the web frontend is eventually rewritten, it uses the same endpoints.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it fits</span>
+            <p>Consistent behavior guaranteed between mobile and web. One set of business logic to maintain. API design done once, consumed everywhere. Future-proof for partner integrations too.</p>
+          </div>
+          <div class="sol-section">
+            <span class="sol-section-label">Trade-off</span>
+            <p>API design must account for mobile constraints (payload size, offline support, battery). Adds up-front design effort. Mobile team blocked until core API endpoints are stable.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>B: Separate backend-for-frontend (BFF) for mobile</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>A dedicated backend service tailored to mobile needs, separate from the web backend.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>Two backends to maintain with a 4-person team. Business logic duplicated or split across services. Bug fixes need to be applied twice. At 15K users this is unsustainable.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>Large teams (10+ backend devs) where mobile and web have fundamentally different data needs and release cycles.</p>
+          </div>
+        </div>
+
+        <div class="sol-card bad">
+          <span class="solution-badge">✗ Doesn't fit here</span>
+          <h4>C: Delay mobile app until migration is complete</h4>
+          <div class="sol-section">
+            <span class="sol-section-label">How it works</span>
+            <p>Finish the full monolith-to-services migration first, then build the mobile app on the clean architecture.</p>
+          </div>
+          <div class="sol-section verdict">
+            <span class="sol-section-label">Why it doesn't fit</span>
+            <p>Migration takes 6-9 months. Sales promised mobile for Q3 — that's 14 weeks away. 200 customers/month onboarding without mobile. Competitor already has an app. Losing €30K/month in churn.</p>
+          </div>
+          <div class="sol-section when-works">
+            <span class="sol-section-label" style="color: var(--green);">When it would work</span>
+            <p>Internal tools where there's no competitive pressure and quality matters more than speed.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="takeaway" style="margin-top: 1.5rem;">
+        <div class="takeaway-label">The Point</div>
+        <p>Four levels. Four different abstraction layers: <mark>Services → API → Data → Business Logic</mark>. Each decision constrained the next. And at every level, <mark>product knowledge</mark> — user flows, business commitments, team capacity, competitive pressure — drove the choice, not technology preference.</p>
+      </div>
+    </div>
     </div>
     </div>
   </div>

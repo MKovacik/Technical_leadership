@@ -167,5 +167,113 @@
       </outline>
     </outline>
 
+    <!-- EXAMPLE 4: EMPLOYEE ONBOARDING -->
+    <outline text="🧑‍💼 Employee onboarding: 2 weeks across 6 departments, 30% missing equipment on day one">
+      <outline text="Context: 6 departments each own a checklist, no single system of record, 40 new hires/month, IT and facilities tickets created manually, M365 available">
+
+        <outline text="✅ Standardized digital checklist with workflow automation">
+          <outline text="One checklist triggers all departments in parallel. Tasks auto-assigned with deadlines. Nothing falls through the cracks.">
+            <outline text="Trade-off: Requires all 6 departments to agree on one process. Needs a process owner to maintain it." />
+          </outline>
+
+          <outline text="How to implement the workflow?">
+            <outline text="✅ Low-code platform (Power Automate + SharePoint)">
+              <outline text="Already licensed under M365. HR creates the list, Power Automate notifies each department and tracks completion. No developers needed. Live in 2-3 weeks." />
+              <outline text="Trade-off: Limited customization. Complex conditional logic (e.g., different flows for contractors vs. full-time) requires workarounds." />
+            </outline>
+            <outline text="❌ Custom-built HR portal">
+              <outline text="3-4 months of development. Needs a dedicated team to build and maintain. Overkill for a workflow problem that off-the-shelf tools can solve." />
+              <outline text="When it works: 500+ hires/month with complex compliance requirements (e.g., background checks, certifications) that no low-code tool can handle." />
+            </outline>
+            <outline text="❌ Outsource to HR SaaS vendor (BambooHR, Workday)">
+              <outline text="€15-30K/year licensing. 3-6 month implementation with vendor consultants. Solves a problem we can fix in 3 weeks with existing tools." />
+              <outline text="When it works: Company-wide HR transformation where onboarding is just one module alongside payroll, performance reviews, and benefits." />
+            </outline>
+          </outline>
+        </outline>
+
+        <outline text="❌ Hire a dedicated onboarding coordinator">
+          <outline text="Adds €45-55K/year in salary. Single point of failure during vacation or sick leave. Scales linearly — 2× hires needs 2× coordinators. The problem is the process, not the headcount." />
+          <outline text="When it works: White-glove onboarding for senior executives or regulated roles where personal guidance is legally required." />
+        </outline>
+        <outline text="❌ Better email templates and shared spreadsheet">
+          <outline text="Cuts coordination time from hours to maybe 45 minutes. Still manual. Still relies on people checking email. Spreadsheet goes stale by day two. Same 30% equipment miss rate." />
+          <outline text="When it works: Quick fix to buy time while the automated workflow is being built. Useful as the interim step, not the solution." />
+        </outline>
+
+      </outline>
+    </outline>
+
+    <!-- EXAMPLE 5: SELF-SERVICE PORTAL EVOLUTION -->
+    <outline text="🚀 Self-service portal: MVP success → architecture ceiling. 15K users, monolith can't support mobile or partner integrations">
+      <outline text="Context: PHP monolith launched as MVP in 8 weeks, single MySQL database, no API layer, 200 new customers/month, sales promised mobile app and partner API for Q3, 4-person dev team, can't freeze features — revenue depends on it">
+
+        <outline text="✅ Strangler fig pattern — extract services incrementally">
+          <outline text="Wrap existing monolith behind a reverse proxy. Extract one capability at a time into new services. Old and new run side by side. Zero downtime migration.">
+            <outline text="Trade-off: Slower than a rewrite initially. Team runs two architectures in parallel for 6-9 months. Requires discipline to not keep adding to the monolith." />
+          </outline>
+
+          <outline text="What to extract first?">
+            <outline text="✅ API gateway — expose existing functionality via REST">
+              <outline text="Build a thin API layer in front of the monolith. Mobile app and partners consume the API. Monolith serves the API instead of rendering HTML directly. Unblocks sales commitment in 6-8 weeks.">
+                <outline text="Trade-off: API initially just proxies to monolith internals. Not a clean domain model yet. Will need refactoring as services are extracted behind it." />
+              </outline>
+
+              <outline text="How to handle data during the transition?">
+                <outline text="✅ Shared database with API contracts">
+                  <outline text="New API services read from the same MySQL database. But they only access data through well-defined internal APIs, never direct table access. This creates a seam for later extraction.">
+                    <outline text="Trade-off: Database is still a single point of failure. Schema changes require coordination. But it avoids the data sync nightmare while the team is small." />
+                  </outline>
+
+                  <outline text="How to ship the mobile app while migrating?">
+                    <outline text="✅ API-first: mobile and new web frontend consume the same API">
+                      <outline text="Mobile app built against the same REST API. When the web frontend is eventually rewritten, it uses the same endpoints. One API, two consumers. Consistent behavior guaranteed." />
+                      <outline text="Trade-off: API design must account for mobile constraints (payload size, offline support, battery). Adds up-front design effort. Mobile team blocked until core API endpoints are stable." />
+                    </outline>
+                    <outline text="❌ Separate backend-for-frontend (BFF) for mobile">
+                      <outline text="Two backends to maintain with a 4-person team. Business logic duplicated or split across services. Bug fixes need to be applied twice. At 15K users this is unsustainable." />
+                      <outline text="When it works: Large teams (10+ backend devs) where mobile and web have fundamentally different data needs and release cycles." />
+                    </outline>
+                    <outline text="❌ Delay mobile app until migration is complete">
+                      <outline text="Migration takes 6-9 months. Sales promised mobile for Q3 — that's 14 weeks away. 200 customers/month are onboarding without mobile. Competitor already has an app. Losing €30K/month in churn." />
+                      <outline text="When it works: Internal tools where there's no competitive pressure and quality matters more than speed." />
+                    </outline>
+                  </outline>
+                </outline>
+
+                <outline text="❌ Immediate database-per-service">
+                  <outline text="With 4 developers, maintaining multiple databases, sync jobs, and distributed transactions is impossible. One failed sync and customer data is inconsistent across portal and mobile. Team spends more time on infrastructure than features." />
+                  <outline text="When it works: Teams of 15+ with a dedicated platform/infrastructure group. Or when services have genuinely independent data with no cross-service queries." />
+                </outline>
+                <outline text="❌ Data sync via ETL pipeline">
+                  <outline text="ETL introduces lag (5-30 min). Customer updates their profile on the portal, opens the mobile app, sees old data. Support tickets spike. ETL jobs fail silently on schema changes. At 200 new customers/month, data inconsistency erodes trust fast." />
+                  <outline text="When it works: Analytics and reporting where near-real-time is acceptable. Or read-only data replication for dashboards and BI." />
+                </outline>
+              </outline>
+            </outline>
+
+            <outline text="❌ Start with database splitting">
+              <outline text="Database is the hardest part. Starting here means months of invisible infrastructure work with no user-facing value. Sales has nothing to show in Q3. Team morale drops working on plumbing. Meanwhile the monolith keeps growing." />
+              <outline text="When it works: When the database is the bottleneck (connection limits, replication lag, storage costs). Here, it's the architecture that's the bottleneck, not the database." />
+            </outline>
+            <outline text="❌ Extract the UI first (new React frontend)">
+              <outline text="A new frontend still calls the same monolith — same speed, same limitations. It's a cosmetic change that doesn't unlock mobile or partner integrations. 8-10 weeks of work that doesn't solve the API problem." />
+              <outline text="When it works: When the backend is solid but the frontend is the user experience bottleneck (e.g., accessibility compliance, mobile-responsive redesign on a stable API)." />
+            </outline>
+          </outline>
+        </outline>
+
+        <outline text="❌ Full rewrite (greenfield)">
+          <outline text="6-12 months with a 4-person team. No new features during rewrite. 200 customers/month still onboarding to the old system — who migrates their data? Rewrites consistently take 2-3× longer than estimated. 70% of rewrites fail to ship." />
+          <outline text="When it works: The existing codebase is truly unmaintainable (no tests, no documentation, original developers gone) AND you can afford to freeze features for 6+ months." />
+        </outline>
+        <outline text="❌ Keep the monolith and scale the team">
+          <outline text="Hiring takes 3-4 months. New devs need 2 months to learn a codebase with no documentation. More developers on a monolith means more merge conflicts, longer deploy cycles, and slower releases. Brooks's Law: adding people to a late project makes it later." />
+          <outline text="When it works: The monolith is well-structured (modular, tested, documented) and the bottleneck is genuinely capacity, not architecture." />
+        </outline>
+
+      </outline>
+    </outline>
+
   </body>
 </opml>
