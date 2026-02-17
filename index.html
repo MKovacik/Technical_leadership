@@ -23,9 +23,11 @@
     <li><a href="#section-03" data-nav-link>03 <span class="nav-label">The Skill</span></a></li>
     <li><a href="#section-04" data-nav-link>04 <span class="nav-label">Product</span></a></li>
     <li><a href="#section-05" data-nav-link>05 <span class="nav-label">Perception</span></a></li>
-    <li><a href="#section-06" data-nav-link>06 <span class="nav-label">Reflect</span></a></li>
-    <li><a href="#section-07" data-nav-link>07 <span class="nav-label">Action Plan</span></a></li>
-    <li><a href="#section-08" data-nav-link>08 <span class="nav-label">Exercise</span></a></li>
+    <li><a href="#section-06" data-nav-link>06 <span class="nav-label">Partnership</span></a></li>
+    <li><a href="#section-07" data-nav-link>07 <span class="nav-label">Pitfalls</span></a></li>
+    <li><a href="#section-08" data-nav-link>08 <span class="nav-label">Reflect</span></a></li>
+    <li><a href="#section-09" data-nav-link>09 <span class="nav-label">Roadmap</span></a></li>
+    <li><a href="#section-10" data-nav-link>10 <span class="nav-label">Exercise</span></a></li>
   </ol>
 </nav>
 
@@ -595,12 +597,230 @@
   </div>
 </section>
 
-<!-- SELF REFLECTION -->
+<!-- THE PARTNERSHIP -->
+<div class="divider"></div>
+
+<div class="big-statement reveal">
+  <p>You don't lead technology alone.<br>You lead it through the people who <em>build</em> it.</p>
+</div>
+
 <div class="divider"></div>
 
 <section id="section-06">
   <div class="reveal">
-    <div class="section-number">06 · Reflect</div>
+    <div class="section-number">06 · The Key Relationship</div>
+    <div class="section-title">Your Engineers.<br><em>The Partnership.</em></div>
+    <p class="section-lead">
+      Your relationship with your senior engineers is the single most important working relationship you have. It can make you look brilliant or invisible. Get it right, and you lead with confidence. Get it wrong, and you become a relay station.
+    </p>
+  </div>
+
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Partnership Principle 1</div>
+    <div class="card-title">Delegation without abdication</div>
+    <div class="card-text">
+      Giving engineers ownership doesn't mean disappearing. It means staying close enough to understand trade-offs, far enough to let them own the solution. The line between trust and negligence is thinner than you think.
+    </div>
+    <div class="comparison">
+      <div class="comp-bad">
+        <span class="comp-label">❌ Passive delegation</span>
+        "You decide. You know the tech better than me. Just let me know what you picked."
+      </div>
+      <div class="comp-good">
+        <span class="comp-label">✅ Engaged delegation</span>
+        "Walk me through the trade-offs between the two approaches. Then you decide. I want to understand the reasoning so I can defend it when leadership asks."
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">What this looks like in practice</div>
+      <div class="example-text">
+        Your senior engineer proposes migrating from REST to GraphQL. Instead of saying "sure, go ahead" or "no, too risky," you ask: "What problem does this solve that we can't solve with REST? What's the migration cost? What does the team need to learn?" You don't need to evaluate the code. You need to evaluate the decision.
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Partnership Principle 2</div>
+    <div class="card-title">Challenging without pretending</div>
+    <div class="card-text">
+      You don't need to know the answer to push back. You need to ask the question that reveals whether the answer is solid. The most powerful technique: ask for the alternative they rejected.
+    </div>
+    <div class="comparison">
+      <div class="comp-bad">
+        <span class="comp-label">❌ Passive approval</span>
+        "Sounds good. I trust your judgment. Let's go with it."
+      </div>
+      <div class="comp-good">
+        <span class="comp-label">✅ Informed challenge</span>
+        "What was the alternative you considered and rejected? What would we lose if we went that route instead?"
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">Why this works</div>
+      <div class="example-text">
+        If the engineer can clearly explain why they rejected the alternative, the decision is solid. If they can't, you just found a blind spot — without needing to know a single line of code. This question works in architecture reviews, tool selections, and incident responses. It's the Swiss army knife of non-technical leadership.
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Partnership Principle 3</div>
+    <div class="card-title">The single point of failure</div>
+    <div class="card-text">
+      If one engineer holds all the context, all the knowledge, and all the decision-making authority, you don't have a team — you have a dependency. And dependencies break.
+    </div>
+    <div class="card-text" style="padding: 0;">
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Warning signs</h4>
+            <p>Every technical question gets routed to the same person. Nobody else can deploy. Architecture decisions happen in private conversations. When they're on vacation, the team slows to a crawl.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>What to do about it</h4>
+            <p>Pair them with a second engineer on critical systems. Insist on written ADRs (Architecture Decision Records) so knowledge lives outside one person's head. Rotate who presents in architecture reviews. Make bus factor a team metric, not a taboo topic.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Partnership Principle 4</div>
+    <div class="card-title">Credit and authority</div>
+    <div class="card-text">
+      The fastest way to lose your engineers' trust is to take credit for their work. The fastest way to lose leadership's respect is to have no narrative of your own. The balance: credit them for the <em>how</em>, own the <em>what</em> and the <em>why</em>.
+    </div>
+    <div class="comparison">
+      <div class="comp-bad">
+        <span class="comp-label">❌ Taking credit</span>
+        "I decided we should migrate to event-driven architecture. Here's the plan I put together."
+      </div>
+      <div class="comp-good">
+        <span class="comp-label">✅ Shared narrative</span>
+        "Our senior engineer designed an event-driven approach that cuts processing time by 60%. I'm recommending we prioritize it because it directly unblocks the partner integration on our Q3 roadmap."
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">The rule</div>
+      <div class="example-text">
+        In front of leadership: "The team built X, and here's why it matters for the business." In front of the team: "Leadership approved the direction because of the case you helped me build." Credit flows down. Context flows up. That's the job.
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway reveal">
+    <div class="takeaway-label">Remember</div>
+    <p>The strongest technical leaders aren't the ones who know the most. They're the ones whose engineers <mark>want them to succeed</mark>.</p>
+  </div>
+</section>
+
+<!-- THE PITFALLS -->
+<div class="divider"></div>
+
+<section id="section-07">
+  <div class="reveal">
+    <div class="section-number">07 · The Pitfalls</div>
+    <div class="section-title">Patterns That<br><em>Hold Leaders Back.</em></div>
+    <p class="section-lead">
+      Knowing the vocabulary and tools isn't enough if you fall into patterns that undermine your credibility. These are the four most common anti-patterns. Recognizing them is the hardest part.
+    </p>
+  </div>
+
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Anti-Pattern 1</div>
+    <div class="card-title">The Proxy</div>
+    <div class="card-text">
+      You route every technical question to your senior engineer. "Let me check with the team" becomes your default answer. Leadership stops asking you and goes directly to the engineer. You become invisible.
+    </div>
+    <div class="example-box">
+      <div class="example-label">What this looks like</div>
+      <div class="example-text">
+        A VP asks about the timeline impact of a new security requirement. You say "I'll need to check with my tech lead and get back to you." The VP starts inviting the tech lead to meetings directly. Within a month, you're cc'd instead of invited.
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">What to do instead</div>
+      <div class="example-text">
+        Give a directional answer first, then refine: "Based on what I know about our current sprint load, we're looking at a 2-3 week impact. Let me confirm the specifics with the team and get you a detailed breakdown by tomorrow." You've shown judgment. You've bought time. You've stayed in the loop.
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Anti-Pattern 2</div>
+    <div class="card-title">The Translator</div>
+    <div class="card-text">
+      You relay information between business and technology without adding judgment. You carry messages back and forth like a courier. Business says "we need it faster." You tell the team "they want it faster." The team says "we need more time." You tell business "they need more time." Nobody needs you for this.
+    </div>
+    <div class="example-box">
+      <div class="example-label">What this looks like</div>
+      <div class="example-text">
+        Product management requests a feature. You forward the request to the team. The team estimates 6 sprints. You forward the estimate to product management. Product management pushes back. You forward the pushback to the team. At no point did you evaluate whether 6 sprints is reasonable or propose a phased delivery.
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">What to do instead</div>
+      <div class="example-text">
+        Add your judgment: "The team estimates 6 sprints for the full scope. I'd suggest we deliver the core workflow in 2 sprints and iterate. That gets us in front of users faster and reduces the risk of building the wrong thing." You've translated, filtered, and recommended. That's leadership.
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Anti-Pattern 3</div>
+    <div class="card-title">The Credential Chaser</div>
+    <div class="card-text">
+      You collect certifications and complete online courses to feel technically credible. AWS Certified, Scrum Master, Kubernetes Administrator — the badges pile up. But you can't explain how your own team's deployment pipeline works. Credentials without context is decoration.
+    </div>
+    <div class="example-box">
+      <div class="example-label">What this looks like</div>
+      <div class="example-text">
+        You spend evenings studying for an Azure certification. You pass. In the next architecture review, your team discusses migrating a service and you still can't contribute because the certification covered theory, not your system. The badge looks good on LinkedIn but changes nothing in the room.
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">What to do instead</div>
+      <div class="example-text">
+        Invest the same hours into learning your own system. Read your team's last three post-mortems. Sit in on a code review and ask questions. Understand why your team chose PostgreSQL over MongoDB. Contextual knowledge beats certified knowledge every time.
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Anti-Pattern 4</div>
+    <div class="card-title">The Yes-Leader</div>
+    <div class="card-text">
+      You accept every request because you can't evaluate feasibility. When business asks "can we do this by Friday?" you say yes because you don't know enough to say "not without cutting X." Your team burns out delivering on promises you made without understanding the cost.
+    </div>
+    <div class="example-box">
+      <div class="example-label">What this looks like</div>
+      <div class="example-text">
+        A stakeholder asks for a "simple" integration with a partner system. You agree to a 2-week timeline. Your engineers discover the partner API has no documentation, rate limits are undefined, and authentication requires a 3-week security review. The project takes 8 weeks. Your credibility with both the stakeholder and your team takes a hit.
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">What to do instead</div>
+      <div class="example-text">
+        Buy time to evaluate: "Let me do a quick feasibility check with the team before I commit to a timeline. I'll have a confidence level for you by end of day." Then ask your engineers the right questions: What's unknown? What's the biggest risk? What would a safe first milestone look like?
+      </div>
+    </div>
+  </div>
+
+  <div class="takeaway reveal">
+    <div class="takeaway-label">Remember</div>
+    <p>Recognizing these patterns in yourself is not failure. It's the first step toward <mark>leading with intention</mark>.</p>
+  </div>
+</section>
+
+<!-- SELF REFLECTION -->
+<div class="divider"></div>
+
+<section id="section-08">
+  <div class="reveal">
+    <div class="section-number">08 · Reflect</div>
     <div class="section-title">Questions for<br><em>Self-Assessment</em></div>
     <p class="section-lead">
       You've received a self-assessment questionnaire. Here are the key questions mapped to each pillar. Don't aim for perfection. Aim for honest awareness of where you stand.
@@ -692,53 +912,135 @@
 
 <div class="divider"></div>
 
-<section id="section-07">
+<section id="section-09">
   <div class="reveal">
-    <div class="section-number">07 · The Commitment</div>
-    <div class="section-title">Your<br><em>Action Plan</em></div>
+    <div class="section-number">09 · The Roadmap</div>
+    <div class="section-title">Your<br><em>Learning Path</em></div>
     <p class="section-lead">
-      Don't try to improve everything at once. Pick one area and commit to it for the next month.
+      Don't try to improve everything at once. Follow this phased approach. Each phase builds on the previous one. Move at your own pace, but don't skip phases — the foundation matters.
     </p>
   </div>
 
-  <div class="action-list reveal">
-    <div class="action-item">
-      <div class="action-num">1</div>
-      <div class="action-content">
-        <h4>Complete the self-assessment honestly</h4>
-        <p>Go through the <a href="Leadership_Readiness_EN.md" download style="color: var(--telekom-color-primary-standard); text-decoration: underline;">full questionnaire</a>. Mark where you're TOP, MID, and LOW. No judgment. This is your baseline.</p>
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Phase 1 · Orient</div>
+    <div class="card-title">Week 1: Know where you stand</div>
+    <div class="card-text" style="padding: 0;">
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Complete the self-assessment</h4>
+            <p>Go through the <a href="Leadership_Readiness_EN.md" download style="color: var(--telekom-color-primary-standard); text-decoration: underline;">full questionnaire</a>. Mark where you're TOP, MID, and LOW. No judgment. This is your baseline.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Read the vocabulary cheat sheet</h4>
+            <p>Download the <a href="Technical_Vocabulary_EN.md" download style="color: var(--telekom-color-primary-standard); text-decoration: underline;">vocabulary reference</a>. Highlight terms you've heard but couldn't define. These are your first learning targets.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Identify your team's abstraction layer</h4>
+            <p>Which layer from Section 01 does your team operate at? Infrastructure? Services? API? Business logic? This is the layer where your technical understanding matters most.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="action-item">
-      <div class="action-num">2</div>
-      <div class="action-content">
-        <h4>Pick your pillar</h4>
-        <p>Choose the one area where improvement would have the biggest impact on how your team and stakeholders perceive you. Focus there first.</p>
+  </div>
+
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Phase 2 · Observe</div>
+    <div class="card-title">Weeks 2-3: Learn by watching</div>
+    <div class="card-text" style="padding: 0;">
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Attend one architecture review silently</h4>
+            <p>Don't contribute. Just listen. Write down every term you don't fully understand. Look them up afterwards. This is your real-world vocabulary lesson.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Read one post-mortem</h4>
+            <p>Pick a recent incident report. Understand what broke, why it wasn't caught, and what changed. This gives you more system knowledge than any certification.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Have a 1-on-1 with your senior engineer</h4>
+            <p>Ask one question: "What's the one thing about our system you wish I understood better?" Then listen. Don't defend. Take notes. This conversation alone can shift your entire relationship.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="action-item">
-      <div class="action-num">3</div>
-      <div class="action-content">
-        <h4>One concrete habit this week</h4>
-        <p>Read one ADR. Attend one architecture discussion. Ask one probing question in a technical meeting. Translate one business requirement into technical terms. Small, consistent actions compound.</p>
+  </div>
+
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Phase 3 · Participate</div>
+    <div class="card-title">Weeks 4-6: Start contributing</div>
+    <div class="card-text" style="padding: 0;">
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Ask one vocabulary question in a real meeting</h4>
+            <p>Use one of the "Ask this" prompts from the vocabulary section in an actual architecture review or technical discussion. Notice how the room responds when you ask a specific, relevant question.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Translate one technical item into business language</h4>
+            <p>Take something from your team's sprint — a refactoring task, a performance fix, an infrastructure change — and present it to a stakeholder in business terms. Use the pattern from Section 03.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Try the problem-first mind map on a real problem</h4>
+            <p>Pick a problem your team is facing. Map out three solutions. For each one: how it works, why it does or doesn't fit, and what the trade-off is. Bring it to your next 1-on-1 with your manager.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="action-item">
-      <div class="action-num">4</div>
-      <div class="action-content">
-        <h4>Bring your reflections to the next session</h4>
-        <p>In our next coaching session, we'll dive deeper into your individual challenges. Come prepared with a specific situation where you felt technically out of depth. We'll work through it together.</p>
+  </div>
+
+  <div class="insight-card reveal" data-expandable aria-expanded="true" role="button" tabindex="0">
+    <div class="card-label">Phase 4 · Own</div>
+    <div class="card-title">Month 2+: Lead with confidence</div>
+    <div class="card-text" style="padding: 0;">
+      <div class="action-list">
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Present a technical trade-off to leadership</h4>
+            <p>Take a real decision your team is facing. Frame it as the business case: what we gain, what we risk, what we recommend. Use concrete numbers. This is the moment you stop being "the manager" and start being "the technical leader."</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Build a mind map without examples</h4>
+            <p>Pick a new problem. Create the decision tree from scratch — no templates, no examples. If you can do this, you've internalized the thinking pattern.</p>
+          </div>
+        </div>
+        <div class="action-item">
+          <div class="action-content">
+            <h4>Revisit the self-assessment</h4>
+            <p>Go through the <a href="Leadership_Readiness_EN.md" download style="color: var(--telekom-color-primary-standard); text-decoration: underline;">questionnaire</a> again. Compare with your baseline. Where did you move? Where are you stuck? This is your agenda for the next coaching session.</p>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class="takeaway reveal">
+    <div class="takeaway-label">Next Step</div>
+    <p>Bring your reflections to the next coaching session. Come prepared with a specific situation where you applied something from this page — or where you tried and it didn't work. <mark>We'll work through it together.</mark></p>
   </div>
 </section>
 
 <div class="divider"></div>
 
 <!-- EXERCISE SECTION -->
-<section id="section-08">
+<section id="section-10">
   <div class="reveal">
-    <div class="section-number">08 · Exercise</div>
+    <div class="section-number">10 · Exercise</div>
     <div class="section-title">What Helps Me:<br><em>The Problem-First Mind Map</em></div>
     <p class="section-lead">
       Start with a real business problem. Map out possible solutions. For each one ask: does it solve my problem? What's the trade-off? When would it make sense instead?
